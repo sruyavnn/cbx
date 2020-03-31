@@ -1,0 +1,33 @@
+.left-nav{
+    background-color: #f4f4f4;
+    overflow: auto;
+    max-width: 21% !important;
+    flex: 0 0 21%;
+}
+.footer-section{
+    min-height: 96px;
+    background-color: #1D4572;
+}
+.landing-page {
+    max-width: 78%;
+    flex: 0 0 78%;
+}
+.sort-by-main{
+    margin: 15px 0px 15px 0px;
+}
+.main-page {
+    min-height: 750px;
+}
+@media (max-width: 767px) { 
+    .left-nav {
+    max-width: 100% !important;
+    flex: 0 0 100%;
+    }
+    .landing-page {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .landing-page {
+        margin-top:20px
+    }
+ }

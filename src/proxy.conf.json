@@ -1,0 +1,9 @@
+[
+   { 
+   "context" :["/otmmapi/**","/cbx-app/**"],
+   "target": "http://cdam-app-dev-01:11090", 
+   "secure": false, 
+   "logLevel": "debug" 
+   
+}
+]

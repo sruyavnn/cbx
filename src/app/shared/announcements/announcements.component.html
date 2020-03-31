@@ -1,0 +1,127 @@
+<div class="row p-m-0 announcement-top">
+    <!-- <div class="col-sm-12 rightmenu">
+        <div>
+            <h6 class="Announcemens">Announcements</h6>
+            <span class="newBx">New BX is here!</span>
+            <p class="checkOut">Check out what we have done with the new Brand Exchange.</p>
+        </div>
+        <div class="borderTest">
+        </div>
+        <div>
+            <span class="featured">Featured collections</span>
+            <p class="checkOut-featured">Featured collections can be found <a href="#">here.</a></p>
+        </div>
+    </div>
+     -->
+
+     <div class="row p-m-0">
+        <div class="col-sm-12 rightmenu" >
+            <div  *ngIf="!trtopDownloadData && !trListViewData">
+            <div>
+                <h6 class="Announcemens">Announcements</h6>
+                <span class="newBx">New BX is here!</span>
+                <p class="checkOut">Check out what we have done with the new Brand Exchange.</p>
+            </div>
+            <!-- <div class="borderTest">
+            </div> -->
+            <div>
+                <span class="featured">Featured collections</span>
+                <p class="checkOut-featured">Featured collections can be found <a href="#">here.</a></p>
+            </div>
+        </div> 
+        <div *ngIf="trtopDownloadData!=null">
+            
+            <div class="col-sm-12 p-bx-0">
+                <i class="fa fa-remove" (click)="removeTopDownloadData()" aria-hidden="true"></i>
+                <div>
+                    <p class="newBxName">{{trtopDownloadData.name}} &nbsp;&nbsp;&nbsp;&nbsp; </p>
+                   <div class="img-anpunce"> <img class="resImg img-fluid" src={{trtopDownloadData.rendition_content.thumbnail_content.url}}></div>
+                </div>
+                <div class="cart">
+                    <img src="../../../cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart"/>
+                </div>
+                <div class="download">
+                    <img (click)="rpRowImgDownload(trtopDownloadData.rendition_content.thumbnail_content.id)" src="../../../cbx/images/buttons-with-icons/download_Inactive.png" class="img-download"/>
+                </div>
+                <div class="ellipsis">
+                    <img src="../../../cbx/images/buttons-with-icons/options_inactive.png" class="img-options"/>
+                </div>
+                <div>
+                    <span class="newBx">updated: {{trtopDownloadData.date_last_updated | date: 'dd/MM/yyyy' }}</span>
+                    <p class="checkOut-featured">Updated old links, fixed types in instruction guide, fixed file type error</p>
+                </div>
+                <div>
+                    <ul class="lastModified">
+                        <li>Last modified by: Matero, Sarah</li>
+                        <li>Total Downloads: 144k</li>
+                        <li>Asset Size: {{trtopDownloadData.rendition_content.preview_content.content_size/1024/1024 | number : '1.2-2'}}mb</li>
+                    </ul>
+                </div>
+                <!-- <div class="borderTest">
+                </div> -->
+                <div>
+                    <ul class="createdBy">
+                        <li>Created by: Matero, Sarah</li>
+                        <li>Expiration date: 11/12/2028</li>
+                        <li>Asset id: {{trtopDownloadData.asset_id}}</li>
+                        <li>Legal rights exist: No</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+       
+        <div *ngIf="trListViewData!=null">
+            <div class="col-sm-12 p-bx-0">
+                <i class="fa fa-remove" (click)="removeListViewRPData()" aria-hidden="true"></i>
+                <div>
+                    <p class="newBxName">{{trListViewData.name}} &nbsp;&nbsp;&nbsp;&nbsp; </p>
+                   <div class="img-anpunce"> 
+                       <img class="resImg img-fluid" src="../../../cbx/images/thumbnail_icons/folder-50px.png" /> 
+                        <!-- <span *ngIf="rowData?.data_type== 'CONTAINER' && !rowData?.rendition_content" class="asset-pannel">
+                            <img src="./cbx/images/thumbnail_icons/folder-50px.png" class="img-fluid list-folder-size list-asset-hover">
+                        </span>
+                        <span  *ngIf="rowData?.data_type== 'CONTAINER' && rowData?.rendition_content" class="asset-pannel">
+                        <img src={{rowData?.rendition_content.thumbnail_content.url}} class="img-fluid list-asset-size list-asset-hover">
+                        </span>
+                        <span  *ngIf="rowData?.data_type== undefined && rowData?.rendition_content" class="asset-pannel">
+                            <img src={{rowData?.rendition_content.thumbnail_content.url}} class="img-fluid list-asset-size list-asset-hover">
+                        </span> -->
+                    </div>
+                </div>
+                <div class="cart">
+                    <img src="../../../cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart"/>
+                </div>
+                <div class="download">
+                    <img (click)="rpRowFolderDownload(trListViewData.rendition_content.thumbnail_content.id)" src="../../../cbx/images/buttons-with-icons/download_Inactive.png" class="img-download"/>
+                </div>
+                <div class="ellipsis">
+                    <img src="../../../cbx/images/buttons-with-icons/options_inactive.png" class="img-options"/>
+                </div>
+                <div>
+                    <span class="newBx">updated: {{trListViewData.date_last_updated | date: 'MM/dd/yyyy'}}</span>
+                    <p class="checkOut-featured">Updated old links, fixed types in instruction guide, fixed file type error</p>
+                </div>
+                <div>
+                    <ul class="lastModified">
+                        <li>Last modified by: Matero, Sarah</li>
+                        <li>Total Downloads: 144k</li>
+                        <li>Asset Size: {{trListViewData.content_size | number : '1.2-2'}}mb</li>
+                    </ul>
+                </div>
+                <!-- <div class="borderTest">
+                </div> -->
+                <div>
+                    <ul class="createdBy">
+                        <li>Created by: Matero, Sarah</li>
+                        <li>Expiration date: 11/12/2028</li>
+                        <li>Asset id: {{trListViewData.asset_id}}</li>
+                        <li>Legal rights exist: No</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+       
+    </div>
+</div>

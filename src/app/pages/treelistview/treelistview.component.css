@@ -1,0 +1,472 @@
+.Table
+{
+display: table;
+width: 100%;
+}
+.Title
+{
+display: table-caption;
+text-align: center;
+font-weight: bold;
+font-size: larger;
+}
+.Heading
+{
+
+font-weight: bold;
+text-align: center;
+}
+.assetNameClick:hover {
+  cursor: pointer;
+}
+.Row
+{
+    border-width: thin;
+    text-align: left;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    width: 100%;
+    border: 2px solid #E6E6E6;
+    font-size: 12px;
+    color: #808080;
+    padding: 2px 8px;
+}
+.title-Cell
+{
+display: table-cell;
+padding-left: 5px;
+padding-right: 5px;
+width: 57%;
+}
+.Cell
+{
+display: table-cell;
+padding-left: 5px;
+padding-right: 5px;
+width: 6%;
+}
+.hide-minus{
+display: none !important;
+}
+.child-Row
+{
+background-color: #F5F5F5;
+border-bottom: 2px solid #E6E6E6;
+text-align: left;
+margin-left: 22px;
+/* margin-bottom: 10px; 
+border-radius: 5px;
+width: 100%;*/
+padding: 4px 0px;
+}
+.fa.fa-minus, .fa.fa-plus {
+    font-weight: normal;
+    font-size: 12px;
+    color: #0B93DB;
+}
+.fa.fa-minus:hover, .fa.fa-plus:hover{
+    cursor: pointer;
+}
+.list-asset-size.list-asset-hover {
+    width: 34px;
+    height: 34px;
+    position: relative;
+    top: -4px;
+}
+.main1 { 
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 0px;
+    cursor: pointer;
+    font-size: 9px;
+    top: -13px;
+  } 
+  
+  /* Hide the default checkbox */ 
+  input[type=checkbox] { 
+    visibility: hidden; 
+  } 
+  
+  /* Creating a custom checkbox 
+  based on demand */ 
+  .geekmark1 { 
+    position: absolute;
+      top: 9px;
+      left: -4px;
+      height: 18px;
+      width: 18px;
+      background-color: #fff;
+      border: 2px solid #E6E6E6;
+      border-radius: 5px;
+  } 
+  
+  /* Specify the background color to be 
+  shown when checkbox is checked */ 
+  .main1 input:checked ~ .geekmark1 { 
+    background-color:#0B93DB; 
+    border: 2px solid #0B93DB;
+  } 
+  
+  /* Checkmark to be shown in checkbox */ 
+  /* It is not be shown when not checked */ 
+  .geekmark1:after { 
+    content: ""; 
+    position: absolute; 
+    display: none; 
+  } 
+  
+  /* Display checkmark when checked */ 
+  .main1 input:checked ~ .geekmark1:after { 
+    display: block; 
+  } 
+  
+  /* Styling the checkmark using webkit */ 
+  /* Rotated the rectangle by 45 degree and  
+  showing only two border to make it look 
+  like a tickmark */ 
+  .main1 .geekmark1:after { 
+    left: 4px;
+      bottom: 3px;
+      width: 6px;
+      height: 12px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+  } 
+
+
+
+  .topd-container1 {
+    margin-top: 0px;
+  }
+  .top-d {
+    font-family: 'CiscoSans-Light';
+    font-size: 18px;
+  }
+  .form-control-feedback {
+    background: url('../../../cbx/images/functional_icons/search_inactive.png') no-repeat left;
+    background-size: contain;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    bottom: 4px;
+  }
+  .home-search {
+    padding-left: 35px;
+    border-radius: 17px;
+    height: 28px;
+    font-size: 13px;
+    border: 1px solid #E6E6E6;
+    width: 96%;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.3s ease-in-out;
+  }
+  .home-search:hover {
+    border: 1px solid #0B93DB;
+  }
+  .home-search:focus {
+    
+    box-shadow: none;
+    border: 1px solid #0B93DB;
+  }
+  .has-search {
+    float: right;
+      position: relative;
+      width: 53%;
+  }
+  .gridview-btn {
+    width: 28px;
+    height: 28px;
+    background: url('../../../cbx/images/functional_icons/grid_folder_view_inactive.png') no-repeat left;
+    background-color: none;
+    border-radius: none;
+    border: none;
+    background-size: contain;
+  }
+  .gridview-btn:hover {
+    background: url('../../../cbx/images/functional_icons/grid_folder_view_hover.png') no-repeat left;
+    width: 28px;
+    height: 28px;
+    background-size: contain;
+  }
+  .gridview-btn:focus {
+    background: url('../../../cbx/images/functional_icons/grid_folder_view_active.png') no-repeat left;
+    width: 28px;
+    height: 28px;
+    background-size: contain;
+    box-shadow: none;
+  }
+  .listview-btn {
+    width: 28px;
+    height: 28px;
+    background: url('../../../cbx/images/functional_icons/List-view_inactive.png') no-repeat left;
+    background-color: none;
+    border-radius: none;
+    border: none;
+    background-size: contain;
+  }
+  .listview-btn:hover {
+    width: 28px;
+    height: 28px;
+    background: url('../../../cbx/images/functional_icons/List-view_hover.png') no-repeat left;
+    background-color: none;
+    border-radius: none;
+    border: none;
+    background-size: contain;
+  }
+  .listview-btn:focus {
+    width: 28px;
+    height: 28px;
+    background: url('../../../cbx/images/functional_icons/List-view_active.png') no-repeat left;
+    background-color: none;
+    border-radius: none;
+    border: none;
+    background-size: contain;
+    box-shadow: none;
+  }
+  .filter-home1 {
+    margin-top: 8px;
+    margin-bottom: 10px;
+  }
+  .filterbx {
+    margin-left: 8px;
+  }
+  .filter-home label {
+    font-size: 13px;
+  }
+  .filter-dropdown, .filter-dropdown:focus, .filter-dropdown:active {
+    border-radius: 16px;
+    height: 28px;
+    width: 150px;
+    font-size: 12px;
+      background-color: #f5f5f5;
+      border: 1px solid #f5f5f5;
+      color: #3C3C3C;
+      text-align: left;
+      box-shadow: none;
+  }
+  .filter-dropdown:not(:disabled):not(.disabled):active, .filter-dropdown:not(:disabled):not(.disabled).active, .show > .filter-dropdown.dropdown-toggle {
+    color: #3C3C3C;
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+  }
+  .show > .filter-dropdown.dropdown-toggle:focus {
+    box-shadow: none;
+  }
+  .dropdown-option-menu {
+    padding: 0px;
+      margin: 0px;
+      border:none;
+  }
+  .dropdown-option {
+    background-color: #f5f5f5;
+      border-color: #f5f5f5;
+      border-radius: 16px;
+      height: 28px;
+      font-size: 13px;
+      padding-left: 14px;
+      width: 83%;
+  }
+  .btn-bx:disabled,.btn-bx:disabled:hover {
+    background-color: #fff;
+    border: 2px solid #e6e6e6;
+    border-radius: 23px;
+    color: #808080;
+    font-family: 'CiscoSans-Medium';
+    font-size: 11px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .btn-bx:disabled:hover {
+    cursor: no-drop;
+  }
+  .btn-bx {
+    background-color: #fff;
+    border: 2px solid #00BCEB;
+    border-radius: 23px;
+    color: #1D4572;
+    font-family: 'CiscoSans-Medium';
+    font-size: 11px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .btn-bx:focus{
+    box-shadow: none;
+  }
+  .btn-bx:hover, .btn-bx:focus  {
+    background-color: #0B93DB;
+    color: #fff;
+    border: 2px solid #0B93DB;
+  }
+  .bx-btnspace {
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+  .btn-bx:not(:disabled):not(.disabled):active:focus {
+    box-shadow: none;
+  }
+  .topd-table-container {
+    margin-top:8px
+  }
+  .topd-table tr th {
+    font-weight: normal;
+  }
+  .table-head-row {
+    color: #808080;
+  }
+  
+  .topd-options {
+    width: 27px;
+      height: 27px;
+    display: inline-block;
+    background: url('../../../cbx/images/buttons-with-icons/options_inactive.png') no-repeat left;
+    background-size: contain;
+    position: relative;
+      top: 8px;
+  }
+  .topd-options:focus, .topd-options:hover {
+    width: 27px;
+      height: 27px;
+    display: inline-block;
+    background: url('../../../cbx/images/buttons-with-icons/Options_hover.png') no-repeat left;
+    background-size: contain;
+  }
+  .row-topd.selected td {
+    color: #1e4471;
+  }
+  .addcart,.row-topd.selected td .addcart{
+    width: 27px;
+      height: 27px;
+    display: inline-block;
+    background: url('../../../cbx/images/buttons-with-icons/add-to-cart_inactive.png') no-repeat left;
+    background-size: contain;
+    position: relative;
+      top: 8px;
+  }
+  .addcart:hover, .row-topd.selected td .addcart:hover{
+    width: 27px;
+      height: 27px;
+    display: inline-block;
+    background: url('../../../cbx/images/buttons-with-icons/add-to-cart_hover.png') no-repeat left;
+    background-size: contain;
+  }
+  .download-row, .row-topd.selected td .download-row {
+    width: 27px;
+      height: 27px;
+    display: inline-block;
+    background: url('../../../cbx/images/buttons-with-icons/download_Inactive.png') no-repeat left;
+    background-size: contain;
+    position: relative;
+      top: 8px;
+  }
+  .download-row:hover, .row-topd.selected td .download-row:hover {
+    width: 27px;
+      height: 27px;
+    display: inline-block;
+    background: url('../../../cbx/images/buttons-with-icons/download_hover.png') no-repeat left;
+    background-size: contain;
+  }
+  .row-topd.selected td .download-row, .row-topd.selected td .addcart {
+    visibility: inherit;
+  }
+  .addcart, .download-row {
+    visibility: hidden;
+  }
+  .pagination-topd {
+    margin-top: 16px;
+      margin-bottom: 60px;
+  }
+  .previous-btn, .next-btn {
+    border-radius: 23px;
+      background-color: #fff;
+      color: #808080;
+      font-size: 12px;
+      padding: 6px 12px;
+      border: 1px solid #E6E6E6;  
+  }
+  .previous-btn:hover, .next-btn:hover {
+    text-decoration: none;
+    color: #1D4572;
+  }
+  .previous-btn:focus, .next-btn:focus {
+    outline: 0;
+  }
+  .page-number {
+      font-family: 'CiscoSans-Bold';
+      font-size: 12px;
+      color: #3C3C3C;
+      border: none;
+      padding: 7px;
+      margin: 0px 18px;
+  }
+  .icons-files-cart, .icons-files-download, .icons-files-options {
+      display: table-cell;
+      width: 4%;
+  }
+  .topd-options1 {
+    width: 27px;
+    height: 27px;
+  display: inline-block;
+  background: url('../../../cbx/images/buttons-with-icons/options_inactive.png') no-repeat left;
+  background-size: contain;
+  position: relative;
+    top: 6px;
+  } 
+  .topd-options1::after {
+      content: none;
+  }
+  .topd-options1:focus, .topd-options1:hover {
+    width: 27px;
+      height: 27px;
+    display: inline-block;
+    background: url('../../../cbx/images/buttons-with-icons/Options_hover.png') no-repeat left;
+    background-size: contain;
+  }
+  .addcart:hover, .row-topd.selected td .addcart:hover{
+    width: 27px;
+      height: 27px;
+    display: inline-block;
+    background: url('../../../cbx/images/buttons-with-icons/add-to-cart_hover.png') no-repeat left;
+    background-size: contain;
+  }
+  .download-row:hover, .row-topd.selected td .download-row:hover {
+    width: 27px;
+      height: 27px;
+    display: inline-block;
+    background: url('../../../cbx/images/buttons-with-icons/download_hover.png') no-repeat left;
+    background-size: contain;
+  }
+  .expand_row {
+    width: 4%;
+    display: inline-block;
+    margin-left: 6px;
+  }
+  .folder-file-icon {
+    display: inline-block;
+    margin-right: 6px;
+  }
+  .optons-menu-files {
+    width: 160px;
+    height: auto;
+    border: 1px solid #808080;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 14px;
+    padding: 14px 18px;
+    line-height: initial;
+    left: -120px !important;
+  }
+  .optons-menu-files .dropdown-item {
+    font-size: 12px;
+    padding: 8px 0px;
+    color: #808080;
+  }
+  .optons-menu-files .dropdown-item:hover {
+    background-color: #fff;
+    color: #1D4572;
+  }
+  .loadMoreDiv{
+    text-align: center;
+  }

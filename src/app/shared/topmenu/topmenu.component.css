@@ -1,0 +1,137 @@
+.bx-breadcrumb {
+    padding: 0;
+    margin: 0px;
+    background-color: inherit;
+}
+.breadcrumb-item.active {
+    color: #1D4572;
+    font-size: 13px;
+    font-family: 'CiscoSans-Regular';
+}
+.breadcrumb-item.active a {
+    color: #1D4572;
+}
+.bread-crums {
+    margin-top: 30px;
+}
+.topnav-icons ul {
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    top: 2px;
+    left: 48%;
+
+}
+.topnav-icons ul li {
+    display: inline-block;
+    list-style-type: none;
+}
+.topnav-icons ul li a {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    margin-right: 20px;
+}
+.topnav-icons ul li.announcements a {
+    background: url('../../../cbx/images/icon-announce.PNG') no-repeat center left;
+    background-size: contain;
+}
+.topnav-icons ul li.announcements a:hover {
+    background: url('../../../cbx/images/icon-announce.PNG') no-repeat center left;
+    background-size: contain;
+}
+.topnav-icons ul li.announcements a.active {
+    background: url('../../../cbx/images/icon-announce.PNG') no-repeat center left;
+    background-size: contain;
+}
+.topnav-icons ul li.cart a {
+    background: url('../../../cbx/images/functional_icons/cart_inactive.png') no-repeat center left;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+.topnav-icons ul li.cart a:hover {
+    background: url('../../../cbx/images/functional_icons/cart_hover.png') no-repeat center left;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+.topnav-icons ul li.cart a.active {
+    background: url('../../../cbx/images/functional_icons/cart_active.png') no-repeat center left;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+.topnav-icons ul li.notifications a {
+    background: url('../../../cbx/images/functional_icons/notifications_inactive.png') no-repeat center left;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+.topnav-icons ul li.notifications a:hover {
+    background: url('../../../cbx/images/functional_icons/notifications_hover.png') no-repeat center left;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+.topnav-icons ul li.notifications a.active {
+    background: url('../../../cbx/images/functional_icons/notifications_active.png') no-repeat center left;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+.topnav-icons ul li.profile a {
+    background: url('../../../cbx/images/functional_icons/user_inactive.png') no-repeat center left;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+.topnav-icons ul li.profile a:hover {
+    background: url('../../../cbx/images/functional_icons/user_hover.png') no-repeat center left;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+.topnav-icons ul li.profile a.active {
+    background: url('../../../cbx/images/functional_icons/user_active.png') no-repeat center left;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+
+.topnav-icons {
+    text-align: right;
+    margin-right: 19px;
+    margin-top: 12px;
+    position: fixed;
+}
+.topmenu-container {
+    margin-bottom: 12px;
+}
+.nav-link.active:before {
+    width: 2; 
+  height: 2; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid red;
+}
+
+.topnav-icons.navbar ul.navbar-nav {
+    display: block;
+}
+
+
+@media (max-width: 1099px) { 
+    .topnav-icons {
+        left: 46%;
+    }
+}

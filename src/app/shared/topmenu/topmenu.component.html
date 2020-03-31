@@ -1,0 +1,22 @@
+<div class="row p-m-0 topmenu-container">
+    <div class="col-md-9 col-sm-7 p-bx-0">
+        <div class="bread-crums">
+            <nav aria-label="breadcrumb ">
+                <ol class="breadcrumb bx-breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page"><a routerLink="/layout" >Home</a></li>
+                </ol>
+              </nav>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-5 p-bx-0">
+        <div class="topnav-icons navbar ">
+            
+            <ul class="navbar-nav">
+                <li class="announcements nav-item"><a routerLink="/layout" routerLinkActive="active" class="nav-link"></a></li>
+                <li class="cart nav-item"> <a routerLink="/layout" class="nav-link"></a></li>
+                <li class="notifications nav-item"><a routerLink="/layout" class="nav-link"></a></li>
+                <li class="profile nav-item" (click)="profileDetails($event)"><a routerLink="/layout/profile-deails" class="nav-link"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>

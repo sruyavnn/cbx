@@ -1,0 +1,163 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#00bceb" type="ball-clip-rotate">
+  <p style="font-size: 20px; color:#fff">Please wait...</p>
+</ngx-spinner>
+<div class="p-bx-0 col-12 topd-container">
+  <div class="row p-m-0">
+  <div class="col-xs-12 col-lg-3 p-bx-0 top-d">Top downloads</div>
+  <div class="col-xs-12 col-lg-9 p-bx-0 search-icons">
+    <div class="col-xs-12 p-bx-0">
+      <div class="row p-m-0">
+    <div class="search-container col-xs-10 col-md-10 p-bx-0">
+      <div class="form-group has-search">
+        <span class="form-control-feedback"></span>
+        <input type="text" class="form-control home-search" placeholder="Search">
+      </div>
+    </div>
+    <div class="grid-viewd col-xs-2 p-bx-0">
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button type="button" class="btn btn-primary gridview-btn"></button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Second group">
+          <button type="button" class="btn btn-primary listview-btn"></button>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+    </div>
+  </div>
+</div>
+
+<div class="row p-m-0 filter-home">
+  <div class="col-lg-7 col-md-4 p-bx-0 filter">
+    <form class="form-inline">
+      <label for="filter">Filter:</label>
+    <div class="dropdown filterbx">
+      <button class="btn btn-secondary dropdown-toggle filter-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Monthly
+      </button>
+      <div class="dropdown-menu dropdown-option-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item dropdown-option" href="#">Weekly</a>
+      </div>
+    </div>
+    </form>
+  </div>
+  <div class="col-lg-5 col-md-8 p-bx-0" style="text-align:right">
+    <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable">Add to collections</button>
+  <button type="button" class="btn btn-primary btn-bx bx-btnspace" [disabled]="btnEnableDisable">Add to cart</button>
+  <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable">Download</button>
+  </div>
+</div>
+
+<div class="row p-m-0 topd-table-container">
+  <table class="table table-borderless topd-table">
+    <thead>
+      <tr class="table-head-row">
+        <!-- <th>
+          <label class="main">
+            <input type="checkbox" (change)="changeCheck()"> 
+            <span class="geekmark" ></span> 
+        </label>
+         </th> -->
+         <th><label class="main">
+          <input type="checkbox" [(ngModel)]="checkAll" name="chkHead" (change)="checkUnAll()">
+          <span class="geekmark"></span>
+        </label> </th>
+        <th colspan="2" class="name">Name <i class="fa fa-chevron-down"></i></th>
+        <th> <i class="fa fa-chevron-down"></i></th>
+        <th colspan="4" class="file-size">File size <i class="fa fa-chevron-down"></i></th>
+      </tr>
+    </thead>
+    <div class=""></div>
+    <tbody>
+      <tr *ngFor = "let rowData of topDownloadData" (click)="topDownloadsData(rowData)" class="row-topd" id="{{rowData.asset_id}}">
+        <td class="row-checkbox">
+          <label class="main">
+            <input type="checkbox" [(ngModel)]="rowData.isSelected" name="{{rowData.asset_id}}" (change)="oneSelected(rowData)"> 
+            <span class="geekmark"></span> 
+        </label>
+        </td>
+        <td class="row-thumbnail-main"><div class="row-thumbnail">
+
+          <span (click)="assetsViewPages('asset', rowData?.asset_id)"
+            *ngIf="rowData?.data_type== undefined && rowData?.rendition_content" class="asset-pannel">
+            <img src={{rowData?.rendition_content.thumbnail_content.url}}
+              class="img-fluid list-asset-size list-asset-hover">
+          </span>
+          </div>
+          </td>
+          <td class="row-title">
+          {{rowData?.name}}
+          
+        </td>
+        <td class="row-download-count">
+            123
+        </td>
+        <td class="row-file-size">
+          {{rowData?.rendition_content.preview_content.content_size/1024/1024 | number : '1.2-2'}}mb
+        </td>
+        <td class="row-addcart"><div class="addcart"></div></td>
+        <td class="row-download"><div class="download-row"></div></td>
+        <td class="row-options"><div class="dropdown show">
+          <a class="dropdown-toggle topd-options" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           
+          </a>
+        
+          <div class="dropdown-menu optons-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Download</a>
+            <a class="dropdown-item" href="#">Add to cart</a>
+            <a class="dropdown-item" href="#">Add to collections</a>
+            <a class="dropdown-item" href="#">Subscribe</a>
+            <a class="dropdown-item" href="#">Copy url</a>
+            <a class="dropdown-item" href="#">View file info</a>
+          </div>
+        </div></td>
+        
+      </tr>
+      <div class="spacer"></div>
+      <!-- <tr class="row-topd" *ngFor = >
+        <td class="row-checkbox"><label class="content">
+          <input type="checkbox" checked="checked">
+          <span class="checkmark"></span>
+        </label> </td>
+        <td class="row-thumbnail-main"><div class="row-thumbnail"></div></td>
+        <td class="row-title">Powerpoint_Presentation_Templates</td>
+        <td class="row-download-count">478</td>
+        <td class="row-file-size">71.5mb</td>
+        <td class="row-addcart"><div class="addcart"></div></td>
+        <td class="row-download"><div class="download-row"></div></td>
+        <td class="row-options"><div class="dropdown show">
+          <a class="dropdown-toggle topd-options" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           
+          </a>
+        
+          <div class="dropdown-menu optons-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Download</a>
+            <a class="dropdown-item" href="#">Add to cart</a>
+            <a class="dropdown-item" href="#">Add to collections</a>
+            <a class="dropdown-item" href="#">Subscribe</a>
+            <a class="dropdown-item" href="#">Copy url</a>
+            <a class="dropdown-item" href="#">View file info</a>
+          </div>
+        </div></td>
+      </tr> -->
+    </tbody>
+  </table>
+  <div class="pagination-topd col-12 p-bx-0">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+          <a class=" previous-btn" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class=""><a class="page-link page-number" href="#">1</a></li>
+        
+        <li class="page-item">
+          <a class="next-btn" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+</div>

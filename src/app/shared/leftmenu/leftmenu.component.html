@@ -1,0 +1,99 @@
+<div class="leftnav-container">
+<div class="bx-logo">
+    <img src="./cbx/images/Cisco_Logo_no_TM_Sky_Blue-RGB.png" class="img-logo">
+    <div class="bx-logo-text">
+        Brand Exchange
+    </div>
+    <div class="menu-icon-bx">
+        <div class="menu-container" (click)="myFunction($event)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+          </div>
+    </div>
+</div>
+<div class="left-menu-list">
+    <div class="left-menu-item">
+     <div class="left-menu-item-home">
+        <a routerLink="/layout" routerLinkActive="active" class="home-menu">
+       <span class="home-icon"></span>
+       <span class="menu-label">Home</span></a>
+     </div>
+    </div>
+     <div class="left-menu-item">
+        <div class="left-menu-item-files">
+            <a routerLink="/layout/listview" class="home-menu">
+           <span class="home-icon"></span>
+           <span class="menu-label">All files</span></a>
+         </div>
+    </div>
+    <div class="left-menu-item">
+        <div class="left-menu-item-collections">
+            <a routerLink="/layout/collections" class="home-menu">
+           <span class="home-icon"></span>
+           <span class="menu-label">My collections</span></a>
+         </div>
+    </div>
+    <div class="left-menu-item">
+        <div class="left-menu-item-downloads">
+            <a routerLink="/layout/recent-downloads" class="home-menu">
+           <span class="home-icon"></span>
+           <span class="menu-label">Recent downloads</span></a>
+         </div>
+    </div>
+</div>
+<div class="useful-container">
+    <div class="bs-example">
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <div class="mb-0">
+                        <span type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne"> Cisco Brand Exchange </span><span><i class="fa fa-plus"></i></span>									
+                    </div>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body cbe-body">
+                        <ul>
+                            <li><a routerLink="/layout" routerLinkActive="active">Home</a></li>
+                            <li><a href="https://secure.opinionlab.com/ccc01/o.asp?id=jBjOhqOJ" target="_blank">Give feedback</a></li>
+                            <li><a href="https://cdam-dev.cisco.com/otmm/ux-html/index.html?p=folders" target="_blank">Asset import</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <div class="mb-0">
+                        <span type="button" class="btn btn-link " data-toggle="collapse" data-target="#collapseTwo"> Need Help?</span><span> <i class="fa fa-plus"></i></span>
+                    </div>
+                </div>
+                <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body cbe-body">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Give feedback</a></li>
+                            <li><a href="#">Asset import</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <div class="mb-0">
+                        <span type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseThree"> Resources</span><span> <i class="fa fa-plus"></i></span>                     
+                    </div>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body cbe-body">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Give feedback</a></li>
+                            <li><a href="#">Asset import</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,153 @@
+
+/* You can add global styles to this file, and also import other style files */
+
+  
+@font-face{
+    font-family: 'CiscoSans-Regular';
+    src: url('./assets/fonts/CiscoSansTTRegular.ttf') ;font-style:normal;
+}
+@font-face{
+    font-family: 'CiscoSans-ExtraLight';
+    src: url('./assets/fonts/CiscoSansTTExtraLight.ttf') ;font-style:normal;
+}
+@font-face{
+    font-family: 'CiscoSans-Light';
+    src: url('./assets/fonts/CiscoSansTTLight.ttf') ;font-style:normal;
+}
+@font-face{
+    font-family: 'CiscoSans-LightOblique';
+    src: url('./assets/fonts/CiscoSansTTLightOblique.ttf') ;font-style:oblique;
+}
+@font-face{
+    font-family: 'CiscoSans-Bold';
+    src: url('./assets/fonts/CiscoSansTTBold.ttf') ;font-style:oblique;
+}
+@font-face{
+  font-family: 'CiscoSans-Medium';
+  src: url('./assets/fonts/CiscoSansTTMedium.ttf') ;font-style:normal;
+}
+
+body {
+    font-family: 'CiscoSans-Regular',Arial,sans-serif !important;
+    height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+}
+ .app-body-announcement {
+  min-height: 100% !important;
+  height: 100%;
+}
+
+.p-bx-0{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.p-m-0 {
+  margin-left: 0px;
+  margin-right: 0px;
+} 
+.p-r-0 {
+  padding-right: 0px;
+}
+.col-2.app-root-left {
+  flex: 0 0 15.5%;
+  max-width: 15.5%;
+  background-color: #f5f5f5;
+  padding: 0px 2%;
+}
+.col-10.app-root-main {
+  -webkit-box-flex: 0;
+  flex: 0 0 84.5%;
+  max-width: 84.5%;
+}
+
+.col.app-body-main {
+  width: 74%;
+  
+  margin-right: 34px;
+}
+.col.app-body-announcement {
+  width: 23%;
+  
+  background: #F5F5F5;
+  min-height: 1000px;
+}
+
+@media (min-width: 0px) {  
+  .left-menu-list {
+    display: none;
+  }
+}
+@media (min-width: 600px) {  
+  .col-2.app-root-left {
+    -webkit-box-flex: 0;
+    flex: 0 0 7%;
+    max-width: 7%;
+    background-color: #f5f5f5;
+    padding: 0px 2%;
+  }
+  .left-menu-list {
+    display: inline-block;
+  }
+  .col-10.app-root-main {
+    -webkit-box-flex: 0;
+    flex: 0 0 92.5%;
+    max-width: 92.5%;
+}
+}
+@media (min-width: 1100px) { 
+  .col-10.app-root-main {
+    -webkit-box-flex: 0;
+    flex: 0 0 82.5%;
+    max-width: 82.5%;
+}
+.col-2.app-root-left {
+  -webkit-box-flex: 0;
+  flex: 0 0 17.5%;
+  max-width: 17.5%;
+  background-color: #f5f5f5;
+  padding: 0px 2%;
+}
+}
+
+/* // large Desktops (large desktops, 1200px and up) */
+@media (min-width: 1440px) { 
+
+}
+@media (max-width: 855px) {  
+  .app-body-announcement{
+      display: none;
+  }
+  .col-10.app-root-main {
+    -webkit-box-flex: 0;
+    flex: 0 0 92%;
+    max-width: 92%;
+  }
+}
+@media (min-width: 0px) {  
+  .test {
+    background-color: yellow;
+  }
+}
+@media (min-width: 599px) {  
+  .test {
+    background-color: blue;
+  }
+}
+@media (min-width: 1100px) { 
+  .test {
+    background-color: green;
+  }
+}
+@media (max-width: 2099px) { 
+  .test {
+    background-color: red;
+  }
+}

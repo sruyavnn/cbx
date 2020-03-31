@@ -1,0 +1,285 @@
+ .app-root-left {
+    min-height: 100% !important;
+    height: 100%;
+}
+.img-logo{
+    height: auto;
+    width: 54px;
+}
+.leftnav-container{
+    height: 100%;
+    position: fixed;
+}
+.bx-logo{
+    text-align: center;
+    padding-top: 22px;
+}
+.bx-logo-text{
+    font-size: 20px;
+    font-family:'CiscoSans-Light' ;
+    letter-spacing: 0;
+    color: #1D4572;
+    opacity: 1;
+    margin-top: 6px;
+}
+
+.left-menu-item-home .home-icon{
+    background: url("../../../cbx/images/Main-Menu_icons/Home_inactive.png") no-repeat left;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 9px;
+}
+.left-menu-item-files .home-icon{
+    background: url("../../../cbx/images/Main-Menu_icons/All-files_inactive.png") no-repeat left;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 9px;
+}
+.left-menu-item-collections .home-icon{
+    background: url("../../../cbx/images/Main-Menu_icons/Collections_inactive.png") no-repeat left;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 9px;
+}
+.left-menu-item-downloads .home-icon{
+    background: url("../../../cbx/images/Main-Menu_icons/Downloads_inactive.png") no-repeat left;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 9px;
+}
+
+.menu-label{
+    font-family: 'CiscoSans-Bold';
+    color: #808080;
+    font-size: 13px;
+    /* line-height: 38px; */
+    display: inline-block;
+    position: relative;
+    top: -6px;
+    height: 31px;
+}
+.left-menu-list {
+    margin-top: 26px;
+}
+.left-menu-item-home a {
+    color: #808080;
+    
+}
+.left-menu-item-home a:hover .menu-label, .left-menu-item-downloads a:hover .menu-label, .left-menu-item-files a:hover .menu-label, .left-menu-item-collections a:hover .menu-label{
+    text-decoration: none;
+    border-bottom: 1px solid #00bceb;
+}
+.left-menu-item-home a:hover .home-icon {
+    background: url("../../../cbx/images/Main-Menu_icons/Home_hover.png") no-repeat left;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 9px;
+    
+}
+.left-menu-item-files a:hover .home-icon {
+    background: url("../../../cbx/images/Main-Menu_icons/All-files_hover.png") no-repeat left;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 9px;
+}
+.left-menu-item-home a:hover .menu-label, .left-menu-item-collections a:hover .menu-label, .left-menu-item-files a:hover .menu-label,  .left-menu-item-downloads a:hover .menu-label{
+    text-decoration: none;
+    border-bottom: 2px solid #0B93DB;
+}
+.left-menu-item-collections a:hover .home-icon {
+    background: url("../../../cbx/images/Main-Menu_icons/Collections_hover.png") no-repeat left;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 9px;
+}
+.left-menu-item-downloads a:hover .home-icon {
+    background: url("../../../cbx/images/Main-Menu_icons/Downloads_hover.png") no-repeat left;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 9px;
+}
+
+
+
+.left-menu-item-home a.active .home-icon {
+    background: url("../../../cbx/images/Main-Menu_icons/Home_active.png") no-repeat left;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 9px;
+}
+
+.left-menu-item-files a.active .home-icon {
+    background: url("../../../cbx/images/Main-Menu_icons/All-files_active.png") no-repeat left;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 9px;
+}
+.left-menu-item-files a.active .menu-label, .left-menu-item-home a.active .menu-label, .left-menu-item-collections a.active .menu-label, .left-menu-item-downloads a.active .menu-label {
+    color: #1E4471;
+    border-bottom: 2px solid #0B93DB;
+}
+.left-menu-item-collections a.active .home-icon {
+    background: url("../../../cbx/images/Main-Menu_icons/Collections_active.png") no-repeat left;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 9px;
+}
+.left-menu-item-downloads a.active .home-icon {
+    background: url("../../../cbx/images/Main-Menu_icons/Downloads_Active.png") no-repeat left;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 9px;
+}
+
+.left-menu-item {
+    line-height: 40px;
+}
+
+.card-header {
+    border: 0px;
+    padding: 0px;
+}
+.accordion .card {
+    border: none;
+    background-color: #f5f5f5;
+    margin: 10px 0px -3px 0px;
+    border-bottom: 1px solid #808080;
+    padding-bottom: 6px;
+    border-radius: 0px;
+}
+.card-header {
+    background-color: #f5f5f5;
+}
+.btn.btn-link {
+    font-size: 77%;
+    padding: 0px;
+    color: #3C3C3C;
+    width: 93%;
+    text-align: left;
+    display: inline-block;
+}
+.btn.btn-link:hover {
+    text-decoration: none;
+}
+.card-body {
+    padding: 0px;
+}
+.useful-container {
+    margin-top: 114px;
+}
+.cbe-body ul {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    line-height: 19px;
+    padding-top:2px;
+}
+.cbe-body ul li a {
+    color: #808080;
+    font-size: 11px;
+}
+.fa.fa-plus, .fa.fa-minus {
+    font-weight: normal;
+    font-size: 12px;
+    color: #0B93DB;
+}
+.menu-icon-bx {
+    display: none;
+}
+
+@media screen and (max-width : 1204px) {
+    .bx-logo-text{
+        font-size: 22px;
+    }
+}
+
+
+
+
+
+
+/* // Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Mobile devices */
+@media (max-width: 599px) {  
+
+}
+
+/* Tablets*/
+@media (max-width: 1099px) {  
+    .menu-label {
+        display: none;
+    }
+    .useful-container {
+        display: none;
+    }
+    .img-logo, .bx-logo-text {
+        display: none;
+    }
+    .menu-icon-bx {
+        display: inline-block;
+    }
+    
+    .menu-container {
+        display: inline-block;
+        cursor: pointer;
+      }
+      
+      .bar1, .bar2, .bar3 {
+        width: 26px;
+        height: 2px;
+        background-color: #808080;
+        margin: 8px 0;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+      
+      .change .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+        transform: rotate(-45deg) translate(-9px, 6px);
+      }
+      
+      .change .bar2 {opacity: 0;}
+      
+      .change .bar3 {
+        -webkit-transform: rotate(45deg) translate(-8px, -8px);
+        transform: rotate(45deg) translate(-8px, -8px);
+      }
+}
+
+
+
+/* Small Desktops */
+@media (max-width: 1439px) { 
+
+ }
+
+/* // large Desktops (large desktops, 1200px and up) */
+@media (min-width: 2099px) { 
+
+ }

@@ -1,0 +1,138 @@
+<!-- <div class="card border-secondary mb-3" style="max-width: 18rem;" *ngFor="let folder of foldersData">
+    <div class="card-header">{{folder.name}}</div>
+    <div class="card-body text-secondary">
+      <h5 class="card-title">Secondary card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div> -->
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" position="top-right"></p-toast>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#00bceb" type="ball-clip-rotate">
+    <p style="font-size: 20px; color:#fff">Please wait...</p>
+</ngx-spinner>
+<!-- <div class="main-content"> -->
+<div *ngIf="anyData?.length > 0" class="row p-m-0">
+    <div class="col-md-12 p-m-0">
+        <div class="row p-m-0">
+
+            <div class="col-md-3 col-sm-4 col-12 asset-card" *ngFor="let folder of anyData">
+                <!-- Contrainer static thumnail -->
+                <div class="card" *ngIf="folder?.data_type== 'CONTAINER' && !folder?.rendition_content">
+                    <div class="card-header cardheader-padding col-12 p-0">
+                        <div class="row p-m-0">
+                            <div class="form-check col-10 card-text" tooltipPosition="top" pTooltip={{folder?.name}}>
+                                {{folder?.name}}
+                            </div>
+                            <!-- <div class="pull-right col-2"><a (click)="copyLink(folder)" ><i class="fa fa-link" ></i></a></div> -->
+                        </div>
+                    </div>
+                    <div class="card-body card-body-custom">
+                        <a (click)="folderAssetClick(folder)">
+                            <!-- class="folderClick {{folder?.asset_id}}" -->
+                            <span class="asset-pannel">
+                                <img src="./cbx/images/folder256.png" class="img-fluid  folder-image-asset asset-thumb">
+                            </span>
+
+                        </a>
+                    </div>
+                    <div class="card-footer">
+                        <a *ngIf="!folder?.subscribed_to" tooltipPosition="top" pTooltip="Subscribe" (click)="subscribeFolder(folder)"
+                            class="text-success"><i class="fa fa-rss-square fa-lg" aria-hidden="true"></i></a>
+                        <a *ngIf="folder?.subscribed_to" tooltipPosition="top" pTooltip="Unsubscribe" (click)="unSubscribeFolder(folder)"
+                            class="text-danger"><i class="fa fa-rss-square fa-lg" aria-hidden="true"></i></a>
+                        <a (click)="copyLink(folder)" tooltipPosition="top" pTooltip="Copy Link"><i
+                                class="fa fa-link fa-lg  copy-link"></i></a>
+
+                    </div>
+                </div>
+                <!-- Contrainer Dynamic thumnail -->
+                <div class="card " *ngIf="folder?.data_type== 'CONTAINER' && folder?.rendition_content">
+                    <!-- <div class="card-header card-text">
+                            {{folder?.name}}
+                            <a (click)="copyLink()"><i class="fa fa-link"></i></a>
+
+                        </div> -->
+                    <div class="card-header cardheader-padding col-12 p-0">
+                        <div class="row p-m-0">
+                            <div class="form-check col-10 card-text" tooltipPosition="top" pTooltip={{folder?.name}}>
+                                {{folder?.name}}
+                            </div>
+                            <!-- <div class="pull-right col-2"><a (click)="copyLink(folder)"><i class="fa fa-link"></i></a></div> -->
+                        </div>
+                    </div>
+                    <div class="card-body card-body-custom">
+                        <a (click)="folderAssetClick(folder)">
+                            <span class="asset-pannel">
+                                <img src={{folder?.rendition_content.thumbnail_content.url}}
+                                    class="img-fluid asset-thumb">
+                            </span>
+
+                        </a>
+                    </div>
+                    <div class="card-footer">
+                        <a *ngIf="!folder?.subscribed_to" tooltipPosition="top" pTooltip="Subscribe" (click)="subscribeFolder(folder)"
+                            class="text-success"><i class="fa fa-rss-square fa-lg" aria-hidden="true"></i></a>
+                        <a *ngIf="folder?.subscribed_to" tooltipPosition="top" pTooltip="Unsubscribe" (click)="unSubscribeFolder(folder)"
+                            class="text-danger"><i class="fa fa-rss-square fa-lg" aria-hidden="true"></i></a>
+                        <a (click)="copyLink(folder)" tooltipPosition="top" pTooltip="Copy Link"><i
+                                class="fa fa-link fa-lg copy-link"></i></a>
+
+                    </div>
+                </div>
+
+
+                <div class="card " *ngIf="folder?.data_type== undefined && folder?.rendition_content"
+                    (mouseover)=assetOver(); (mouseout)=assetOut()>
+                    <!-- <div class="card-header card-text">
+                <input type="checkbox" class="form-check-input asset-checkbox" id="exampleCheck1"> {{folder?.name}}
+              </div> -->
+                    <div class="card-header col-12 p-0 cardheader-padding">
+                        <div class="row p-m-0">
+                            <div class="form-check col-10 " tooltipPosition="top" pTooltip={{folder?.name}}>
+                                <label class="form-check-label card-text">
+                                    <input type="checkbox" class="form-check-input" value="">
+                                    {{folder?.name}}
+
+                                </label>
+                            </div>
+                            <!-- <div class="pull-right col-2"><a (click)="copyLink(folder)"><i class="fa fa-link"></i></a></div> -->
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card-body card-body-custom">
+
+                            <a (click)="folderAssetClick(folder)">
+                                <span class="asset-pannel">
+                                    <img src={{folder?.rendition_content.thumbnail_content.url}}
+                                        class="img-fluid asset-thumb">
+                                </span>
+                            </a>
+                        </div>
+                        <div class="card-footer">
+                            <a *ngIf="!folder?.subscribed_to" tooltipPosition="top" pTooltip="Subscribe" (click)="subscribeFolder(folder)"
+                                class="text-success"><i class="fa fa-rss-square fa-lg" aria-hidden="true"></i></a>
+                            <a *ngIf="folder?.subscribed_to" tooltipPosition="top" pTooltip="Unsubscribe" (click)="unSubscribeFolder(folder)"
+                                class="text-danger"><i class="fa fa-rss-square fa-lg" aria-hidden="true"></i></a>
+                            <a (click)="copyLink(folder)" tooltipPosition="top" tooltipPosition="top" pTooltip="Copy Link"><i
+                                    class="fa fa-link fa-lg  copy-link"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="row col-12 text-center" *ngIf="searchParameters.totalhitcount>10">
+        <div class="col-12 text-center">
+            <p-paginator [rows]="searchParameters.limit" [totalRecords]="searchParameters.totalhitcount"
+                (onPageChange)="paginate($event)"></p-paginator>
+        </div>
+    </div>
+</div>
+<div *ngIf="anyData?.length == 0">
+    <div class="noAssets"> Assets Not Available </div>
+</div>
+<!-- </div> -->

@@ -1,0 +1,7 @@
+
+<!-- <p-tree [value]="tempLazyFiles" [loading]="pageloadericon" [(selection)]="selectedFiles" (onNodeSelect)="nodeSelect($event)"
+(onNodeExpand)="nodeExpand($event)" [style]="{'max-height':'200px','border':'none'}">
+</p-tree> -->
+<p-tree [value]="tempLazyFiles" [loading]="pageloadericon" selectionMode="single" [(selection)]="selectedFiles" (onNodeSelect)="nodeSelect($event)"
+(onNodeExpand)="nodeExpand($event)" [style]="{'max-height':'200px','border':'none'}">
+</p-tree>

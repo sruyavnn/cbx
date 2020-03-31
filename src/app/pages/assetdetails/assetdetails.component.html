@@ -1,0 +1,83 @@
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" position="top-right"></p-toast>
+<div class="row">
+  <div class="col-sm-6 asset-details-container">
+    <h3 class="first">{{assetServiceData?.name}}</h3>
+    <p-accordion>
+      <p-accordionTab header="Description" [selected]=true>
+        <div class="">
+          <table class="table table-borderless assetdetails-table">
+            <tbody>
+              <tr>
+                <td>Name : </td>
+                <td>{{assetServiceData?.name}}</td>
+              </tr>
+              <tr>
+                <td>Is Editable : </td>
+                <td>{{assetServiceData?.content_editable}}</td>
+              </tr>
+              <tr>
+                <td>Model : </td>
+                <td>{{assetServiceData?.metadata_model_id}}</td>
+              </tr>
+              <tr>
+                <td>Content Type : </td>
+                <td>{{assetServiceData?.content_type}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Details">
+        <table class="table table-borderless assetdetails-table">
+          <tbody>
+            <tr>
+              <td>Date Last Updated:</td>
+              <td>{{assetServiceData?.date_last_updated | date: 'MM/dd/yyyy'}}</td>
+            </tr>
+            <tr>
+              <td>Asset Version</td>
+              <td>{{assetServiceData?.version}}</td>
+            </tr>
+            <tr>
+              <td>Is Latest Version : </td>
+              <td>{{assetServiceData?.latest_version}}</td>
+            </tr>
+            <tr>
+              <td>Name : </td>
+              <td>{{assetServiceData?.name}}</td>
+            </tr>
+            <tr>
+              <td>ID:</td>
+              <td>{{assetServiceData?.asset_id}}</td>
+            </tr>
+            <tr>
+              <td>Original Asset ID:</td>
+              <td>{{assetServiceData?.asset_id}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+  <div class="col-sm-6">
+    <div style="margin-bottom: 54px;">
+      <img class="img-fluid" src="{{assetServiceData?.rendition_content.preview_content.url}}">
+      
+       <!-- <a [href]="fileUrl" download="file.txt">DownloadFile</a> -->
+    </div>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group mr-2 " role="group" aria-label="First group">
+        <button type="button" class="btn btn-download-bx" (click)="downloadAssets(assetServiceData?.rendition_content.preview_content.id)">Download</button>
+      </div>
+      
+      <div class="btn-group mr-2 " role="group" aria-label="Second group">
+        <button type="button" class="btn btn-download-bx" (click)="subscribeAsset()">{{subscribedbtnText}}</button>
+        <!-- <button type="button" class="btn btn-secondary" (click)="unsubscribeAsset()">unSubscribe</button> -->
+      </div>
+      <div class="btn-group " role="group" aria-label="Third group">
+        <button type="button" class="btn btn-download-bx">Add To Basket</button>
+      </div>
+    </div>
+  </div>
+</div>

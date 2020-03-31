@@ -1,0 +1,61 @@
+.assetbold{
+    font-weight: 600;
+    }
+    /* .first{
+    background: #f4f4f4;
+    border: 1px solid #c8c8c8;
+    padding: 5px 10px;
+    } */
+    h3.first{
+    margin: 0px;
+    padding: 3px 14px;
+    margin-bottom: 14px;
+    margin-top: -4px;
+    }
+    .assetdetails-table tr td:first-child {
+    font-family: 'CiscoSans-Bold';
+    }
+    body .ui-widget {
+    font-family: 'CiscoSans-Regular' !important;
+    }
+    body .ui-accordion .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+    background-color: #00bceb !important;
+    border: 1px solid #00bceb !important;
+    color: #ffffff;
+    }
+    body .ui-accordion .ui-accordion-header:not(.ui-state-disabled).ui-state-active a:hover {
+    background-color: #00bceb !important;
+    border: 1px solid #00bceb !important;
+    }
+    .btn-download-bx {
+    background: #1e4471;
+    border-radius: 30px;
+    margin: -10px 10px 0;
+    padding: 7px 20px;
+    width: auto;
+    font-size: 14px;
+    line-height: 1.375em;
+    color: #fff !important;
+    border: 1px solid #1e4471;
+    }
+    body .ui-accordion .ui-accordion-header a:focus {
+    box-shadow: none;
+    }
+    .asset-details-container {
+    margin-bottom: 20px;
+    }
+
+      :host ::ng-deep button {
+            margin-right: .25em;
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message {
+            color: #ffffff;
+            background: green;
+            background: -webkit-linear-gradient(to right, green, green);
+            background: linear-gradient(to right, green, green);
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-close-icon {
+            color: #ffffff;
+        }

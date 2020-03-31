@@ -1,0 +1,111 @@
+<nav class="navbar navbar-expand-lg navStyle header-bx ">
+  <a class="brand-navbar" href="#"><img src="./cbx/images/bx-logo.PNG" alt="Cisco BX Logo" class="img-fluid"></a>
+  <button class="navbar-toggler d-lg-none bx-mobile-menu" data-toggle="collapse" data-target="#mainMenu" id = "fwt-nav-button">
+    <div>
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+  </button>
+  <div class="collapse navbar-collapse bx-nav" id="mainMenu">
+    <ul class="navbar-nav ml-auto navList">
+      <li class="nav-item"><a routerLink='/layout/collections' class="nav-link">My Collections</a></li>
+      <li class="nav-item">
+        <a href="services.html" class="nav-link">Inbox</a>
+      </li>
+      <li class="nav-item">
+        <a href="portfolio.html" class="nav-link">Administration</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+          aria-expanded="false">Profile</a>
+        <div class="dropdown-menu bx-profile-dropdown">
+          <a class="dropdown-item" href="javascript:void(0)" (click)="onClick($event)">My Details</a>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog user-dialog">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">User Details</h4>
+        <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="container emp-profile">
+          <form method="post">
+              <div class="row">
+                  <div class="col-md-4 col-12">
+                      <div class="profile-img">
+                        <img src="./cbx/images/user-default.svg" alt=""/>
+                          <div class="file btn btn-lg btn-primary">
+                              Change Photo
+                              <input type="file" name="file"/>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-8 col-12">
+                      <div class="tab-content profile-tab" id="myTabContent">
+                          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                      <div class="row">
+                                          <div class="col-md-4">
+                                              <label>First Name</label>
+                                          </div>
+                                          <div class="col-md-8">
+                                              <p>{{userDetails?.first_name}}</p>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col-md-4">
+                                              <label>Last Name</label>
+                                          </div>
+                                          <div class="col-md-8">
+                                              <p>{{userDetails?.last_name}}</p>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col-md-4">
+                                              <label>Email</label>
+                                          </div>
+                                          <div class="col-md-8">
+                                              <p>{{userDetails?.email_address}}</p>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col-md-4">
+                                              <label>Login Name</label>
+                                          </div>
+                                          <div class="col-md-8">
+                                              <p>{{userDetails?.login_name}}</p>
+                                          </div>
+                                      </div>
+                                      
+                          </div>
+                          
+                      </div>
+                  </div>
+                 
+              </div>
+              
+          </form>           
+      </div>
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-close-bx" data-dismiss="modal" (click) = "hide()">Close</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
