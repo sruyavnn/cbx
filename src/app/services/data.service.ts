@@ -9,7 +9,8 @@ export class DataService {
  
 
   constructor() { }
-
+  //sending topdownloads row data to cart
+  topDownloadsRowCartData = [];
   private treeData = {};
   searchParamsData =new Searchparams();
   fromLeftNavOrSearch="";
@@ -26,6 +27,15 @@ export class DataService {
   getOption() {  
     return this.treeData;  
   }  
+
+   //creating get method for sending topdownloads row data to cart
+   getCartOption() {  
+    return this.topDownloadsRowCartData;  
+  } 
+  //creating set method for sending topdownloads row data to cart
+  setCartOption(value) {      
+    this.topDownloadsRowCartData = value;  
+  } 
 
   setSearchOption(value) {      
     this.searchParamsData = value;  

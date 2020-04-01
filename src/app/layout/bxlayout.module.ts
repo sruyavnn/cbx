@@ -32,6 +32,9 @@ import { ListviewComponent } from '../pages/listview/listview.component';
 import { TreeTableModule } from 'primeng/treetable'
 import { TreelistviewComponent } from '../pages/treelistview/treelistview.component';
 import { ProfileComponent } from '../pages/profile/profile.component';
+import {CheckboxModule} from 'primeng/checkbox';
+import { CartComponent } from '../pages/landing/cart/cart.component';
+
 @NgModule({
   declarations: [
     BxrootComponent,
@@ -45,7 +48,8 @@ import { ProfileComponent } from '../pages/profile/profile.component';
     TopDownloadsComponent,
     ListviewComponent,
     TreelistviewComponent,
-    ProfileComponent
+    ProfileComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
@@ -63,7 +67,8 @@ import { ProfileComponent } from '../pages/profile/profile.component';
     ToastModule,
     MultiSelectModule,
     TooltipModule,
-    TreeTableModule
+    TreeTableModule,
+    CheckboxModule
   ]
 })
 export class BxlayoutModule { }

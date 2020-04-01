@@ -34,7 +34,7 @@ export class TreelistviewComponent implements OnInit {
     public assetIdCollapsed: string
     private leftNavPageLimit: string = "10";
     private leftNavPageAfter: string = "0";
-    private tableRow: string = "";
+    public tableRow: string = "";
     private collapseExpandFlag: boolean;
     private tableRowChild: string;
     private assetName = "";
@@ -47,6 +47,9 @@ export class TreelistviewComponent implements OnInit {
         this.getTotalPageCount();
     }
 
+    listViewRowData(listviewname){
+        this.listViewService.trListViewRP(listviewname);
+      }
     getTotalPageCount() {
         this.spinner.show();
         var serviceUrl = '/otmmapi/v5/folders/' + this.assetId + '?load_type=custom&data_load_request=%7B%22data_load_request%22%3A%7B%22child_count_load_type%22%3A%22both%22%2C%22load_path%22%3Atrue%7D%7D'
@@ -67,7 +70,7 @@ export class TreelistviewComponent implements OnInit {
     }
 
     getMainData() {
-        //this.spinner.show();
+        this.spinner.show();
         var serviceUrl = "";
         if (this.assetId == "fba758190e7008bd4d73490c4ace221f36b2a1be") {
             //var serviceUrl = '/otmmapi/v5/folders/' + this.assetId + '/folders?load_type=system&limit=0';
@@ -104,7 +107,7 @@ export class TreelistviewComponent implements OnInit {
             for (let i = 0; i < treeData.length; i++) {
                 var lastModifiedDate = this.getFormattedDate(new Date(treeData[i].date_last_updated));
                 if (treeData[i].data_type == 'CONTAINER' && !treeData[i].rendition_content) {
-                    this.tableRow += '<div id="' + treeData[i].asset_id + '" class="Row ' + treeData[i].asset_id + '">' +
+                    this.tableRow += '<div id="' + treeData[i].asset_id + '" class="trow ' + treeData[i].asset_id + '">' +
                         ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<i class="fa fa-plus ' + treeData[i].asset_id + ' hide-plus" aria-hidden="true"></i>' +
@@ -146,7 +149,7 @@ export class TreelistviewComponent implements OnInit {
                 }
                 else if (treeData[i].data_type == 'CONTAINER' && treeData[i].rendition_content) {
                     //{{treeData[i].rendition_content.thumbnail_content.url}}
-                    this.tableRow += '<div id="' + treeData[i].asset_id + '" class="Row ' + treeData[i].asset_id + '">' +
+                    this.tableRow += '<div id="' + treeData[i].asset_id + '" class="trow ' + treeData[i].asset_id + '">' +
                         ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<i class="fa fa-plus ' + treeData[i].asset_id + ' hide-plus" aria-hidden="true"></i>' +
@@ -189,7 +192,7 @@ export class TreelistviewComponent implements OnInit {
                 }
 
                 else if (treeData[i].data_type == undefined && treeData[i].rendition_content.preview_content) {
-                    this.tableRow += '<div id="' + treeData[i].asset_id + '" class="Row ' + treeData[i].asset_id + '">' +
+                    this.tableRow += '<div id="' + treeData[i].asset_id + '" class="trow ' + treeData[i].asset_id + '">' +
                         ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<label class="main1"><input type="checkbox" name="chkHead' + treeData[i].asset_id + '" id="chk' + treeData[i].asset_id + '" ><span class="geekmark1"></span>' +
@@ -232,7 +235,7 @@ export class TreelistviewComponent implements OnInit {
                         '</div>';
                 }
                 else if (treeData[i].data_type == undefined && treeData[i].rendition_content.pdf_preview_content) {
-                    this.tableRow += '<div id="' + treeData[i].asset_id + '" class="Row ' + treeData[i].asset_id + '">' +
+                    this.tableRow += '<div id="' + treeData[i].asset_id + '" class="trow ' + treeData[i].asset_id + '">' +
                         ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<i class="fa fa-plus ' + treeData[i].asset_id + ' hide-plus" aria-hidden="true"></i>' +
@@ -279,7 +282,7 @@ export class TreelistviewComponent implements OnInit {
             //console.log(this.tableRow);
             if(this.tableRow==""){
                 this.tableRow="Assets not available";
-                this.searchParameters.totalhitcount="0";
+                this.searchParameters.totalhitcount=0;
             }
         }
         catch (Error) {
@@ -294,6 +297,7 @@ export class TreelistviewComponent implements OnInit {
 
             var plusCls = '.' + elem.target.className.replace(' ', '.').replace(' ', '.').replace(' ', '.');
             var minusCls = '.' + elem.target.className.replace(' ', '.').replace(' ', '.').replace(' ', '.').replace('fa-plus', 'fa-minus').replace('hide-plus', 'hide-minus');
+            $('.trow.'+this.assetId).css('background-color','#F5F5F5')
             this.expandRow(plusCls, minusCls);
             // $(plusCls).hide();
             // $(minusCls).removeClass('hide-minus');
@@ -304,6 +308,7 @@ export class TreelistviewComponent implements OnInit {
 
             var minusCls = '.' + elem.target.className.replace(' ', '.').replace(' ', '.').replace(' ', '.');
             var plusCls = '.' + elem.target.className.replace(' ', '.').replace(' ', '.').replace(' ', '.').replace('fa-minus', 'fa-plus').replace('hide-minus', 'hide-plus');
+            $('.trow.'+this.assetId).css('background-color','')
             this.collapseRow(plusCls, minusCls);
             // $(minusCls).addClass('hide-minus');
             // $(plusCls).show();
@@ -356,8 +361,8 @@ export class TreelistviewComponent implements OnInit {
         this._sharedservice.getService(serviceUrl
         ).subscribe(data => {
             this.constructChildTreeTable(data.folder_children.asset_list);
-            if ($('.Row.' + this.assetId).length > 0) {
-                $('.Row.' + this.assetId).append(this.tableRowChild);
+            if ($('.trow.' + this.assetId).length > 0) {
+                $('.trow.' + this.assetId).append(this.tableRowChild);
             }
             if ($('.child-Row.' + this.assetId).length > 0) {
                 $('.child-Row.' + this.assetId).append(this.tableRowChild);

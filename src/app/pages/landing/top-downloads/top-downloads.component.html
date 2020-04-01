@@ -10,7 +10,9 @@
     <div class="search-container col-xs-10 col-md-10 p-bx-0">
       <div class="form-group has-search">
         <span class="form-control-feedback"></span>
-        <input type="text" class="form-control home-search" placeholder="Search">
+        <!-- <input type="text" class="form-control home-search" placeholder="Search"> -->
+        <input type="text" [(ngModel)]="searchKeyword" (keydown.enter)="getSearchData($event)"  class="form-control home-search" placeholder="Search">
+
       </div>
     </div>
     <div class="grid-viewd col-xs-2 p-bx-0">
@@ -39,7 +41,7 @@
         Monthly
       </button>
       <div class="dropdown-menu dropdown-option-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item dropdown-option" href="#">Weekly</a>
+        <a class="dropdown-item dropdown-option" >Weekly</a>
       </div>
     </div>
     </form>
@@ -47,7 +49,7 @@
   <div class="col-lg-5 col-md-8 p-bx-0" style="text-align:right">
     <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable">Add to collections</button>
   <button type="button" class="btn btn-primary btn-bx bx-btnspace" [disabled]="btnEnableDisable">Add to cart</button>
-  <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable">Download</button>
+  <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable" (click)="mutltiAssetDownloads()">Download</button>
   </div>
 </div>
 
@@ -55,16 +57,15 @@
   <table class="table table-borderless topd-table">
     <thead>
       <tr class="table-head-row">
-        <!-- <th>
-          <label class="main">
-            <input type="checkbox" (change)="changeCheck()"> 
-            <span class="geekmark" ></span> 
-        </label>
-         </th> -->
-         <th><label class="main">
+        <th>
+          <p-checkbox name="groupname"   [(ngModel)]="selectAll" [binary]="true" (onChange)="checkUncheckAll()"></p-checkbox>
+
+         </th>
+         <!-- <th><label class="main">
+
           <input type="checkbox" [(ngModel)]="checkAll" name="chkHead" (change)="checkUnAll()">
           <span class="geekmark"></span>
-        </label> </th>
+        </label> </th> -->
         <th colspan="2" class="name">Name <i class="fa fa-chevron-down"></i></th>
         <th> <i class="fa fa-chevron-down"></i></th>
         <th colspan="4" class="file-size">File size <i class="fa fa-chevron-down"></i></th>
@@ -73,15 +74,19 @@
     <div class=""></div>
     <tbody>
       <tr *ngFor = "let rowData of topDownloadData" (click)="topDownloadsData(rowData)" class="row-topd" id="{{rowData.asset_id}}">
-        <td class="row-checkbox">
+        <!-- <td class="row-checkbox">
           <label class="main">
             <input type="checkbox" [(ngModel)]="rowData.isSelected" name="{{rowData.asset_id}}" (change)="oneSelected(rowData)"> 
             <span class="geekmark"></span> 
         </label>
+        </td> -->
+        <td>
+        <p-checkbox  [(ngModel)]="rowData.isSelected" [binary]="true"   (onChange)="checkUncheckSingle($event, rowData?.asset_id)"></p-checkbox>
+
         </td>
         <td class="row-thumbnail-main"><div class="row-thumbnail">
 
-          <span (click)="assetsViewPages('asset', rowData?.asset_id)"
+          <span 
             *ngIf="rowData?.data_type== undefined && rowData?.rendition_content" class="asset-pannel">
             <img src={{rowData?.rendition_content.thumbnail_content.url}}
               class="img-fluid list-asset-size list-asset-hover">
@@ -98,20 +103,21 @@
         <td class="row-file-size">
           {{rowData?.rendition_content.preview_content.content_size/1024/1024 | number : '1.2-2'}}mb
         </td>
-        <td class="row-addcart"><div class="addcart"></div></td>
-        <td class="row-download"><div class="download-row"></div></td>
+        <td class="row-addcart"><div class="addcart" (click)="addCartTopDownloads(rowData)"></div></td>
+        <td class="row-download"><div class="download-row" (click)="singleAssetDownload(rowData?.rendition_content.preview_content.id)"></div></td>
         <td class="row-options"><div class="dropdown show">
-          <a class="dropdown-toggle topd-options" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="dropdown-toggle topd-options"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            
           </a>
         
           <div class="dropdown-menu optons-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Download</a>
-            <a class="dropdown-item" href="#">Add to cart</a>
-            <a class="dropdown-item" href="#">Add to collections</a>
-            <a class="dropdown-item" href="#">Subscribe</a>
-            <a class="dropdown-item" href="#">Copy url</a>
-            <a class="dropdown-item" href="#">View file info</a>
+            <a class="dropdown-item"  (click)="singleAssetDownload(rowData?.rendition_content.preview_content.id)">Download</a>
+            <a class="dropdown-item"  (click)="addCartTopDownloads(rowData)">Add to cart</a>
+            <a class="dropdown-item" >Add to collections</a>
+            <a class="dropdown-item" (click)="subscribeAsset(rowData?.asset_id)" *ngIf="!subscribeunsubscribe">Subscribe</a>
+            <a class="dropdown-item"  (click)="unSubscribeAsset(rowData?.asset_id)" *ngIf="subscribeunsubscribe">Unsubscribe</a>
+            <a class="dropdown-item" >Copy url</a>
+            <a class="dropdown-item" >View file info</a>
           </div>
         </div></td>
         
@@ -145,19 +151,21 @@
       </tr> -->
     </tbody>
   </table>
-  <div class="pagination-topd col-12 p-bx-0">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-          <a class=" previous-btn" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class=""><a class="page-link page-number" href="#">1</a></li>
-        
-        <li class="page-item">
-          <a class="next-btn" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+  <form name="pagingfrm">
+    <div class="pagination-topd col-12 p-bx-0" *ngIf="paginationFlag">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item " [attr.disabled]="page == 1">
+            <a class=" previous-btn" name="1" (click)="paginatePrev()" >Previous</a>
+          </li>
+          <li class=""><a class="page-link page-number" >{{page}}</a></li>
+          
+          <li class="page-item" [attr.disabled]="page==2">
+            <a class="next-btn" name="2" (click)="paginateNext()" >Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </form>
 </div>
 </div>

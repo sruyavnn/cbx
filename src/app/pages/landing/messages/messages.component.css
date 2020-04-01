@@ -1,0 +1,16 @@
+.message-section{
+    height: 50px;
+    width: 100%;
+    background-color: #00bceb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    font-size: 12px;
+}
+
+@media (min-width: 320px ) and (max-width: 767px){
+    .message-section{
+        text-align: center;
+    }
+}

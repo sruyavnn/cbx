@@ -9,9 +9,9 @@ import { ListViewService } from 'src/app/services/listview.service';
 })
 export class AnnouncementsComponent implements OnInit {
   
-  trtopDownloadData=[];
-  trListViewData = [];
-  trProfileData = [];
+  trtopDownloadData;
+  trListViewData;
+  trProfileData;
   constructor(private listViewService:ListViewService) { }
 
   ngOnInit() {

@@ -41,7 +41,7 @@
                     <img src="../../../cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart"/>
                 </div>
                 <div class="download">
-                    <img (click)="rpRowImgDownload(trtopDownloadData.rendition_content.thumbnail_content.id)" src="../../../cbx/images/buttons-with-icons/download_Inactive.png" class="img-download"/>
+                    <img (click)="rpRowImgDownload(trtopDownloadData.rendition_content.preview_content.id)" src="../../../cbx/images/buttons-with-icons/download_Inactive.png" class="img-download"/>
                 </div>
                 <div class="ellipsis">
                     <img src="../../../cbx/images/buttons-with-icons/options_inactive.png" class="img-options"/>
@@ -52,7 +52,7 @@
                 </div>
                 <div>
                     <ul class="lastModified">
-                        <li>Last modified by: Matero, Sarah</li>
+                        <li>Last modified by: {{trtopDownloadData.metadata_state_user_name}}</li>
                         <li>Total Downloads: 144k</li>
                         <li>Asset Size: {{trtopDownloadData.rendition_content.preview_content.content_size/1024/1024 | number : '1.2-2'}}mb</li>
                     </ul>

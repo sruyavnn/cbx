@@ -9,8 +9,9 @@ export class ListViewService {
   trtopDownloadData:any;
   topDownload:BehaviorSubject<any>;
 
+  //sending listview row data to right panel
   trListViewData:any;
-   trListView:BehaviorSubject<any>;
+  trListView:BehaviorSubject<any>;
 
   listFlags:false;
   listFlagSort: BehaviorSubject<boolean>;
@@ -39,9 +40,9 @@ export class ListViewService {
     this.topDownload.next(newUser);
   }
 //sending listview row data to right panel
-trListViewRP(listviewUser){
-  this.trListView.next(listviewUser);
-}
+  trListViewRP(listviewUser){
+    this.trListView.next(listviewUser);
+  }
 
   listviewsortbtn(flag) {
     this.listFlagSort.next(flag);
