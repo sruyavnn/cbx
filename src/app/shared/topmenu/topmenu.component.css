@@ -113,6 +113,7 @@
     margin-right: 19px;
     margin-top: 12px;
     position: fixed;
+    z-index: 9;
 }
 .topmenu-container {
     margin-bottom: 12px;

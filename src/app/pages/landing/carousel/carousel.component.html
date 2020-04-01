@@ -1,16 +1,16 @@
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#00bceb" type="ball-clip-rotate">
   <p style="font-size: 20px; color:#fff">Please wait...</p>
 </ngx-spinner>
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="demo" class="carousel slide" data-ride="carousel">
 
   <!-- Indicators -->
   <ul class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" *ngFor="let x of carouselData;let i = index" attr.data-slide-to="{{index}}" ngClass="i == 0 ? 'active' : ''"></li>
+    <li data-target="#demo" *ngFor="let x of carouselData let i = index" attr.data-slide-to="{{i}}" ngClass="{{i == 0 ? 'active' : ''}}"></li>
   </ul>
 
   <!-- The slideshow -->
   <div class="carousel-inner">
-    <div *ngFor="let j of carouselData; let index = index" [ngClass]="index == 0 ? 'carousel-item active' : 'carousel-item'">
+    <div *ngFor="let j of carouselData let index = index" [ngClass]="index == 0 ? 'carousel-item active' : 'carousel-item'">
       <img src="{{j.objectID}}" class="img-fluid" alt="Cisco Image" usemap ="#workmap">
       <map name="workmap">
         <area shape="rect" coords="426,1,1,306" alt="Computer" href="{{j.leftUrl}}" target="_blank">
@@ -26,7 +26,7 @@
         </div>
       </div> -->
     </div>
-    
+
   </div>
 
 </div>
