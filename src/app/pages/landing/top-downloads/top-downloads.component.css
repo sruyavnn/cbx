@@ -16,7 +16,7 @@
   bottom: 4px;
 }
 .home-search {
-  padding-left: 35px;
+  padding-left: 32px;
   border-radius: 17px;
   height: 28px;
   font-size: 13px;
@@ -33,10 +33,14 @@
   box-shadow: none;
   border: 1px solid #0B93DB;
 }
+::placeholder {
+  color: #808080;
+  font-size: 12px;
+}
 .has-search {
   float: right;
     position: relative;
-    width: 53%;
+    width: 50%;
 }
 .gridview-btn {
   width: 28px;
@@ -421,7 +425,14 @@ like a tickmark */
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
 } 
-
+.search-container {
+  max-width: 88%;
+    flex: 0 0 88%;
+}
+.grid-viewd {
+  max-width: 12%;
+    flex: 0 0 12%;
+}
 
 
 @media (max-width: 1099px) {  
