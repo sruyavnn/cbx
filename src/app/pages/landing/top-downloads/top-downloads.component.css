@@ -247,10 +247,8 @@
   font-size: 12px;
 }
 .row-thumbnail {
-  width: 40px;
-  height: 40px;
-  /* background: url('../../../../cbx/images/thumbnail1.png') no-repeat left; */
-  background-size: contain;
+  width: 43px;
+  height: 45px;
 }
 .topd-table td {
   vertical-align: middle;
@@ -332,14 +330,18 @@
     margin: 0px 18px;
 }
 .row-checkbox {
-  width: 4%;
+  width: 6%;
 
+}
+.img-fluid.list-asset-size.list-asset-hover {
+  height: 23px;
+    width: 34px;
 }
 .row-thumbnail-main {
   width: 5%;
 }
 .row-title {
-  width: 65%;
+  width: 62%;
 }
 .row-download-count {
   width: 5%;
