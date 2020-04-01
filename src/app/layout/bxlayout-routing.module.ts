@@ -15,6 +15,7 @@ import { TopmenuComponent } from '../shared/topmenu/topmenu.component';
 import { TreelistviewComponent } from '../pages/treelistview/treelistview.component';
 import { ProfileComponent } from '../pages/profile/profile.component';
 import { CartComponent } from '../pages/landing/cart/cart.component';
+import { AssetsComponent } from '../pages/assets/assets.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,8 @@ children: [
 { path: 'leftmenu', component: LeftmenuComponent },
 { path: 'announcements', component: AnnouncementsComponent },
 { path: 'topmenu', component: TopmenuComponent },
+{ path: 'assets', component: AssetsComponent },
+
 
 
 ]

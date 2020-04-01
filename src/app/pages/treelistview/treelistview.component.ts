@@ -31,6 +31,7 @@ export class TreelistviewComponent implements OnInit {
 
     private anyData: any;
     private assetId: string = "fba758190e7008bd4d73490c4ace221f36b2a1be";
+    assetIdPaging: string = "fba758190e7008bd4d73490c4ace221f36b2a1be";
     public assetIdCollapsed: string
     private leftNavPageLimit: string = "10";
     private leftNavPageAfter: string = "0";
@@ -78,6 +79,36 @@ export class TreelistviewComponent implements OnInit {
         }
         else {
             var serviceUrl = '/otmmapi/v5/folders/' + this.assetId + '/children/?load_type=metadata&load_multilingual_values=true&level_of_detail=slim&after=' + this.searchParameters.after + '&limit=' + this.searchParameters.limit + '&preference_id=ARTESIA.PREFERENCE.GALLERYVIEW.DISPLAYED_FIELDS&sort=asc_NAME';
+        }
+        this._sharedservice.getService(serviceUrl
+        ).subscribe(data => {
+            // if (this.assetId == "fba758190e7008bd4d73490c4ace221f36b2a1be") {
+            //     this.constructMainTreeTable(data.folders_resource.folder_list);
+            // }
+            // else {
+                this.constructMainTreeTable(data.folder_children.asset_list);
+                //this._bcdata.bcfunction(rowData);
+
+            //}
+
+            this.spinner.hide();
+
+        },
+            (err: any) => {
+                this.spinner.hide();
+
+            })
+    }
+
+    getMainDataPaging() {
+        this.spinner.show();
+        var serviceUrl = "";
+        if (this.assetIdPaging == "fba758190e7008bd4d73490c4ace221f36b2a1be") {
+            //var serviceUrl = '/otmmapi/v5/folders/' + this.assetId + '/folders?load_type=system&limit=0';
+            var serviceUrl = '/otmmapi/v5/folders/' + this.assetIdPaging + '/children/?load_type=metadata&load_multilingual_values=true&level_of_detail=slim&after=' + this.searchParameters.after + '&limit=' + this.searchParameters.limit + '&preference_id=ARTESIA.PREFERENCE.GALLERYVIEW.DISPLAYED_FIELDS&sort=asc_NAME';
+        }
+        else {
+            var serviceUrl = '/otmmapi/v5/folders/' + this.assetIdPaging + '/children/?load_type=metadata&load_multilingual_values=true&level_of_detail=slim&after=' + this.searchParameters.after + '&limit=' + this.searchParameters.limit + '&preference_id=ARTESIA.PREFERENCE.GALLERYVIEW.DISPLAYED_FIELDS&sort=asc_NAME';
         }
         this._sharedservice.getService(serviceUrl
         ).subscribe(data => {
@@ -292,8 +323,9 @@ export class TreelistviewComponent implements OnInit {
     }
     @HostListener('document:click', ['$event'])
     rowClicked(elem) {
-        if (elem.target.className.indexOf('fa fa-plus') >= 0) {
-            this.assetId = elem.target.className.split(' ')[2];
+        if (elem.target.className.indexOf('fa fa-plus') == 0) {
+            
+           this.assetId = elem.target.className.split(' ')[2];
 
             var plusCls = '.' + elem.target.className.replace(' ', '.').replace(' ', '.').replace(' ', '.');
             var minusCls = '.' + elem.target.className.replace(' ', '.').replace(' ', '.').replace(' ', '.').replace('fa-plus', 'fa-minus').replace('hide-plus', 'hide-minus');
@@ -303,7 +335,7 @@ export class TreelistviewComponent implements OnInit {
             // $(minusCls).removeClass('hide-minus');
 
         }
-        else if (elem.target.className.indexOf('fa fa-minus') >= 0) {
+        else if (elem.target.className.indexOf('fa fa-minus') == 0) {
             this.assetIdCollapsed = elem.target.className.split(' ')[2];
 
             var minusCls = '.' + elem.target.className.replace(' ', '.').replace(' ', '.').replace(' ', '.');
@@ -314,13 +346,8 @@ export class TreelistviewComponent implements OnInit {
             // $(plusCls).show();
         }
         else if (elem.target.className.indexOf('assetNameClick') >= 0) {
-            this.assetId = elem.target.className.split(' ')[1];
-            var assetNameCls = elem.target.className.replace(' ', '.').replace(' ', '.');
-            var assetName = $('.' + assetNameCls)[0].innerText;
-            this.getMainData();
-        }
-        else if (elem.target.className.indexOf('assetNameClick') >= 0) {
-            this.assetId = elem.target.className.split(' ')[1];
+            
+            this.assetIdPaging=this.assetId = elem.target.className.split(' ')[1];
             var assetNameCls = elem.target.className.replace(' ', '.').replace(' ', '.');
             var assetName = $('.' + assetNameCls)[0].innerText;
             var parents=$('.'+assetNameCls).parents();
@@ -333,7 +360,8 @@ export class TreelistviewComponent implements OnInit {
             this.getMainData();
         }
         else if(elem.target.className.indexOf('loadMore') >= 0){
-            this.assetId = elem.target.className.split(' ')[1];
+           this.assetIdPaging= this.assetId = elem.target.className.split(' ')[1];
+
             this.getMainData();
 
         }
@@ -607,7 +635,7 @@ export class TreelistviewComponent implements OnInit {
     }
     paginate(param){
         this.searchParameters.after=param.first;
-        this.getMainData();
+        this.getMainDataPaging();
         // if(this.fromLeftNavOrSearch=="search"){
         //   this.searchParameters.after=param.first;
         //   this.getSearchData();

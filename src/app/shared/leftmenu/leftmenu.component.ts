@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ListViewService } from 'src/app/services/listview.service';
 declare var $:any;
 @Component({
   selector: 'app-leftmenu',
@@ -7,7 +10,12 @@ declare var $:any;
 })
 export class LeftmenuComponent implements OnInit {
 
-  constructor() { 
+  constructor(
+    public router: Router,
+    private spinner: NgxSpinnerService,
+    private listViewService: ListViewService,
+
+  ) { 
     $(document).ready(function(){
       // Add minus icon for collapse element which is open by default
       $(".collapse.show").each(function(){
@@ -38,5 +46,33 @@ export class LeftmenuComponent implements OnInit {
   myFunction(event) {
     event.classList.toggle("change");
   }
+  homeClick(){
+   // this.spinner.show();
+    this.listViewService.trRightPanel(null);
+    this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
+    setTimeout(() => this.router.navigate(['layout']));
+    //this.spinner.hide();
+  }
 
+  allAssetsClick(){
+    this.spinner.show();
+    this.listViewService.trRightPanel(null);
+    this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
+    setTimeout(() => this.router.navigate(['layout/listview']));
+    //this.spinner.hide();
+  }
+  mycollections(){
+    //
+    this.spinner.show();
+    this.listViewService.trRightPanel(null);
+    this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
+    setTimeout(() => this.router.navigate(['layout/listview']));
+  }
+  recentDownloads(){
+    //  /layout/recent-downloads
+    this.spinner.show();
+    this.listViewService.trRightPanel(null);
+    this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
+    setTimeout(() => this.router.navigate(['layout/listview']));
+  }
 }

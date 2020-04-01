@@ -34,6 +34,8 @@ import { TreelistviewComponent } from '../pages/treelistview/treelistview.compon
 import { ProfileComponent } from '../pages/profile/profile.component';
 import {CheckboxModule} from 'primeng/checkbox';
 import { CartComponent } from '../pages/landing/cart/cart.component';
+import { AssetdetailsComponent } from '../pages/assetdetails/assetdetails.component';
+import { AssetsComponent } from '../pages/assets/assets.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { CartComponent } from '../pages/landing/cart/cart.component';
     ListviewComponent,
     TreelistviewComponent,
     ProfileComponent,
-    CartComponent
+    CartComponent,
+    AssetsComponent
   ],
   imports: [
     CommonModule,

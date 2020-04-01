@@ -52,6 +52,7 @@ export class TopDownloadsComponent implements OnInit {
   } 
  
   getTopDownloadsData() {
+    //this.spinner.show();
     console.log('cars');
  this.assetId='c7c0b34a5fa903aacec8a0b5525cf6b8d9a016f5';
 // var serviceUrl='/otmmapi/v5/folders/'+this.assetId+'/children/?load_type=metadata&load_multilingual_values=true&level_of_detail=full&after='+this.PageAfter+'&limit='+this.PageLimit+'&preference_id=ARTESIA.PREFERENCE.SPREADSHEETVIEW.DISPLAYED_FIELDS&sort=asc_NAME'
@@ -83,7 +84,7 @@ this._sharedservice.getService(serviceUrl
       }
       console.log(this.topDownloadData);
    //if(this.topDownloadData.length>10)
-      this.paginationFlag
+   this.spinner.hide();
     });
   }
 
@@ -91,7 +92,14 @@ this._sharedservice.getService(serviceUrl
   //onclick func in topdownloads
   topDownloadsData(name){
     $('#' + name.asset_id).addClass("selected").siblings().removeClass("selected");
+    var selectedLength = this.topDownloadData.filter(x => x.isSelected == true).length;
+   
+      if(selectedLength>1){
+        this.listViewService.trRightPanel(null);
+      }
+   else{
     this.listViewService.trRightPanel(name);
+   }
   }
 
    //using this function sending row data to cart
@@ -119,9 +127,10 @@ this._sharedservice.getService(serviceUrl
   }
 
   //subscribe and unsubscribe
-  subscribeAsset(assetid){
-      this.subscribeunsubscribe=true;
-      var assetData = JSON.stringify(this.buildAssetJson(assetid));
+  subscribeAsset(obj){
+      //this.subscribeunsubscribe=true;
+      obj.subscribed_to=true;
+      var assetData = JSON.stringify(this.buildAssetJson(obj.asset_id));
         //formdata
         let params = new HttpParams()
         .set('action', 'subscribe')
@@ -136,9 +145,10 @@ this._sharedservice.getService(serviceUrl
     });
   }
   
-  unSubscribeAsset(assetid){
-    this.subscribeunsubscribe=false;
-    var deleteAssetUrl ='/otmmapi/v5/assets/subscriptions?action=un_subscribe&selection_context=%7B%22selection_context_param%22%3A%7B%22selection_context%22%3A%7B%22asset_ids%22%3A%5B%22'+assetid+'%22%5D%2C%22asssetContentType%22%3A%5B%5D%2C%22assetSubContentType%22%3A%5B%5D%2C%22type%22%3A%22com.artesia.asset.selection.AssetIdsSelectionContext%22%2C%22include_descendants%22%3A%22NONE%22%7D%7D%7D';
+  unSubscribeAsset(obj){
+    //this.subscribeunsubscribe=false;
+    obj.subscribed_to=false;
+    var deleteAssetUrl ='/otmmapi/v5/assets/subscriptions?action=un_subscribe&selection_context=%7B%22selection_context_param%22%3A%7B%22selection_context%22%3A%7B%22asset_ids%22%3A%5B%22'+obj.asset_id+'%22%5D%2C%22asssetContentType%22%3A%5B%5D%2C%22assetSubContentType%22%3A%5B%5D%2C%22type%22%3A%22com.artesia.asset.selection.AssetIdsSelectionContext%22%2C%22include_descendants%22%3A%22NONE%22%7D%7D%7D';
       this._sharedservice.deleteService(deleteAssetUrl).subscribe(result => {
         console.log('deletesSbsribeList', result);  
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Unsubscribed from 1 folder/asset.' });
@@ -211,6 +221,10 @@ this._sharedservice.getService(serviceUrl
     var selectedLength = this.topDownloadData.filter(x => x.isSelected == true).length;
     if(selectedLength>0){
       this.btnEnableDisable = false;
+      if(selectedLength>1){
+        this.listViewService.trRightPanel(null);
+      }
+     
     }
     else{
       this.btnEnableDisable = true;
@@ -232,14 +246,15 @@ this._sharedservice.getService(serviceUrl
     .set('load_type', 'metadata')
     .set('load_multilingual_values', 'true')
     .set('level_of_detail', 'slim')
+    .set('after', this.PageAfter)
+    .set('limit',  this.PageLimit)
     .set('multilingual_language_code', 'en_US')
     .set('folder_filter_type', 'all')
     .set('folder_filter', this.assetId)
     .set('search_config_id', '3')
     .set('keyword_scope_id', '3')
-    .set('preference_id', 'ARTESIA.PREFERENCE.GALLERYVIEW.DISPLAYED_FIELDS' )
-    .set('after', this.PageAfter)
-    .set('limit',  this.PageLimit);
+    .set('preference_id', 'ARTESIA.PREFERENCE.SPREADSHEETVIEW.DISPLAYED_FIELDS' )
+    ;
     var url = "/otmmapi/v5/search/text";
     this._sharedservice.postService(url, params).subscribe(result => {
       console.log('AssetList', result);  
