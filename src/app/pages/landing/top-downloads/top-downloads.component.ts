@@ -45,8 +45,6 @@ export class TopDownloadsComponent implements OnInit {
     this.getTopDownloadsData();
     //this.topDownladgrouping();
     $(".topd-table tr").click(function(){
-      
-     
   });​
  
   } 
