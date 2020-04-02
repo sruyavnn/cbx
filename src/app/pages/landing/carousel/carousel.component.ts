@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
     selector: 'app-carousel',
     templateUrl: './carousel.component.html',
@@ -18,7 +19,9 @@ export class CarouselComponent implements OnInit {
     }
     ngOnInit() {
         this.getCarouselData();
+       
     }
+ 
     public couroselid;
     getCarouselData() {
         this.spinner.show();

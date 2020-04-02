@@ -37,7 +37,7 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/bootstrap/js/dist/carousel.js",
               {
                 "input": "node_modules/document-register-element/build/document-register-element.js"
               }

@@ -68,7 +68,7 @@ padding: 4px 0px;
     cursor: pointer;
 }
 .list-asset-size.list-asset-hover {
-    width: 34px;
+   width: 34px;
     height: 34px;
     position: relative;
     top: -4px;

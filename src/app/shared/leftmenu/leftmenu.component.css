@@ -119,8 +119,8 @@
 
 .left-menu-item-home a.active .home-icon {
     background: url("../../../cbx/images/Main-Menu_icons/Home_active.png") no-repeat left;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: inline-block;
     background-size: contain;
     margin-right: 9px;
@@ -128,8 +128,8 @@
 
 .left-menu-item-files a.active .home-icon {
     background: url("../../../cbx/images/Main-Menu_icons/All-files_active.png") no-repeat left;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     display: inline-block;
     background-size: contain;
     margin-right: 9px;
@@ -140,16 +140,16 @@
 }
 .left-menu-item-collections a.active .home-icon {
     background: url("../../../cbx/images/Main-Menu_icons/Collections_active.png") no-repeat left;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: inline-block;
     background-size: contain;
     margin-right: 9px;
 }
 .left-menu-item-downloads a.active .home-icon {
     background: url("../../../cbx/images/Main-Menu_icons/Downloads_Active.png") no-repeat left;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: inline-block;
     background-size: contain;
     margin-right: 9px;
