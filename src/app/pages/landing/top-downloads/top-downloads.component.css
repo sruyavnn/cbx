@@ -426,12 +426,12 @@ like a tickmark */
     transform: rotate(45deg);
 } 
 .search-container {
-  max-width: 88%;
-    flex: 0 0 88%;
+  max-width: 85%;
+    flex: 0 0 85%;
 }
 .grid-viewd {
-  max-width: 12%;
-    flex: 0 0 12%;
+  max-width: 15%;
+    flex: 0 0 15%;
 }
 
 
