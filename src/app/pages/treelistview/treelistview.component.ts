@@ -329,7 +329,9 @@ export class TreelistviewComponent implements OnInit {
 
             var plusCls = '.' + elem.target.className.replace(' ', '.').replace(' ', '.').replace(' ', '.');
             var minusCls = '.' + elem.target.className.replace(' ', '.').replace(' ', '.').replace(' ', '.').replace('fa-plus', 'fa-minus').replace('hide-plus', 'hide-minus');
-            $('.trow.'+this.assetId).css('background-color','#F5F5F5')
+            $('.trow.'+this.assetId).css('background-color','#F5F5F5');
+            var spanLabel=$('.assetNameClick.'+this.assetId);
+            $(spanLabel).attr("id", "bc");
             this.expandRow(plusCls, minusCls);
             // $(plusCls).hide();
             // $(minusCls).removeClass('hide-minus');
@@ -341,6 +343,8 @@ export class TreelistviewComponent implements OnInit {
             var minusCls = '.' + elem.target.className.replace(' ', '.').replace(' ', '.').replace(' ', '.');
             var plusCls = '.' + elem.target.className.replace(' ', '.').replace(' ', '.').replace(' ', '.').replace('fa-minus', 'fa-plus').replace('hide-minus', 'hide-plus');
             $('.trow.'+this.assetId).css('background-color','')
+            var spanLabel=$('.assetNameClick.'+this.assetId);
+            $(spanLabel).removeAttr("id", "bc");
             this.collapseRow(plusCls, minusCls);
             // $(minusCls).addClass('hide-minus');
             // $(plusCls).show();
@@ -350,7 +354,8 @@ export class TreelistviewComponent implements OnInit {
             this.assetIdPaging=this.assetId = elem.target.className.split(' ')[1];
             var assetNameCls = elem.target.className.replace(' ', '.').replace(' ', '.');
             var assetName = $('.' + assetNameCls)[0].innerText;
-            var parents=$('.'+assetNameCls).parents();
+            
+            var parents=$('.'+assetNameCls).parents().find('#bc');
             for(var i=0;i<=parents.length;i++){
              //if(parents[i].className.indexOf('assetNameClick') >= 0)
              //console.log(parents[i].children[2])
