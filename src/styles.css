@@ -137,8 +137,13 @@ body .ui-chkbox .ui-chkbox-box {
  }
 
  @media (max-width: 1099px) {
-  .rightmenu {
-    background-color: yellow !important;
+  .app-body-announcement {
+    display: none;
+  }
+  .app-body-main {
+    flex: 0 0 100%;
+  max-width: 100%;
+  padding-right: 2.4%;
   }
  }
  @media (max-width: 599px) {
