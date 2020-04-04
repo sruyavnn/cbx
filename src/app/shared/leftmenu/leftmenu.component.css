@@ -206,6 +206,7 @@
         position: relative;
         top: -6px;
         height: 27px;
+        display: inline-block;
     }
     .bx-logo-text{
         font-family: 'CiscoSans-Light';
@@ -238,6 +239,9 @@
     text-align: center;
     margin-top: 16%;
 }
+.arrow-toggle {
+    display: none;
+}
  }
 
  @media (max-width: 1439px) { 
@@ -255,6 +259,8 @@
 }
 .menu-icon-bx {
     display: inline-block;
+    margin-top: 33%;
+    margin-bottom: 88%;
 }
 
 .menu-container {
@@ -271,18 +277,11 @@
     transition: 0.4s;
   }
   
-  .change .bar1 {
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-    transform: rotate(-45deg) translate(-9px, 6px);
-  }
-  
-  .change .bar2 {opacity: 0;}
-  
-  .change .bar3 {
-    -webkit-transform: rotate(45deg) translate(-8px, -8px);
-    transform: rotate(45deg) translate(-8px, -8px);
-  }
- 
+.arrow-toggle {
+    position: fixed;
+    top: 21px;
+    left: 16px;
+}
 }
 
  @media (max-width: 1099px) {

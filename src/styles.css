@@ -119,20 +119,51 @@ body .ui-chkbox .ui-chkbox-box {
       flex: 0 0 26.3%;
       max-width: 26.3%;
     }
+  
  }
 
  @media (max-width: 1439px) { 
+   .in-block {
+     display: inline-block !important;
+   }
+   .d-initial {
+     display: initial !important;
+   }
+   .block {
+     display: block !important;
+   }
+  .overlay {
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    z-index: 111;
+
+    /* animate the transition */
+    transition: all 0.5s ease-in-out;
+}
   .col-2.app-root-left {
     -webkit-box-flex: 0;
     flex: 0 0 7%;
     max-width: 7%;
     background-color: #f5f5f5;
     padding: 0px 2.4%;
+    z-index: 9999;
  }
  .col-10.app-root-main {
   -webkit-box-flex: 0;
   flex: 0 0 93%;
   max-width: 93%;
+}
+.col-2.app-root-left.toggle-menu {
+  -webkit-box-flex: 0;
+  flex: 0 0 16%;
+  max-width: 16%;
+  background-color: #f5f5f5;
+  padding: 0px 2.4%;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  height: 100vh;
+  transition: all 0.3s;
 }
  }
 
@@ -144,6 +175,11 @@ body .ui-chkbox .ui-chkbox-box {
     flex: 0 0 100%;
   max-width: 100%;
   padding-right: 2.4%;
+  }
+  .col-10.app-root-main.toggle-main {
+    -webkit-box-flex: 0;
+    flex: 0 0 100%;
+    max-width: 100%;
   }
  }
  @media (max-width: 599px) {
