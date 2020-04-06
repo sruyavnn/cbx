@@ -58,7 +58,7 @@ export class LeftmenuComponent implements OnInit {
     this.spinner.show();
     this.listViewService.trRightPanel(null);
     this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
-    setTimeout(() => this.router.navigate(['layout/listview']));
+    setTimeout(() => this.router.navigate(['layout/treelistview']));
     //this.spinner.hide();
   }
   mycollections(){
@@ -66,13 +66,13 @@ export class LeftmenuComponent implements OnInit {
     this.spinner.show();
     this.listViewService.trRightPanel(null);
     this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
-    setTimeout(() => this.router.navigate(['layout/listview']));
+    setTimeout(() => this.router.navigate(['layout/treelistview']));
   }
   recentDownloads(){
     //  /layout/recent-downloads
     this.spinner.show();
     this.listViewService.trRightPanel(null);
     this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
-    setTimeout(() => this.router.navigate(['layout/listview']));
+    setTimeout(() => this.router.navigate(['layout/treelistview']));
   }
 }

@@ -38,7 +38,7 @@
                    <div class="img-anpunce"> <img class="resImg img-fluid" src={{trtopDownloadData.rendition_content.thumbnail_content.url}}></div>
                 </div>
                 <div class="cart">
-                    <img src="../../../cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart"/>
+                    <img (click)="addCartTopDownloads(trtopDownloadData)" src="../../../cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart"/>
                 </div>
                 <div class="download">
                     <img (click)="rpRowImgDownload(trtopDownloadData.rendition_content.preview_content.id)" src="../../../cbx/images/buttons-with-icons/download_Inactive.png" class="img-download"/>

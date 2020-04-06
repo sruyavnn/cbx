@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ListViewService } from 'src/app/services/listview.service';
-
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-announcements',
@@ -8,19 +8,22 @@ import { ListViewService } from 'src/app/services/listview.service';
   styleUrls: ['./announcements.component.css']
 })
 export class AnnouncementsComponent implements OnInit {
-  
+  topDownloadsRowCartData = [];
   trtopDownloadData;
   trListViewData;
   trProfileData;
-  constructor(private listViewService:ListViewService) { }
+  constructor(private listViewService:ListViewService,
+    private _dataService: DataService) { }
 
   ngOnInit() {
+    //sending top downloads row data to right panel
     this.listViewService.topDownload.subscribe(a=> {
       this.trtopDownloadData=[];//empty
       this.trtopDownloadData=a;
     console.log('row data topdownload:',this.trtopDownloadData);
     });
 
+    //sending treelistview row data to right panel
     this.listViewService.trListView.subscribe(b=> {
       this.trListViewData=[];//empty
       this.trListViewData=b;
@@ -29,6 +32,18 @@ export class AnnouncementsComponent implements OnInit {
     });
 
  
+  }
+
+   //using this function sending row data to cart
+   addCartTopDownloads(cart){
+    this.topDownloadsRowCartData=this._dataService.getCartOption();
+    var length=this.topDownloadsRowCartData.filter(x=>x.asset_id==cart.asset_id).length;
+    if(length==0){
+      this.topDownloadsRowCartData.push(cart);
+    }
+    
+    this._dataService.setCartOption(this.topDownloadsRowCartData);
+    console.log("cart Data:", this.topDownloadsRowCartData);
   }
 
   removeTopDownloadData(){

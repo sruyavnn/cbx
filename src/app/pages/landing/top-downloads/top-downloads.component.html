@@ -1,3 +1,4 @@
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" position="top-right"></p-toast>
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#00bceb" type="ball-clip-rotate">
   <p style="font-size: 20px; color:#fff">Please wait...</p>
 </ngx-spinner>
@@ -48,8 +49,8 @@
   </div>
   <div class="col-lg-5 col-md-8 p-bx-0" style="text-align:right">
     <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable">Add to collections</button>
-  <button type="button" class="btn btn-primary btn-bx bx-btnspace" [disabled]="btnEnableDisable">Add to cart</button>
-  <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable" (click)="mutltiAssetDownloads()">Download</button>
+  <button type="button" class="btn btn-primary btn-bx bx-btnspace" [disabled]="btnEnableDisable" (click)="mutltiAddtoCartDownloads()">Add to cart</button>
+  <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable" (click)="multiAssetDownloads()">Download</button>
   </div>
 </div>
 
