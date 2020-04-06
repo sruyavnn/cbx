@@ -7,13 +7,13 @@
     <div class="col-12 p-bx-0">
         <div class="row p-m-0 main-page">
             <div class="app-root-left p-bx-0 col-2"><app-leftmenu></app-leftmenu></div>
-            <div class="app-root-main col-10 p-r-0 page-content">
+            <div class="app-root-main col-10 p-r-0 page-content p-bx-0">
                 <div class="row p-m-0">
-                    <div class="col-12"><app-topmenu></app-topmenu></div>
+                    <div class="col-12 p-bx-0"><app-topmenu></app-topmenu></div>
                     <div class="col-12 p-bx-0">
                         <div class="row p-m-0">
-                    <div class="app-body-main col-sm-12 col-md-12 col-lg-9"><router-outlet></router-outlet></div>
-                    <div class="app-body-announcement col-lg-3 p-r-0"><app-announcements></app-announcements></div>
+                    <div class="app-body-main col-sm-9 col-md-9 col-lg-9 p-bx-0 col-sm-9"><router-outlet></router-outlet></div>
+                    <div class="app-body-announcement col-lg-3 p-bx-0 col-md-3 col-sm-3"><app-announcements></app-announcements></div>
                 </div>
                 </div>
                 </div>
@@ -26,5 +26,7 @@
                 <app-footer></app-footer>
             </div>
         </div>
+        <div class="overlay"></div>
     </div>
+    
     </div>
