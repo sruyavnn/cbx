@@ -4,27 +4,27 @@
   
 @font-face{
     font-family: 'CiscoSans-Regular';
-    src: url('./assets/fonts/CiscoSansTTRegular.ttf') ;font-style:normal;
+    src: url('./assets/fonts/CiscoSansTTRegular.woff2') ;font-style:normal;
 }
 @font-face{
     font-family: 'CiscoSans-ExtraLight';
-    src: url('./assets/fonts/CiscoSansTTExtraLight.ttf') ;font-style:normal;
+    src: url('./assets/fonts/CiscoSansTTExtraLight.woff2') ;font-style:normal;
 }
 @font-face{
     font-family: 'CiscoSans-Light';
-    src: url('./assets/fonts/CiscoSansTTLight.ttf') ;font-style:normal;
+    src: url('./assets/fonts/CiscoSansTTLight.woff2') ;font-style:normal;
 }
 @font-face{
     font-family: 'CiscoSans-LightOblique';
-    src: url('./assets/fonts/CiscoSansTTLightOblique.ttf') ;font-style:oblique;
+    src: url('./assets/fonts/CiscoSansTTLightOblique.woff2') ;font-style:oblique;
 }
 @font-face{
     font-family: 'CiscoSans-Bold';
-    src: url('./assets/fonts/CiscoSansTTBold.ttf') ;font-style:oblique;
+    src: url('./assets/fonts/CiscoSansTTBold.woff2') ;font-style:oblique;
 }
 @font-face{
   font-family: 'CiscoSans-Medium';
-  src: url('./assets/fonts/CiscoSansTTMedium.ttf') ;font-style:normal;
+  src: url('./assets/fonts/CiscoSansTTMedium.woff2') ;font-style:normal;
 }
 
 body {
@@ -56,17 +56,8 @@ html {
 .p-r-0 {
   padding-right: 0px;
 }
-.col-2.app-root-left {
-  flex: 0 0 15.5%;
-  max-width: 15.5%;
-  background-color: #f5f5f5;
-  padding: 0px 2%;
-}
-.col-10.app-root-main {
-  -webkit-box-flex: 0;
-  flex: 0 0 84.5%;
-  max-width: 84.5%;
-}
+
+
 
 .col.app-body-main {
   width: 74%;
@@ -107,7 +98,165 @@ body .ui-chkbox .ui-chkbox-box {
   box-shadow: none !important;
   }
 
-@media (min-width: 0px) {  
+  @media (max-width: 2099px) { 
+    .col-2.app-root-left {
+      flex: 0 0 15.3%;
+      max-width: 15.3%;
+      background-color: #f5f5f5;
+      padding: 0px 2.4%;
+    }
+    .page-content.app-root-main {
+      padding-left: 2.4%;
+      flex: 0 0 84.7%;
+      max-width: 84.7%;
+    }
+    .app-body-main {
+      flex: 0 0 73.7%;
+    max-width: 73.7%;
+    }
+    .app-body-announcement {
+      padding-left: 2.4%;
+      flex: 0 0 26.3%;
+      max-width: 26.3%;
+    }
+  
+ }
+
+ @media (max-width: 1439px) { 
+   .in-block {
+     display: inline-block !important;
+   }
+   .d-initial {
+     display: initial !important;
+   }
+   .block {
+     display: block !important;
+   }
+  .overlay {
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    z-index: 111;
+
+    /* animate the transition */
+    transition: all 0.5s ease-in-out;
+}
+  .col-2.app-root-left {
+    -webkit-box-flex: 0;
+    flex: 0 0 7%;
+    max-width: 7%;
+    background-color: #f5f5f5;
+    padding: 0px 2.4%;
+    z-index: 9999;
+ }
+ .col-10.app-root-main {
+  -webkit-box-flex: 0;
+  flex: 0 0 93%;
+  max-width: 93%;
+}
+.col-2.app-root-left.toggle-menu {
+  -webkit-box-flex: 0;
+  flex: 0 0 16%;
+  max-width: 16%;
+  background-color: #f5f5f5;
+  padding: 0px 2.4%;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  height: 100vh;
+  transition: all 0.3s;
+}
+ }
+
+ @media (max-width: 1099px) {
+  .app-body-announcement {
+    display: none;
+  }
+  .app-body-main {
+    flex: 0 0 100%;
+  max-width: 100%;
+  padding-right: 2.4%;
+  }
+  .col-10.app-root-main.toggle-main {
+    -webkit-box-flex: 0;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+ }
+ @media (max-width: 599px) {
+  .bx-footer {
+    background-color: orange !important;
+  }
+ }
+
+/* @media (max-width: 599px) {
+.bx-footer {
+  background-color: orange !important;
+}
+}
+@media (max-width: 1099px) {
+  .rightmenu {
+    background-color: yellow !important;
+  }
+  }
+@media (max-width: 1439px) { 
+  .col-10.app-root-main {
+    background-color: green;
+  }
+  }
+ @media (max-width: 2099px) { 
+  .col-2.app-root-left {
+      background-color: red;
+  }
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* @media (min-width: 0px) {  
   .left-menu-list {
     display: none;
   }
@@ -142,10 +291,10 @@ body .ui-chkbox .ui-chkbox-box {
   background-color: #f5f5f5;
   padding: 0px 2.7%;
 }
-}
+} */
 
 /* // large Desktops (large desktops, 1200px and up) */
-@media (min-width: 1440px) { 
+/* @media (min-width: 1440px) { 
 
 }
 @media (max-width: 855px) {  
@@ -178,5 +327,5 @@ body .ui-chkbox .ui-chkbox-box {
   .test {
     background-color: red;
   }
-}
+} */
 

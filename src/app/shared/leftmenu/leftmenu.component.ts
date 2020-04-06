@@ -39,8 +39,24 @@ export class LeftmenuComponent implements OnInit {
   })
   
   $(".menu-container").click(function() {
-    alert('test');
-    
+    $(".app-root-left").addClass("toggle-menu");
+    $(".menu-label").addClass('in-block');
+    $(".menu-icon-bx").hide();
+    $(".img-logo").addClass('d-initial');
+    $(".bx-logo-text").addClass('block');
+    $(".arrow-toggle").css('display', 'inline-block');
+    $(".app-root-main").addClass('toggle-main');
+    $("body").addClass("overlay");
+  });
+  $(".arrow-toggle").click(function() {
+    $(".app-root-left").removeClass("toggle-menu");
+    $(".menu-label").removeClass('in-block');
+    $(".menu-icon-bx").show();
+    $(".img-logo").removeClass('d-initial');
+    $(".bx-logo-text").removeClass('block');
+    $(".arrow-toggle").css('display', 'none');
+    $(".app-root-main").removeClass('toggle-main');
+    $("body").removeClass("overlay");
   });
   }
   myFunction(event) {

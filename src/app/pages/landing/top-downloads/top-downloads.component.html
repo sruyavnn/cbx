@@ -80,7 +80,7 @@
             <span class="geekmark"></span> 
         </label>
         </td> -->
-        <td>
+        <td class="topd-checkbox">
         <p-checkbox  [(ngModel)]="rowData.isSelected" [binary]="true"   (onChange)="checkUncheckSingle($event, rowData?.asset_id)"></p-checkbox>
 
         </td>
@@ -103,8 +103,8 @@
         <td class="row-file-size">
           {{rowData?.rendition_content.preview_content.content_size/1024/1024 | number : '1.2-2'}}mb
         </td>
-        <td class="row-addcart"><div class="addcart" (click)="addCartTopDownloads(rowData)"></div></td>
         <td class="row-download"><div class="download-row" (click)="singleAssetDownload(rowData?.rendition_content.preview_content.id)"></div></td>
+        <td class="row-addcart"><div class="addcart" (click)="addCartTopDownloads(rowData)"></div></td>
         <td class="row-options"><div class="dropdown show">
           <a class="dropdown-toggle topd-options"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            
