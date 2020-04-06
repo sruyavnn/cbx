@@ -128,13 +128,11 @@ export class TopDownloadsComponent implements OnInit {
   subscribeAsset(obj){
       obj.subscribed_to=true;
       var assetData = JSON.stringify(this.buildAssetJson(obj.asset_id));
-    
       var url = "/otmmapi/v5/assets/subscriptions";
       //formdata
       let params = new HttpParams()
         .set('action', 'subscribe')
         .set('selection_context', assetData)
-
       this._sharedservice.postService(url, params).subscribe(result => {
       console.log('subsribeList', result);  
       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Subscribed to 1 asset' });
