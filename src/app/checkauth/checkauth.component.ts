@@ -25,55 +25,73 @@ export class CheckauthComponent implements OnInit {
   private serviceURL = "/cbx-app/login";
   private params = "username=vemachir&password=Oct2019$";
   ngOnInit() {
-    this.getSessionData();
+    //this.getSessionData();
     console.log('oninit');
-    // var tokenConfigurationDev_bac = {
-    //   implicitCodeForm: "https://cloudsso-test.cisco.com/as/authorization.oauth2",
-    //   clientId: "ciscoadmin.gen",
-    //   responseType: "token",
-    //   redirectUri: "https://ciscoshare-dev.cisco.com/cbx/"
-    //   //redirectUri: "https://google.com"
-    //   //redirectUri: "https://ciscoshare-dev.cisco.com/alfext/ui/checkauth.html"
-    //   };
-    //console.log(window.location.host);
     var tokenConfigurationDev = {
       implicitCodeForm: "https://cdam-dev.cisco.com/otdsws/login",
       clientId: "cbxcustom",
       responseType: "token",
-      redirectUri: window.location.href
+      //redirectUri: window.location.href
       //redirectUri: "http://cdam-app-dev-01:11090/cbx"
+      redirectUri: "https://cdam-dev.cisco.com/cbx/"
     };
 
     var accessToken = sessionStorage.getItem("AccessToken");
-    if (location.href.split('#').length==3 && accessToken == null) {
-      //debugger;
+    if (window.location.host.split(':')[0] == "localhost") {
+      this.getSessionData();
+    }
+    else if (location.href.indexOf('#access_token=') >= 0 && accessToken == null) {
       this.getToken();
 
-
-      // // Extract the Access Token from the URI fragment.
-      // var getAccessToken = location.hash.split('&')[0].split('=')[1];
-      // location.hash = '';
-      // sessionStorage.setItem("AccessToken", getAccessToken);
-      // this.router.navigate(['/layout']);
-
     }
-    else if (location.href.split('#').length==2 && accessToken == null) {
-
-      console.log('calling sso page');
-      if(window.location.host.split(':')[0]=="localhost"){
-      this.getSessionData();
-      }
-      else{
-      //if(window.location.host.toString().indexOf('-dev') !== -1){
+    else {
       document.getElementById("tokenForm").setAttribute("action", tokenConfigurationDev.implicitCodeForm);
       document.getElementById("client_id").setAttribute("value", tokenConfigurationDev.clientId);
       document.getElementById("response_type").setAttribute("value", tokenConfigurationDev.responseType);
       document.getElementById("redirect_uri").setAttribute("value", tokenConfigurationDev.redirectUri);
       document.forms["implicitCodeForm"].submit();
-      //}
+    }
+
+  }
+
+
+
+
+  _bkp_ngOnInit() {
+    //this.getSessionData();
+    console.log('oninit');
+    var tokenConfigurationDev = {
+      implicitCodeForm: "https://cdam-dev.cisco.com/otdsws/login",
+      clientId: "cbxcustom",
+      responseType: "token",
+      //redirectUri: window.location.href
+      //redirectUri: "http://cdam-app-dev-01:11090/cbx"
+      redirectUri: "https://cdam-dev.cisco.com/cbx/"
+    };
+
+    var accessToken = sessionStorage.getItem("AccessToken");
+    if (location.href.split('#').length == 3 && accessToken == null) {
+      //debugger;
+      this.getToken();
+
+    }
+    else if (location.href.split('#').length == 2 && accessToken == null) {
+
+      console.log('calling sso page');
+      if (window.location.host.split(':')[0] == "localhost") {
+        this.getSessionData();
+      }
+      else {
+        //if(window.location.host.toString().indexOf('-dev') !== -1){
+        document.getElementById("tokenForm").setAttribute("action", tokenConfigurationDev.implicitCodeForm);
+        document.getElementById("client_id").setAttribute("value", tokenConfigurationDev.clientId);
+        document.getElementById("response_type").setAttribute("value", tokenConfigurationDev.responseType);
+        document.getElementById("redirect_uri").setAttribute("value", tokenConfigurationDev.redirectUri);
+        document.forms["implicitCodeForm"].submit();
+        //}
       }
     }
-    
+
     else {
 
     }
@@ -98,6 +116,7 @@ export class CheckauthComponent implements OnInit {
   public resourceData: any = null;
 
   getToken() {
+    debugger;
     console.log('Token');
     this._loginservice.getTokenJSON('/otdsws/rest/authentication/headers').subscribe(data => {
 
@@ -133,14 +152,14 @@ export class CheckauthComponent implements OnInit {
   }
 
   getJsessionId(ticket) {
-    var frmData=new FormData();
-    frmData.append('OTDSTicket',ticket);
+    var frmData = new FormData();
+    frmData.append('OTDSTicket', ticket);
 
-    let params = new HttpParams().set('OTDSTicket',  ticket);
-  
+    let params = new HttpParams().set('OTDSTicket', ticket);
+
     // var params = {
     //   "OTDSTicket": ticket,
-     
+
     // }
     this._loginservice.postJsessionId('/otmm', params).subscribe(data => {
 
@@ -149,12 +168,10 @@ export class CheckauthComponent implements OnInit {
 
       //this.router.navigate(['/layout']);
     }
-    ,
-      error=>
-      {
-        if(error.status == 302 || error.status == 307 ||error.status == 200)
-        {
-         //this.getAuthToken();
+      ,
+      error => {
+        if (error.status == 302 || error.status == 307 || error.status == 200) {
+          //this.getAuthToken();
         }
       }
     );
