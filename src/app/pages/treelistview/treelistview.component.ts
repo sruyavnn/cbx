@@ -21,12 +21,6 @@ declare var $: any;
 })
 export class TreelistviewComponent implements OnInit {
 
-    constructor(private _dataService: DataService, private _sharedservice: SharedService,
-        public router: Router, private listViewService: ListViewService,
-        private spinner: NgxSpinnerService,
-        private activatedRoute: ActivatedRoute,
-        private _bcdata: BreadcrumbdataService,
-    ) { }
     @ViewChild('leftNav', null) leftNavigation: any;
 
     private anyData: any;
@@ -40,11 +34,51 @@ export class TreelistviewComponent implements OnInit {
     private tableRowChild: string;
     private assetName = "";
     searchParameters = new Searchparams();
+    childDataList: any;
+    parentDataList: any;
 
     
+    constructor(private _dataService: DataService, private _sharedservice: SharedService,
+        public router: Router, private listViewService: ListViewService,
+        private spinner: NgxSpinnerService,
+        private activatedRoute: ActivatedRoute,
+        private _bcdata: BreadcrumbdataService,
+    ) { 
+        
+    this.activatedRoute.queryParams.subscribe(params => {
+       if(params['assetId']!=undefined){
+        this.assetId = params['assetId'];
+        this.assetIdPaging = params['assetId'];
+
+       }
+        else{
+        this.assetId = "fba758190e7008bd4d73490c4ace221f36b2a1be";
+        this.assetIdPaging = "fba758190e7008bd4d73490c4ace221f36b2a1be";
+
+        }
+        // console.log(this.assetId);
+        // this._dataService.setAssetId(this.assetId);
+      });
+  
+    }
+   
 
     ngOnInit() {
-        //this.getMainData();
+
+        var baseHref = 'http://localhost:4200';
+        var baseHrefWithSlash = 'http://localhost:4200/';
+        var baseHrefWithHash = 'http://localhost:4200/#';
+        var location = window.location.href;
+        console.log(location);
+        if(location == baseHref || location == baseHrefWithSlash){
+        console.log('navigating to base page')
+        this.router.navigate(['/'])
+        }
+        else{
+        var routerLink = location.replace(baseHrefWithHash,'')
+        console.log('navigating to '+routerLink);
+        this.router.navigate([routerLink]);
+        }
         this.getTotalPageCount();
     }
 
@@ -86,6 +120,7 @@ export class TreelistviewComponent implements OnInit {
             //     this.constructMainTreeTable(data.folders_resource.folder_list);
             // }
             // else {
+                this.parentDataList=data.folder_children.asset_list;
                 this.constructMainTreeTable(data.folder_children.asset_list);
                 //this._bcdata.bcfunction(rowData);
 
@@ -138,7 +173,9 @@ export class TreelistviewComponent implements OnInit {
             for (let i = 0; i < treeData.length; i++) {
                 var lastModifiedDate = this.getFormattedDate(new Date(treeData[i].date_last_updated));
                 if (treeData[i].data_type == 'CONTAINER' && !treeData[i].rendition_content) {
+                    var rowData =JSON.stringify(treeData[i]);
                     this.tableRow += '<div id="' + treeData[i].asset_id + '" class="trow ' + treeData[i].asset_id + '">' +
+                        //'<input type="hidden" id="hidden' + treeData[i].asset_id + '"  name="hidden' + treeData[i].asset_id + '" value=' + rowData + '> '+
                         ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<i class="fa fa-plus ' + treeData[i].asset_id + ' hide-plus" aria-hidden="true"></i>' +
@@ -152,18 +189,18 @@ export class TreelistviewComponent implements OnInit {
                         '</span>' +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         lastModifiedDate +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         '-' +
                         //treeData[i].rendition_content.preview_content.content_size/1024/1024+'mb'+
                         '</div>' +
-                        '<div class="icons-files-cart"><div class="addcart"></div></div>' +
-                        '<div class="icons-files-download"><div class="download-row"></div></div>' +
-                        '<div class="icons-files-options"><div class="dropdown show">' +
-                        '<a class="dropdown-toggle topd-options1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                        '<div class="icons-files-cart ' + treeData[i].asset_id + '"><div class="addcart"></div></div>' +
+                        '<div class="icons-files-download ' + treeData[i].asset_id + '"><div class="download-row"></div></div>' +
+                        '<div class="icons-files-options ' + treeData[i].asset_id + '"><div class="dropdown show">' +
+                        '<a class="dropdown-toggle topd-options1 ' + treeData[i].asset_id + '" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
 
                         '</a>' +
 
@@ -181,7 +218,9 @@ export class TreelistviewComponent implements OnInit {
                 else if (treeData[i].data_type == 'CONTAINER' && treeData[i].rendition_content) {
                     //{{treeData[i].rendition_content.thumbnail_content.url}}
                     this.tableRow += '<div id="' + treeData[i].asset_id + '" class="trow ' + treeData[i].asset_id + '">' +
-                        ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
+                    //'<input type="hidden" id="hidden' + treeData[i].asset_id + '"  name="hidden' + treeData[i].asset_id + '" value="' + rowData + '"> '+
+                        
+                    ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<i class="fa fa-plus ' + treeData[i].asset_id + ' hide-plus" aria-hidden="true"></i>' +
                         '<i class="fa fa-minus ' + treeData[i].asset_id + ' hide-minus" aria-hidden="true"></i>' +
@@ -194,18 +233,18 @@ export class TreelistviewComponent implements OnInit {
                         '</span>' +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         lastModifiedDate +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         '-' +
                         //treeData[i].rendition_content.preview_content.content_size/1024/1024+'mb'+
                         '</div>' +
-                        '<div class="icons-files-cart"><div class="addcart"></div></div>' +
-                        '<div class="icons-files-download"><div class="download-row"></div></div>' +
-                        '<div class="icons-files-options"><div class="dropdown show">' +
-                        '<a class="dropdown-toggle topd-options1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                        '<div class="icons-files-cart ' + treeData[i].asset_id + '"><div class="addcart"></div></div>' +
+                        '<div class="icons-files-download ' + treeData[i].asset_id + '"><div class="download-row"></div></div>' +
+                        '<div class="icons-files-options ' + treeData[i].asset_id + '"><div class="dropdown show">' +
+                        '<a class="dropdown-toggle topd-options1 ' + treeData[i].asset_id + '" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
 
                         '</a>' +
 
@@ -224,7 +263,9 @@ export class TreelistviewComponent implements OnInit {
                  //Static thumbnail for content type Video
                  else if(treeData[i].content_type == 'VIDEO'){
                     this.tableRow += '<div id="' + treeData[i].asset_id + '" class="trow ' + treeData[i].asset_id + '">' +
-                        ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
+                    //'<input type="hidden" id="hidden' + treeData[i].asset_id + '"  name="hidden' + treeData[i].asset_id + '" value="' + rowData + '"> '+
+                       
+                    ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<label class="main1"><input type="checkbox" name="chkHead' + treeData[i].asset_id + '" id="chk' + treeData[i].asset_id + '" ><span class="geekmark1"></span>' +
                         // '<i class="fa fa-plus ' + treeData[i].asset_id + ' hide-plus" aria-hidden="true"></i>' +
@@ -238,18 +279,18 @@ export class TreelistviewComponent implements OnInit {
                         '</span>' +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         lastModifiedDate +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         //'2.4mb' +
                         (treeData[i].master_content_info.content_size/1024/1024).toFixed(2)+'mb'+
                         '</div>' +
-                        '<div class="icons-files-cart"><div class="addcart"></div></div>' +
-                        '<div class="icons-files-download"><div class="download-row"></div></div>' +
-                        '<div class="icons-files-options"><div class="dropdown show">' +
-                        '<a class="dropdown-toggle topd-options1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                        '<div class="icons-files-cart ' + treeData[i].asset_id + '"><div class="addcart"></div></div>' +
+                        '<div class="icons-files-download ' + treeData[i].asset_id + '"><div class="download-row"></div></div>' +
+                        '<div class="icons-files-options ' + treeData[i].asset_id + '"><div class="dropdown show">' +
+                        '<a class="dropdown-toggle topd-options1 ' + treeData[i].asset_id + '" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
 
                         '</a>' +
 
@@ -266,7 +307,9 @@ export class TreelistviewComponent implements OnInit {
                 }
                 else if (treeData[i].data_type == undefined && treeData[i].rendition_content.preview_content) {
                     this.tableRow += '<div id="' + treeData[i].asset_id + '" class="trow ' + treeData[i].asset_id + '">' +
-                        ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
+                   // '<input type="hidden" id="hidden' + treeData[i].asset_id + '"  name="hidden' + treeData[i].asset_id + '" value="' + rowData + '"> '+
+                        
+                    ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<label class="main1"><input type="checkbox" name="chkHead' + treeData[i].asset_id + '" id="chk' + treeData[i].asset_id + '" ><span class="geekmark1"></span>' +
 
@@ -281,18 +324,18 @@ export class TreelistviewComponent implements OnInit {
                         '</span>' +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         lastModifiedDate +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         (treeData[i].rendition_content.preview_content.content_size/1024/1024).toFixed(2)+'mb'  +
                         //treeData[i].rendition_content.preview_content.content_size/1024/1024+'mb'+
                         '</div>' +
-                        '<div class="icons-files-cart"><div class="addcart"></div></div>' +
-                        '<div class="icons-files-download"><div class="download-row"></div></div>' +
-                        '<div class="icons-files-options"><div class="dropdown show">' +
-                        '<a class="dropdown-toggle topd-options1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                        '<div class="icons-files-cart ' + treeData[i].asset_id + '"><div class="addcart"></div></div>' +
+                        '<div class="icons-files-download ' + treeData[i].asset_id + '"><div class="download-row"></div></div>' +
+                        '<div class="icons-files-options ' + treeData[i].asset_id + '"><div class="dropdown show">' +
+                        '<a class="dropdown-toggle topd-options1 ' + treeData[i].asset_id + '" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
 
                         '</a>' +
 
@@ -309,7 +352,9 @@ export class TreelistviewComponent implements OnInit {
                 }
                 else if (treeData[i].data_type == undefined && treeData[i].rendition_content.pdf_preview_content) {
                     this.tableRow += '<div id="' + treeData[i].asset_id + '" class="trow ' + treeData[i].asset_id + '">' +
-                        ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
+                    //'<input type="hidden" id="hidden' + treeData[i].asset_id + '"  name="hidden' + treeData[i].asset_id + '" value="' + rowData + '"> '+
+                      
+                    ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<i class="fa fa-plus ' + treeData[i].asset_id + ' hide-plus" aria-hidden="true"></i>' +
                         '<i class="fa fa-minus ' + treeData[i].asset_id + ' hide-minus" aria-hidden="true"></i>' +
@@ -322,18 +367,18 @@ export class TreelistviewComponent implements OnInit {
                         '</span>' +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         lastModifiedDate +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         //'2.4mb' +
                         (treeData[i].rendition_content.pdf_preview_content.content_size/1024/1024).toFixed(2)+'mb'+
                         '</div>' +
-                        '<div class="icons-files-cart"><div class="addcart"></div></div>' +
-                        '<div class="icons-files-download"><div class="download-row"></div></div>' +
-                        '<div class="icons-files-options"><div class="dropdown show">' +
-                        '<a class="dropdown-toggle topd-options1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                        '<div class="icons-files-cart ' + treeData[i].asset_id + '"><div class="addcart"></div></div>' +
+                        '<div class="icons-files-download ' + treeData[i].asset_id + '"><div class="download-row"></div></div>' +
+                        '<div class="icons-files-options ' + treeData[i].asset_id + '"><div class="dropdown show">' +
+                        '<a class="dropdown-toggle topd-options1 ' + treeData[i].asset_id + '" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
 
                         '</a>' +
 
@@ -363,9 +408,34 @@ export class TreelistviewComponent implements OnInit {
         }
 
     }
+    assetData;
+    assetDetails(){
+          this._sharedservice.getService('/otmmapi/v5/assets/'+this.assetId+'?load_type=custom&level_of_detail=slim&data_load_request=%7B%22data_load_request%22%3A%7B%22load_multilingual_field_values%22%3A%22true%22%2C%22load_subscribed_to%22%3A%22true%22%2C%22load_asset_content_info%22%3A%22true%22%2C%22load_metadata%22%3A%22true%22%2C%22load_inherited_metadata%22%3A%22true%22%2C%22load_thumbnail_info%22%3A%22true%22%2C%22load_preview_info%22%3A%22true%22%2C%20%22load_pdf_preview_info%22%3A%22true%22%2C%20%22load_3d_preview_info%22%20%3A%20%22true%22%2C%22load_destination_links%22%3A%22true%22%2C%20%22load_security_policies%22%3A%22true%22%2C%22load_path%22%3A%22true%22%7D%7D'
+          ).subscribe(result => {
+           this.assetData = result.asset_resource.asset;
+         
+        });
+    }
     @HostListener('document:click', ['$event'])
     rowClicked(elem) {
-        if (elem.target.className.indexOf('fa fa-plus') == 0) {
+        if(elem.target.className.indexOf('title-Cell') >= 0
+        || elem.target.className.indexOf('Cell') >= 0
+        || elem.target.className.indexOf('icons-files-cart') >= 0
+        || elem.target.className.indexOf('icons-files-download') >= 0
+        || elem.target.className.indexOf('icons-files-options') >= 0) {
+            var asset_id = elem.target.className.split(' ')[1];
+            this._sharedservice.getService('/otmmapi/v5/assets/'+asset_id+'?load_type=custom&level_of_detail=slim&data_load_request=%7B%22data_load_request%22%3A%7B%22load_multilingual_field_values%22%3A%22true%22%2C%22load_subscribed_to%22%3A%22true%22%2C%22load_asset_content_info%22%3A%22true%22%2C%22load_metadata%22%3A%22true%22%2C%22load_inherited_metadata%22%3A%22true%22%2C%22load_thumbnail_info%22%3A%22true%22%2C%22load_preview_info%22%3A%22true%22%2C%20%22load_pdf_preview_info%22%3A%22true%22%2C%20%22load_3d_preview_info%22%20%3A%20%22true%22%2C%22load_destination_links%22%3A%22true%22%2C%20%22load_security_policies%22%3A%22true%22%2C%22load_path%22%3A%22true%22%7D%7D'
+            ).subscribe(result => {
+             this.assetData = result.asset_resource.asset;
+             if(this.assetData==null){
+                this.listViewService.trRightPanel(null);
+              }
+           else{
+            this.listViewService.trRightPanel(this.assetData);
+           }
+          });
+        }
+       else if (elem.target.className.indexOf('fa fa-plus') == 0) {
             
            this.assetId = elem.target.className.split(' ')[2];
 
@@ -408,8 +478,11 @@ export class TreelistviewComponent implements OnInit {
  
             }
             console.log("assetId :"+this.assetId+ "assetName :"+ assetName);
-            this.getTotalPageCount();
-            //this.getMainData();
+            //this.getTotalPageCount();
+            this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
+            //setTimeout(() => this.router.navigate(['layout/listview']));
+            setTimeout(() => this.router.navigate(['layout/listview'], { queryParams: { assetId: this.assetId } }));
+         
         }
         else if(elem.target.className.indexOf('loadMore') >= 0){
            this.assetIdPaging= this.assetId = elem.target.className.split(' ')[1];
@@ -440,6 +513,8 @@ export class TreelistviewComponent implements OnInit {
         var serviceUrl = '/otmmapi/v5/folders/' + this.assetId + '/children/?load_type=metadata&load_multilingual_values=true&level_of_detail=slim&after=' + this.leftNavPageAfter + '&limit=' + this.leftNavPageLimit + '&preference_id=ARTESIA.PREFERENCE.GALLERYVIEW.DISPLAYED_FIELDS&sort=asc_NAME';
         this._sharedservice.getService(serviceUrl
         ).subscribe(data => {
+            this.childDataList=data.folder_children.asset_list;
+
             this.constructChildTreeTable(data.folder_children.asset_list);
             if ($('.trow.' + this.assetId).length > 0) {
                 $('.trow.' + this.assetId).append(this.tableRowChild);
@@ -482,11 +557,13 @@ export class TreelistviewComponent implements OnInit {
             for (let i = 0; i < treeData.length; i++) {
                 console.log('error: ', i)
                 var lastModifiedDate = this.getFormattedDate(new Date(treeData[i].date_last_updated));
-
+                var rowData=JSON.stringify(treeData[i]);
                 //static folder image from application folder
                 if (treeData[i].data_type == 'CONTAINER' && !treeData[i].rendition_content) {
                     this.tableRowChild += '<div id="' + treeData[i].asset_id + '" class="child-Row ' + treeData[i].asset_id + '">' +
-                        ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
+                   // '<input type="hidden" id="hidden' + treeData[i].asset_id + '"  name="hidden' + treeData[i].asset_id + '" value="' + rowData + '"> '+
+                      
+                    ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<i class="fa fa-plus ' + treeData[i].asset_id + ' hide-plus" aria-hidden="true"></i>' +
                         '<i class="fa fa-minus ' + treeData[i].asset_id + ' hide-minus" aria-hidden="true"></i>' +
@@ -499,18 +576,18 @@ export class TreelistviewComponent implements OnInit {
                         '</span>' +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         lastModifiedDate +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         '-' +
                         //treeData[i].rendition_content.preview_content.content_size/1024/1024+'mb'+
                         '</div>' +
-                        '<div class="icons-files-cart"><div class="addcart"></div></div>' +
-                        '<div class="icons-files-download"><div class="download-row"></div></div>' +
-                        '<div class="icons-files-options"><div class="dropdown show">' +
-                        '<a class="dropdown-toggle topd-options1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                        '<div class="icons-files-cart ' + treeData[i].asset_id + '"><div class="addcart"></div></div>' +
+                        '<div class="icons-files-download ' + treeData[i].asset_id + '"><div class="download-row"></div></div>' +
+                        '<div class="icons-files-options ' + treeData[i].asset_id + '"><div class="dropdown show">' +
+                        '<a class="dropdown-toggle topd-options1 ' + treeData[i].asset_id + '" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
 
                         '</a>' +
 
@@ -529,7 +606,9 @@ export class TreelistviewComponent implements OnInit {
                 else if (treeData[i].data_type == 'CONTAINER' && treeData[i].rendition_content) {
                     //{{treeData[i].rendition_content.thumbnail_content.url}}
                     this.tableRowChild += '<div id="' + treeData[i].asset_id + '" class="child-Row ' + treeData[i].asset_id + '">' +
-                        ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
+                    //'<input type="hidden" id="hidden' + treeData[i].asset_id + '"  name="hidden' + treeData[i].asset_id + '" value="' + rowData + '"> '+
+                       
+                    ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<i class="fa fa-plus ' + treeData[i].asset_id + ' hide-plus" aria-hidden="true"></i>' +
                         '<i class="fa fa-minus ' + treeData[i].asset_id + ' hide-minus" aria-hidden="true"></i>' +
@@ -542,18 +621,18 @@ export class TreelistviewComponent implements OnInit {
                         '</span>' +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         lastModifiedDate +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         '-' +
                         //treeData[i].rendition_content.preview_content.content_size/1024/1024+'mb'+
                         '</div>' +
-                        '<div class="icons-files-cart"><div class="addcart"></div></div>' +
-                        '<div class="icons-files-download"><div class="download-row"></div></div>' +
-                        '<div class="icons-files-options"><div class="dropdown show">' +
-                        '<a class="dropdown-toggle topd-options1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                        '<div class="icons-files-cart ' + treeData[i].asset_id + '"><div class="addcart"></div></div>' +
+                        '<div class="icons-files-download ' + treeData[i].asset_id + '"><div class="download-row"></div></div>' +
+                        '<div class="icons-files-options ' + treeData[i].asset_id + '"><div class="dropdown show">' +
+                        '<a class="dropdown-toggle topd-options1 ' + treeData[i].asset_id + '" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
 
                         '</a>' +
 
@@ -572,7 +651,9 @@ export class TreelistviewComponent implements OnInit {
                 //Static thumbnail for content type Video
                 else if(treeData[i].content_type == 'VIDEO'){
                     this.tableRowChild += '<div id="' + treeData[i].asset_id + '" class="child-Row ' + treeData[i].asset_id + '">' +
-                        ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
+                    //'<input type="hidden" id="hidden' + treeData[i].asset_id + '"  name="hidden' + treeData[i].asset_id + '" value="' + rowData + '"> '+
+                       
+                    ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<label class="main1"><input type="checkbox" name="chkHead' + treeData[i].asset_id + '" id="chk' + treeData[i].asset_id + '" ><span class="geekmark1"></span>' +
                         // '<i class="fa fa-plus ' + treeData[i].asset_id + ' hide-plus" aria-hidden="true"></i>' +
@@ -586,18 +667,18 @@ export class TreelistviewComponent implements OnInit {
                         '</span>' +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         lastModifiedDate +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         //'2.4mb' +
                         (treeData[i].master_content_info.content_size/1024/1024).toFixed(2)+'mb'+
                         '</div>' +
-                        '<div class="icons-files-cart"><div class="addcart"></div></div>' +
-                        '<div class="icons-files-download"><div class="download-row"></div></div>' +
-                        '<div class="icons-files-options"><div class="dropdown show">' +
-                        '<a class="dropdown-toggle topd-options1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                        '<div class="icons-files-cart ' + treeData[i].asset_id + '"><div class="addcart"></div></div>' +
+                        '<div class="icons-files-download ' + treeData[i].asset_id + '"><div class="download-row"></div></div>' +
+                        '<div class="icons-files-options ' + treeData[i].asset_id + '"><div class="dropdown show">' +
+                        '<a class="dropdown-toggle topd-options1 ' + treeData[i].asset_id + '" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
 
                         '</a>' +
 
@@ -615,7 +696,9 @@ export class TreelistviewComponent implements OnInit {
                 //dynamic asset image from database/service
                 else if (treeData[i].data_type == undefined && treeData[i].rendition_content.preview_content) {
                     this.tableRowChild += '<div id="' + treeData[i].asset_id + '" class="child-Row ' + treeData[i].asset_id + '">' +
-                        ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
+                    //'<input type="hidden" id="hidden' + treeData[i].asset_id + '"  name="hidden' + treeData[i].asset_id + '" value="' + rowData + '"> '+
+                     
+                    ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<label class="main1"><input type="checkbox" name="chkHead' + treeData[i].asset_id + '" id="chk' + treeData[i].asset_id + '" ><span class="geekmark1"></span>' +
                         // '<i class="fa fa-plus ' + treeData[i].asset_id + ' hide-plus" aria-hidden="true"></i>' +
@@ -629,18 +712,18 @@ export class TreelistviewComponent implements OnInit {
                         '</span>' +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         lastModifiedDate +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         //'2.4mb' +
                         (treeData[i].rendition_content.preview_content.content_size/1024/1024).toFixed(2)+'mb'+
                         '</div>' +
-                        '<div class="icons-files-cart"><div class="addcart"></div></div>' +
-                        '<div class="icons-files-download"><div class="download-row"></div></div>' +
-                        '<div class="icons-files-options"><div class="dropdown show">' +
-                        '<a class="dropdown-toggle topd-options1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                        '<div class="icons-files-cart ' + treeData[i].asset_id + '"><div class="addcart"></div></div>' +
+                        '<div class="icons-files-download ' + treeData[i].asset_id + '"><div class="download-row"></div></div>' +
+                        '<div class="icons-files-options ' + treeData[i].asset_id + '"><div class="dropdown show">' +
+                        '<a class="dropdown-toggle topd-options1 ' + treeData[i].asset_id + '" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
 
                         '</a>' +
 
@@ -659,7 +742,9 @@ export class TreelistviewComponent implements OnInit {
 
                 else if (treeData[i].data_type == undefined && treeData[i].rendition_content.pdf_preview_content) {
                     this.tableRowChild += '<div id="' + treeData[i].asset_id + '" class="child-Row ' + treeData[i].asset_id + '">' +
-                        ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
+                    //'<input type="hidden" id="hidden' + treeData[i].asset_id + '"  name="hidden' + treeData[i].asset_id + '" value="' + rowData + '"> '+
+                     
+                    ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
                         '<span class="expand_row"> ' +
                         '<label class="main1"><input type="checkbox" name="chkHead' + treeData[i].asset_id + '" id="chk' + treeData[i].asset_id + '" ><span class="geekmark1"></span>' +
 
@@ -673,18 +758,18 @@ export class TreelistviewComponent implements OnInit {
                         '</span>' +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         lastModifiedDate +
                         '</div>' +
 
-                        ' <div class="Cell">' +
+                        ' <div class="Cell ' + treeData[i].asset_id + '">' +
                         //'2.4mb' +
                         (treeData[i].rendition_content.pdf_preview_content.content_size/1024/1024).toFixed(2)+'mb'+
                         '</div>' +
-                        '<div class="icons-files-cart"><div class="addcart"></div></div>' +
-                        '<div class="icons-files-download"><div class="download-row"></div></div>' +
-                        '<div class="icons-files-options"><div class="dropdown show">' +
-                        '<a class="dropdown-toggle topd-options1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                        '<div class="icons-files-cart ' + treeData[i].asset_id + '"><div class="addcart"></div></div>' +
+                        '<div class="icons-files-download ' + treeData[i].asset_id + '"><div class="download-row"></div></div>' +
+                        '<div class="icons-files-options ' + treeData[i].asset_id + '"><div class="dropdown show">' +
+                        '<a class="dropdown-toggle topd-options1 ' + treeData[i].asset_id + '" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
 
                         '</a>' +
 
