@@ -143,6 +143,13 @@
         font-family: 'CiscoSans-Regular';
         margin-top: 9.6%;
     }
+    .asset-info {
+        color: #3C3C3C;
+    font-size: 1.191vw;
+    margin-bottom: 9%;
+    font-family: 'CiscoSans-Regular';
+    margin-top: 9.6%;
+    }
     .newBx{
         text-align: left;
         color: #3C3C3C;

@@ -32,17 +32,19 @@
         <div *ngIf="trtopDownloadData!=null">
             
             <div class="col-sm-12 p-bx-0">
+                <h6 class="asset-info">Asset Information</h6>
                 <i class="fa fa-remove" (click)="removeTopDownloadData()" aria-hidden="true"></i>
                 <div>
                     <p class="newBxName">{{trtopDownloadData.name}} &nbsp;&nbsp;&nbsp;&nbsp; </p>
                    <div class="img-anpunce"> <img class="resImg img-fluid" src={{trtopDownloadData.rendition_content.thumbnail_content.url}}></div>
                 </div>
-                <div class="cart">
-                    <img src="./cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart"/>
-                </div>
                 <div class="download">
                     <img (click)="rpRowImgDownload(trtopDownloadData.rendition_content.preview_content.id)" src="./cbx/images/buttons-with-icons/download_Inactive.png" class="img-download"/>
                 </div>
+                <div class="cart">
+                    <img src="./cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart"/>
+                </div>
+                
                 <div class="ellipsis">
                     <img src="./cbx/images/buttons-with-icons/options_inactive.png" class="img-options"/>
                 </div>

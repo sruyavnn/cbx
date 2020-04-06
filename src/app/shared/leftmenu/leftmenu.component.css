@@ -219,7 +219,7 @@
     .left-menu-item {
         line-height: 37px;
     }
-    .btn.btn-link {
+    .btn.btn-link, .btn.btn-link a {
         font-size:0.762vw;
         padding: 0px;
         color: #808080;

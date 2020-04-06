@@ -47,9 +47,11 @@
     </form>
   </div>
   <div class="col-lg-5 col-md-8 p-bx-0" style="text-align:right">
-    <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable">Add to collections</button>
+    
+    <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable" (click)="mutltiAssetDownloads()">Download</button>
   <button type="button" class="btn btn-primary btn-bx bx-btnspace" [disabled]="btnEnableDisable">Add to cart</button>
-  <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable" (click)="mutltiAssetDownloads()">Download</button>
+  <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable">Add to collections</button>
+  
   </div>
 </div>
 
