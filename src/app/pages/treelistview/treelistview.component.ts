@@ -221,7 +221,49 @@ export class TreelistviewComponent implements OnInit {
                         '</div>';
 
                 }
+                 //Static thumbnail for content type Video
+                 else if(treeData[i].content_type == 'VIDEO'){
+                    this.tableRow += '<div id="' + treeData[i].asset_id + '" class="trow ' + treeData[i].asset_id + '">' +
+                        ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
+                        '<span class="expand_row"> ' +
+                        '<label class="main1"><input type="checkbox" name="chkHead' + treeData[i].asset_id + '" id="chk' + treeData[i].asset_id + '" ><span class="geekmark1"></span>' +
+                        // '<i class="fa fa-plus ' + treeData[i].asset_id + ' hide-plus" aria-hidden="true"></i>' +
+                        // '<i class="fa fa-minus ' + treeData[i].asset_id + ' hide-minus" aria-hidden="true"></i>' +
+                        '</span>' +
+                        '<span class="folder-file-icon"> ' +
+                        '<img src="./cbx/images/mime_video96.png" style="height:36px; width:36px" class="img-fluid list-asset-size list-asset-hover">' +
+                        '</span>' +
+                        '<span> ' +
+                        treeData[i].name +
+                        '</span>' +
+                        '</div>' +
 
+                        ' <div class="Cell">' +
+                        lastModifiedDate +
+                        '</div>' +
+
+                        ' <div class="Cell">' +
+                        //'2.4mb' +
+                        (treeData[i].master_content_info.content_size/1024/1024).toFixed(2)+'mb'+
+                        '</div>' +
+                        '<div class="icons-files-cart"><div class="addcart"></div></div>' +
+                        '<div class="icons-files-download"><div class="download-row"></div></div>' +
+                        '<div class="icons-files-options"><div class="dropdown show">' +
+                        '<a class="dropdown-toggle topd-options1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+
+                        '</a>' +
+
+                        '<div class="dropdown-menu optons-menu-files" aria-labelledby="dropdownMenuLink">' +
+                        ' <a class="dropdown-item" href="#">Download</a>' +
+                        '<a class="dropdown-item" href="#">Add to cart</a>' +
+                        '<a class="dropdown-item" href="#">Add to collections</a>' +
+                        '<a class="dropdown-item" href="#">Subscribe</a>' +
+                        '<a class="dropdown-item" href="#">Copy url</a>' +
+                        '<a class="dropdown-item" href="#">View file info</a>' +
+                        '</div>' +
+                        '</div></div>' +
+                        '</div>';
+                }
                 else if (treeData[i].data_type == undefined && treeData[i].rendition_content.preview_content) {
                     this.tableRow += '<div id="' + treeData[i].asset_id + '" class="trow ' + treeData[i].asset_id + '">' +
                         ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
@@ -356,18 +398,23 @@ export class TreelistviewComponent implements OnInit {
             var assetName = $('.' + assetNameCls)[0].innerText;
             
             var parents=$('.'+assetNameCls).parents().find('#bc');
-            for(var i=0;i<=parents.length;i++){
+            for(var i=0;i<parents.length;i++){
+
+                console.log(" parent assetId:"+parents[i].className.split(' ')[1]+ " patent asset Name: "+ parents[i].innerText);
+
              //if(parents[i].className.indexOf('assetNameClick') >= 0)
              //console.log(parents[i].children[2])
              //console.log(parents[i][0])
  
             }
-            this.getMainData();
+            console.log("assetId :"+this.assetId+ "assetName :"+ assetName);
+            this.getTotalPageCount();
+            //this.getMainData();
         }
         else if(elem.target.className.indexOf('loadMore') >= 0){
            this.assetIdPaging= this.assetId = elem.target.className.split(' ')[1];
-
-            this.getMainData();
+           this.getTotalPageCount();
+            //this.getMainData();
 
         }
     }
@@ -521,6 +568,49 @@ export class TreelistviewComponent implements OnInit {
                         '</div></div>' +
                         '</div>';
 
+                }
+                //Static thumbnail for content type Video
+                else if(treeData[i].content_type == 'VIDEO'){
+                    this.tableRowChild += '<div id="' + treeData[i].asset_id + '" class="child-Row ' + treeData[i].asset_id + '">' +
+                        ' <div class="title-Cell ' + treeData[i].asset_id + '">' +
+                        '<span class="expand_row"> ' +
+                        '<label class="main1"><input type="checkbox" name="chkHead' + treeData[i].asset_id + '" id="chk' + treeData[i].asset_id + '" ><span class="geekmark1"></span>' +
+                        // '<i class="fa fa-plus ' + treeData[i].asset_id + ' hide-plus" aria-hidden="true"></i>' +
+                        // '<i class="fa fa-minus ' + treeData[i].asset_id + ' hide-minus" aria-hidden="true"></i>' +
+                        '</span>' +
+                        '<span class="folder-file-icon"> ' +
+                        '<img src="./cbx/images/mime_video96.png" style="height:36px; width:36px" class="img-fluid list-asset-size list-asset-hover">' +
+                        '</span>' +
+                        '<span> ' +
+                        treeData[i].name +
+                        '</span>' +
+                        '</div>' +
+
+                        ' <div class="Cell">' +
+                        lastModifiedDate +
+                        '</div>' +
+
+                        ' <div class="Cell">' +
+                        //'2.4mb' +
+                        (treeData[i].master_content_info.content_size/1024/1024).toFixed(2)+'mb'+
+                        '</div>' +
+                        '<div class="icons-files-cart"><div class="addcart"></div></div>' +
+                        '<div class="icons-files-download"><div class="download-row"></div></div>' +
+                        '<div class="icons-files-options"><div class="dropdown show">' +
+                        '<a class="dropdown-toggle topd-options1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+
+                        '</a>' +
+
+                        '<div class="dropdown-menu optons-menu-files" aria-labelledby="dropdownMenuLink">' +
+                        ' <a class="dropdown-item" href="#">Download</a>' +
+                        '<a class="dropdown-item" href="#">Add to cart</a>' +
+                        '<a class="dropdown-item" href="#">Add to collections</a>' +
+                        '<a class="dropdown-item" href="#">Subscribe</a>' +
+                        '<a class="dropdown-item" href="#">Copy url</a>' +
+                        '<a class="dropdown-item" href="#">View file info</a>' +
+                        '</div>' +
+                        '</div></div>' +
+                        '</div>';
                 }
                 //dynamic asset image from database/service
                 else if (treeData[i].data_type == undefined && treeData[i].rendition_content.preview_content) {
