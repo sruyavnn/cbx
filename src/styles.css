@@ -183,9 +183,7 @@ body .ui-chkbox .ui-chkbox-box {
   }
  }
  @media (max-width: 599px) {
-  .bx-footer {
-    background-color: orange !important;
-  }
+ 
  }
 
 /* @media (max-width: 599px) {
