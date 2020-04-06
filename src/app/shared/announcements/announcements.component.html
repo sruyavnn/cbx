@@ -35,9 +35,16 @@
                 <h6 class="asset-info">Asset Information</h6>
                 <i class="fa fa-remove" (click)="removeTopDownloadData()" aria-hidden="true"></i>
                 <div>
-                    <p class="newBxName">{{trtopDownloadData.name}} &nbsp;&nbsp;&nbsp;&nbsp; </p>
+                    <p class="newBxName">{{trtopDownloadData?.name}} &nbsp;&nbsp;&nbsp;&nbsp; </p>
                    <div class="img-anpunce"> <img class="resImg img-fluid" src={{trtopDownloadData.rendition_content.thumbnail_content.url}}></div>
                 </div>
+<<<<<<< HEAD
+=======
+                <div class="cart">
+                    <img (click)="addCartTopDownloads(trtopDownloadData)" src="../../../cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart"/>
+                    <!-- <img src="./cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart"/> -->
+                </div>
+>>>>>>> c9650a37fb4a435b26fb273e231cac1b52f126a0
                 <div class="download">
                     <img (click)="rpRowImgDownload(trtopDownloadData.rendition_content.preview_content.id)" src="./cbx/images/buttons-with-icons/download_Inactive.png" class="img-download"/>
                 </div>
@@ -49,23 +56,23 @@
                     <img src="./cbx/images/buttons-with-icons/options_inactive.png" class="img-options"/>
                 </div>
                 <div>
-                    <span class="newBx">updated: {{trtopDownloadData.date_last_updated | date: 'dd/MM/yyyy' }}</span>
+                    <span class="newBx">updated: {{trtopDownloadData?.date_last_updated | date: 'dd/MM/yyyy' }}</span>
                     <p class="checkOut-featured">Updated old links, fixed types in instruction guide, fixed file type error</p>
                 </div>
                 <div>
                     <ul class="lastModified">
-                        <li>Last modified by: {{trtopDownloadData.metadata_state_user_name}}</li>
+                        <li>Last modified by: {{trtopDownloadData?.metadata_state_user_name}}</li>
                         <li>Total Downloads: 144k</li>
-                        <li>Asset Size: {{trtopDownloadData.rendition_content.preview_content.content_size/1024/1024 | number : '1.2-2'}}mb</li>
+                        <li>Asset Size: {{trtopDownloadData?.rendition_content.preview_content.content_size/1024/1024 | number : '1.2-2'}}mb</li>
                     </ul>
                 </div>
                 <!-- <div class="borderTest">
                 </div> -->
                 <div>
                     <ul class="createdBy">
-                        <li>Created by: Matero, Sarah</li>
-                        <li>Expiration date: 11/12/2028</li>
-                        <li>Asset id: {{trtopDownloadData.asset_id}}</li>
+                        <li>Created by: {{trtopDownloadData?.import_user_name}}</li>
+                        <li>Expiration date: {{trtopDownloadData?.metadata.metadata_element_list[2].metadata_element_list[1].value.value.value | date: 'dd/MM/yyyy'}}</li>
+                        <li>Asset id: {{trtopDownloadData?.asset_id}}</li>
                         <li>Legal rights exist: No</li>
                     </ul>
                 </div>
@@ -76,7 +83,7 @@
             <div class="col-sm-12 p-bx-0">
                 <i class="fa fa-remove" (click)="removeListViewRPData()" aria-hidden="true"></i>
                 <div>
-                    <p class="newBxName">{{trListViewData.name}} &nbsp;&nbsp;&nbsp;&nbsp; </p>
+                    <p class="newBxName">{{trListViewData?.name}} &nbsp;&nbsp;&nbsp;&nbsp; </p>
                    <div class="img-anpunce"> 
                        <img class="resImg img-fluid" src="../../../cbx/images/thumbnail_icons/folder-50px.png" /> 
                         <!-- <span *ngIf="rowData?.data_type== 'CONTAINER' && !rowData?.rendition_content" class="asset-pannel">
@@ -100,12 +107,12 @@
                     <img src="../../../cbx/images/buttons-with-icons/options_inactive.png" class="img-options"/>
                 </div>
                 <div>
-                    <span class="newBx">updated: {{trListViewData.date_last_updated | date: 'MM/dd/yyyy'}}</span>
+                    <span class="newBx">updated: {{trListViewData?.date_last_updated | date: 'MM/dd/yyyy'}}</span>
                     <p class="checkOut-featured">Updated old links, fixed types in instruction guide, fixed file type error</p>
                 </div>
                 <div>
                     <ul class="lastModified">
-                        <li>Last modified by: Matero, Sarah</li>
+                        <li>Last modified by: {{trListViewData?.metadata_state_user_name}}</li>
                         <li>Total Downloads: 144k</li>
                         <li>Asset Size: {{trListViewData.content_size | number : '1.2-2'}}mb</li>
                     </ul>
@@ -114,9 +121,9 @@
                 </div> -->
                 <div>
                     <ul class="createdBy">
-                        <li>Created by: Matero, Sarah</li>
-                        <li>Expiration date: 11/12/2028</li>
-                        <li>Asset id: {{trListViewData.asset_id}}</li>
+                        <li>Created by: {{trListViewData?.import_user_name}}</li>
+                        <li>Expiration date: {{trListViewData?.metadata.metadata_element_list[2].metadata_element_list[1].value.value.value | date: 'dd/MM/yyyy'}}</li>
+                        <li>Asset id: {{trListViewData?.asset_id}}</li>
                         <li>Legal rights exist: No</li>
                     </ul>
                 </div>

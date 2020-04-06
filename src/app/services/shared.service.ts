@@ -37,9 +37,18 @@ export class SharedService {
   
   public postService( serviceURL, params): Observable<any> {
     if(window.location.host.split(':')[0]=="localhost"){
-
+      //headers
+      // let headers = new HttpHeaders(
+      //   {
+      //   'otmmauthtoken': '6c59838076f0f4fbaffe286e3d25fdafee3f8a98',
+      //   'X-Requested-By': '374244757',
+      //   'Content-Type' : 'application/x-www-form-urlencoded'
+      //   }  
+      //   );
+      // return this.http.post(serviceURL, params,  {headers:headers});
+      //headers
     return this.http.post(serviceURL, params,  {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-    .set('x-requested-by', '513893284') 
+    .set('x-requested-by', '331922378')
     .set('otmmauthtoken',localStorage.session)});
     }
     else{
