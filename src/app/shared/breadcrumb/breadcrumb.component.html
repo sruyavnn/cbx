@@ -1,0 +1,16 @@
+<!-- <h2>Count in component2  =  {{ count }}</h2>
+<h2>Count in component2  =  {{ bcObj }}</h2> -->
+<!-- <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb> -->
+
+<!-- <div id="bc" [innerHTML]="bcData"></div> -->
+<div class="bread-crums">
+    <nav aria-label="breadcrumb ">
+        <ol class="breadcrumb bx-breadcrumb" >
+          <li class="breadcrumb-item active" aria-current="page"><a routerLink="/layout/listview" >All files</a></li>
+          <li class="breadcrumb-item active" aria-current="page" *ngFor="let obj of bcData">
+            <a name="obj.asset_id" (click)="bcClick(obj)" >{{obj.name}}</a>
+          </li>
+
+        </ol>
+      </nav>
+</div>

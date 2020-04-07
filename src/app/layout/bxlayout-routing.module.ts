@@ -16,6 +16,7 @@ import { TreelistviewComponent } from '../pages/treelistview/treelistview.compon
 import { ProfileComponent } from '../pages/profile/profile.component';
 import { CartComponent } from '../pages/landing/cart/cart.component';
 import { AssetsComponent } from '../pages/assets/assets.component';
+import { BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,8 @@ children: [
 { path: 'announcements', component: AnnouncementsComponent },
 { path: 'topmenu', component: TopmenuComponent },
 { path: 'assets', component: AssetsComponent },
+{ path: 'breadcrumb', component: BreadcrumbComponent },
+
 
 
 

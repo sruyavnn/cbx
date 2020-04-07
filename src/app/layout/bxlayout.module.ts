@@ -36,6 +36,7 @@ import {CheckboxModule} from 'primeng/checkbox';
 import { CartComponent } from '../pages/landing/cart/cart.component';
 import { AssetdetailsComponent } from '../pages/assetdetails/assetdetails.component';
 import { AssetsComponent } from '../pages/assets/assets.component';
+import { BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AssetsComponent } from '../pages/assets/assets.component';
     TreelistviewComponent,
     ProfileComponent,
     CartComponent,
-    AssetsComponent
+    AssetsComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,

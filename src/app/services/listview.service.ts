@@ -25,6 +25,9 @@ export class ListViewService {
   leftnavObj:any;
   leftnavBS:BehaviorSubject<boolean>;
 
+  bcObjBS:any;
+  bcArrBS:BehaviorSubject<any>;
+
   constructor() {
     this.listFlagSort  = new BehaviorSubject(this.listFlags);
     this.pagingBS  = new BehaviorSubject(this.pagingObj);
@@ -34,6 +37,8 @@ export class ListViewService {
     this.topDownload  = new BehaviorSubject(this.trtopDownloadData);
     //sending listview row data to right panel
     this.trListView  = new BehaviorSubject(this.trListViewData);
+
+    this.bcArrBS  = new BehaviorSubject(this.bcObjBS);
   }
  //sending top downloads row data to right panel
   trRightPanel(newUser){
@@ -57,5 +62,8 @@ export class ListViewService {
   }
   fromLeftNavfunction(param){
     this.leftnavBS.next(param);
+  }
+  bcFun(param){
+    this.bcArrBS.next(param);
   }
 }

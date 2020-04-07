@@ -73,6 +73,13 @@ export class LeftmenuComponent implements OnInit {
   allAssetsClick(){
     this.spinner.show();
     this.listViewService.trRightPanel(null);
+    // let obj={
+    //   asset_id:"",
+    //   name:"All files"
+    // }
+    // var arr=[]
+    // arr.push(obj);
+    // this.listViewService.bcFun(arr);
     this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
     setTimeout(() => this.router.navigate(['layout/listview']));
     //this.spinner.hide();
