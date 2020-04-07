@@ -36,6 +36,7 @@ export class TreelistviewComponent implements OnInit {
     searchParameters = new Searchparams();
     childDataList: any;
     parentDataList: any;
+    breadcrumbData: any;
 
 
     constructor(private _dataService: DataService, private _sharedservice: SharedService,
@@ -122,11 +123,65 @@ export class TreelistviewComponent implements OnInit {
             // else {
             this.parentDataList = data.folder_children.asset_list;
             this.constructMainTreeTable(data.folder_children.asset_list);
+            this.getFolderPathForBreadCrumb();
             //this._bcdata.bcfunction(rowData);
 
             //}
 
+
+
+        },
+            (err: any) => {
+                this.spinner.hide();
+
+            })
+    }
+    getFolderPathForBreadCrumb() {
+        var serviceUrl = '/otmmapi/v5/assets/' + this.assetId + '?load_type=custom&level_of_detail=slim&data_load_request=%7B%22data_load_request%22%3A%7B%22load_multilingual_field_values%22%3A%22true%22%2C%22load_subscribed_to%22%3A%22true%22%2C%22load_asset_content_info%22%3A%22true%22%2C%22load_metadata%22%3A%22true%22%2C%22load_inherited_metadata%22%3A%22true%22%2C%22load_thumbnail_info%22%3A%22true%22%2C%22load_preview_info%22%3A%22true%22%2C%20%22load_pdf_preview_info%22%3A%22true%22%2C%20%22load_3d_preview_info%22%20%3A%20%22true%22%2C%22load_destination_links%22%3A%22true%22%2C%20%22load_security_policies%22%3A%22true%22%2C%22load_path%22%3A%22true%22%7D%7D';
+        this._sharedservice.getService(serviceUrl
+        ).subscribe(data => {
+            var bcArr = [];
+            for (let i = 0; i < data.asset_resource.asset.path_list[0].parents.length; i++) {
+                if (data.asset_resource.asset.path_list[0].parents[i].name == "CBX") {
+                    let obj = {
+                        asset_id: data.asset_resource.asset.path_list[0].parents[i].id,
+                        name: "All Files"
+                    }
+                    bcArr.push(obj);
+                }
+                else {
+                    let obj = {
+                        asset_id: data.asset_resource.asset.path_list[0].parents[i].id,
+                        name: data.asset_resource.asset.path_list[0].parents[i].name
+                    }
+                    bcArr.push(obj);
+                }
+
+
+
+            }
+            bcArr.reverse();
+            if(data.asset_resource.asset.name=="CBX"){
+                let objC = {
+                    asset_id: data.asset_resource.asset.asset_id,
+                    name: "All Files"
+                }
+                bcArr.push(objC);
+            }
+            else{
+                let objC = {
+                    asset_id: data.asset_resource.asset.asset_id,
+                    name: data.asset_resource.asset.name
+                }
+                bcArr.push(objC);
+            }
+           // bcArr.reverse();
+            this.listViewService.bcFun(bcArr);
+
             this.spinner.hide();
+
+            //this.breadcrumbData = data.asset_resource.asset;
+
 
         },
             (err: any) => {
@@ -464,38 +519,38 @@ export class TreelistviewComponent implements OnInit {
         else if (elem.target.className.indexOf('assetNameClick') >= 0) {
 
             this.assetIdPaging = this.assetId = elem.target.className.split(' ')[1];
-            var assetNameCls = elem.target.className.replace(' ', '.').replace(' ', '.');
+            // var assetNameCls = elem.target.className.replace(' ', '.').replace(' ', '.');
 
-            var assetNameChild = $('.' + assetNameCls)[0].innerText;
+            // var assetNameChild = $('.' + assetNameCls)[0].innerText;
 
-            var parents = $('.' + assetNameCls).parents().find('#bc');
-            var bcArr = [];
-            for (var i = 0; i < parents.length; i++) {
-                if (parents[i].className != "") {
+            // var parents = $('.' + assetNameCls).parents().find('#bc');
+            // var bcArr = [];
+            // for (var i = 0; i < parents.length; i++) {
+            //     if (parents[i].className != "") {
 
-                    let obj = {
-                        asset_id: parents[i].className.split(' ')[1],
-                        name: parents[i].innerText
-                    }
-                var len=bcArr.filter(x=>x.asset_id==obj.asset_id).length
-                        if(len==0){
-                            bcArr.push(obj);
-                        }         
-                   }       //console.log(" parent assetId:"+parents[i].className.split(' ')[1]+ " patent asset Name: "+ parents[i].innerText);
+            //         let obj = {
+            //             asset_id: parents[i].className.split(' ')[1],
+            //             name: parents[i].innerText
+            //         }
+            //     var len=bcArr.filter(x=>x.asset_id==obj.asset_id).length
+            //             if(len==0){
+            //                 bcArr.push(obj);
+            //             }         
+            //        }       //console.log(" parent assetId:"+parents[i].className.split(' ')[1]+ " patent asset Name: "+ parents[i].innerText);
 
-            }
-            let objc = {
-                asset_id: this.assetId,
-                name: assetNameChild
-            }
+            // }
+            // let objc = {
+            //     asset_id: this.assetId,
+            //     name: assetNameChild
+            // }
 
-            bcArr.push(objc);
-            this.listViewService.bcFun(bcArr);
+            // bcArr.push(objc);
+            // this.listViewService.bcFun(bcArr);
             //console.log("assetId :"+this.assetId+ "assetName :"+ assetName);
             //this.getTotalPageCount();
             this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
             //setTimeout(() => this.router.navigate(['layout/listview']));
-            setTimeout(() => this.router.navigate(['layout/listview'], { queryParams: { assetId: this.assetId } }));
+            setTimeout(() => this.router.navigate(['layout/treelistview'], { queryParams: { assetId: this.assetId } }));
 
         }
         else if (elem.target.className.indexOf('loadMore') >= 0) {

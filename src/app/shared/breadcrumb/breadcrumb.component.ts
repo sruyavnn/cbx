@@ -53,7 +53,7 @@ export class BreadcrumbComponent implements OnInit {
     var index = this.bcData.indexOf(item);
     this.bcData.splice(index + 1, this.bcData.length - (index + 1) );
     this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
-     setTimeout(() => this.router.navigate(['layout/listview'], { queryParams: { assetId: item.asset_id } }));
+     setTimeout(() => this.router.navigate(['layout/treelistview'], { queryParams: { assetId: item.asset_id } }));
     // for (let index = 0; index < this.bcData.length; index++) {
       
     //   if(this.bcData[index].asset_id==assetId){
