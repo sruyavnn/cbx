@@ -16,20 +16,20 @@ export class AnnouncementsComponent implements OnInit {
     private _dataService: DataService) { }
 
   ngOnInit() {
-    //sending top downloads row data to right panel
+    //receiving top downloads row data to right panel
     this.listViewService.topDownload.subscribe(a=> {
       this.trtopDownloadData=[];//empty
       this.trtopDownloadData=a;
     console.log('row data topdownload:',this.trtopDownloadData);
     });
 
-    //sending treelistview row data to right panel
-    this.listViewService.trListView.subscribe(b=> {
-      this.trListViewData=[];//empty
-      this.trListViewData=b;
+    //receiving treelistview row data to right panel
+    // this.listViewService.trListView.subscribe(b=> {
+    //   this.trListViewData=[];//empty
+    //   this.trListViewData=b;
       
-    console.log('row data ListView:',this.trListViewData);
-    });
+    // console.log('row data ListView:',this.trListViewData);
+    // });
 
  
   }
