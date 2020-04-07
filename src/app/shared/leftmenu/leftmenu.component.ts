@@ -47,6 +47,7 @@ export class LeftmenuComponent implements OnInit {
     $(".arrow-toggle").css('display', 'inline-block');
     $(".app-root-main").addClass('toggle-main');
     $("body").addClass("overlay");
+    $(".useful-container").addClass('block');
   });
   $(".arrow-toggle").click(function() {
     $(".app-root-left").removeClass("toggle-menu");
@@ -57,6 +58,7 @@ export class LeftmenuComponent implements OnInit {
     $(".arrow-toggle").css('display', 'none');
     $(".app-root-main").removeClass('toggle-main');
     $("body").removeClass("overlay");
+    $(".useful-container").removeClass('block');
   });
   }
   myFunction(event) {
