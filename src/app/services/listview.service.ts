@@ -9,7 +9,7 @@ export class ListViewService {
   trtopDownloadData:any;
   topDownload:BehaviorSubject<any>;
 
-  //sending listview row data to right panel
+  //sending treelistview row data to right panel
   trListViewData:any;
   trListView:BehaviorSubject<any>;
 
@@ -35,7 +35,7 @@ export class ListViewService {
     this.rightPanBS  = new BehaviorSubject(this.rightPanObj);
     //sending top downloads row data to right panel
     this.topDownload  = new BehaviorSubject(this.trtopDownloadData);
-    //sending listview row data to right panel
+    //sending treelistview row data to right panel
     this.trListView  = new BehaviorSubject(this.trListViewData);
 
     this.bcArrBS  = new BehaviorSubject(this.bcObjBS);
@@ -44,7 +44,7 @@ export class ListViewService {
   trRightPanel(newUser){
     this.topDownload.next(newUser);
   }
-//sending listview row data to right panel
+//sending treelistview row data to right panel
   trListViewRP(listviewUser){
     this.trListView.next(listviewUser);
   }

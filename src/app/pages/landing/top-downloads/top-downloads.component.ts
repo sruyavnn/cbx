@@ -5,7 +5,7 @@ import {ListViewService} from '../../../services/listview.service';
 import { DataService } from 'src/app/services/data.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {MessageService} from 'primeng/api';
-import { HttpParams } from '@angular/common/http';
+import { HttpParams, HttpHeaders } from '@angular/common/http';
 import { Searchparams } from 'src/app/models/searchparams';
 
 declare var $: any;
@@ -22,6 +22,7 @@ export class TopDownloadsComponent implements OnInit {
   selectAll:boolean;
 
   assetId: string;
+  httpClient: any;
   constructor(private _sharedservice: SharedService, 
     private listViewService: ListViewService,
     private spinner: NgxSpinnerService,
@@ -45,8 +46,6 @@ export class TopDownloadsComponent implements OnInit {
     this.getTopDownloadsData();
     //this.topDownladgrouping();
     $(".topd-table tr").click(function(){
-      
-     
   });​
  
   } 
@@ -56,9 +55,10 @@ export class TopDownloadsComponent implements OnInit {
     console.log('cars');
  this.assetId='c7c0b34a5fa903aacec8a0b5525cf6b8d9a016f5';
 // var serviceUrl='/otmmapi/v5/folders/'+this.assetId+'/children/?load_type=metadata&load_multilingual_values=true&level_of_detail=full&after='+this.PageAfter+'&limit='+this.PageLimit+'&preference_id=ARTESIA.PREFERENCE.SPREADSHEETVIEW.DISPLAYED_FIELDS&sort=asc_NAME'
-   var serviceUrl='/otmmapi/v5/folders/'+this.assetId+'/children/?load_type=metadata&load_multilingual_values=true&level_of_detail=full&after='+this.PageAfter+'&limit='+this.PageLimit+'&preference_id=ARTESIA.PREFERENCE.SPREADSHEETVIEW.DISPLAYED_FIELDS&sort=asc_NAME'    
-
-this._sharedservice.getService(serviceUrl
+   //var serviceUrl='/otmmapi/v5/folders/'+this.assetId+'/children/?load_type=metadata&load_multilingual_values=true&level_of_detail=full&after='+this.PageAfter+'&limit='+this.PageLimit+'&preference_id=ARTESIA.PREFERENCE.SPREADSHEETVIEW.DISPLAYED_FIELDS&sort=asc_NAME'    
+   var serviceUrl='/otmmapi/v5/folders/'+this.assetId+'/children/?load_type=metadata&load_multilingual_values=true&level_of_detail=full&after='+this.PageAfter+'&limit='+this.PageLimit+'&sort=asc_NAME'
+    
+   this._sharedservice.getService(serviceUrl
     ).subscribe(data => {
       console.log('in cars');
       if (window.location.host.split(':')[0] == "localhost") {
@@ -93,7 +93,6 @@ this._sharedservice.getService(serviceUrl
   topDownloadsData(name){
     $('#' + name.asset_id).addClass("selected").siblings().removeClass("selected");
     var selectedLength = this.topDownloadData.filter(x => x.isSelected == true).length;
-   
       if(selectedLength>1){
         this.listViewService.trRightPanel(null);
       }
@@ -106,10 +105,9 @@ this._sharedservice.getService(serviceUrl
    addCartTopDownloads(cart){
     this.topDownloadsRowCartData=this._dataService.getCartOption();
     var length=this.topDownloadsRowCartData.filter(x=>x.asset_id==cart.asset_id).length;
-    if(length==0){
+    if(length==1){
       this.topDownloadsRowCartData.push(cart);
     }
-    
     this._dataService.setCartOption(this.topDownloadsRowCartData);
     console.log("cart Data:", this.topDownloadsRowCartData);
   }
@@ -128,20 +126,16 @@ this._sharedservice.getService(serviceUrl
 
   //subscribe and unsubscribe
   subscribeAsset(obj){
-      //this.subscribeunsubscribe=true;
       obj.subscribed_to=true;
       var assetData = JSON.stringify(this.buildAssetJson(obj.asset_id));
-        //formdata
-        let params = new HttpParams()
+      var url = "/otmmapi/v5/assets/subscriptions";
+      //formdata
+      let params = new HttpParams()
         .set('action', 'subscribe')
         .set('selection_context', assetData)
-    
-      var url = "/otmmapi/v5/assets/subscriptions";
-
       this._sharedservice.postService(url, params).subscribe(result => {
       console.log('subsribeList', result);  
       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Subscribed to 1 asset' });
-      //this.subscribedbtnText="Unsubscribe";
     });
   }
   
@@ -175,7 +169,7 @@ this._sharedservice.getService(serviceUrl
     }
   }
 
-  mutltiAssetDownloads(){
+  multiAssetDownloads(){
     var selectedAssetIds = [];
     var selectedContentType = [];
     for(let i=0; i<this.topDownloadData.length; i++){
@@ -195,6 +189,19 @@ this._sharedservice.getService(serviceUrl
       })(iframe), 2000);
     }
     }
+  }
+
+  mutltiAddtoCartDownloads(){  
+    for(let i=0; i<this.topDownloadData.length; i++){
+        if(this.topDownloadData[i].isSelected){
+          this.topDownloadsRowCartData=this._dataService.getCartOption();
+        var length=this.topDownloadsRowCartData.filter(x=>x.asset_id==this.topDownloadData[i].asset_id).length;
+        if(length==0){
+          this.topDownloadsRowCartData.push(this.topDownloadData[i]);
+        }
+        this._dataService.setCartOption(this.topDownloadsRowCartData);
+        }
+     }
   }
 
   singleAssetDownload(id){

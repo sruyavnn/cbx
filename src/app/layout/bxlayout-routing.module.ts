@@ -26,7 +26,7 @@ children: [
 
   
  { path: '', component: LandingComponent },
- { path: 'listview', component: TreelistviewComponent },
+ { path: 'treelistview', component: TreelistviewComponent },
  { path: 'collections', component: LandingComponent },
  { path: 'recent-downloads', component: LandingComponent },
  { path: 'cart', component: CartComponent },

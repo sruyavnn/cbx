@@ -1,5 +1,26 @@
+<<<<<<< HEAD
+.rightmenu{
+    /* top: 142px;
+    left: 1064px;
+    width: 375px;
+    height: 1599px; */
+    background-color: #F5F5F5;
+   
+    height: auto;
+    padding: 26px 33px;;
+    border: 1px solid #F5F5F5;
+    cursor:pointer;
+}
+.Announcemens{
+    color: #3C3C3C;
+    font-size: 17px;
+    margin-bottom:30px;
+    font-family: 'CiscoSans-Regular';
+}
+=======
 
 
+>>>>>>> 27619baf258283628bfb351d8b7515858a5defd9
 .announcement-top {
     position: fixed;
 }
@@ -142,6 +163,13 @@
         margin-bottom: 16%;
         font-family: 'CiscoSans-Regular';
         margin-top: 9.6%;
+    }
+    .asset-info {
+        color: #3C3C3C;
+    font-size: 1.191vw;
+    margin-bottom: 9%;
+    font-family: 'CiscoSans-Regular';
+    margin-top: 9.6%;
     }
     .newBx{
         text-align: left;
