@@ -36,11 +36,11 @@
                     <i class="fa fa-remove" (click)="removeTopDownloadData()" aria-hidden="true"></i>
                     <div>
                         <p class="newBxName">{{trtopDownloadData?.name}} &nbsp;&nbsp;&nbsp;&nbsp; </p>
-                        <div class="img-anpunce">
+                        <div class="img-anpunce-folder">
                             <span
                                 *ngIf="trtopDownloadData?.data_type== 'CONTAINER' && !trtopDownloadData?.rendition_content"
                                 class="asset-pannel">
-                                <img src="./cbx/images/thumbnail_icons/folder-50px.png"
+                                <img src="./cbx/images/folder.png"
                                     class="img-fluid list-folder-size list-asset-hover">
                             </span>
                             <span
