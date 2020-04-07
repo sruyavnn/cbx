@@ -519,46 +519,17 @@ export class TreelistviewComponent implements OnInit {
         else if (elem.target.className.indexOf('assetNameClick') >= 0) {
 
             this.assetIdPaging = this.assetId = elem.target.className.split(' ')[1];
-            // var assetNameCls = elem.target.className.replace(' ', '.').replace(' ', '.');
-
-            // var assetNameChild = $('.' + assetNameCls)[0].innerText;
-
-            // var parents = $('.' + assetNameCls).parents().find('#bc');
-            // var bcArr = [];
-            // for (var i = 0; i < parents.length; i++) {
-            //     if (parents[i].className != "") {
-
-            //         let obj = {
-            //             asset_id: parents[i].className.split(' ')[1],
-            //             name: parents[i].innerText
-            //         }
-            //     var len=bcArr.filter(x=>x.asset_id==obj.asset_id).length
-            //             if(len==0){
-            //                 bcArr.push(obj);
-            //             }         
-            //        }       //console.log(" parent assetId:"+parents[i].className.split(' ')[1]+ " patent asset Name: "+ parents[i].innerText);
-
-            // }
-            // let objc = {
-            //     asset_id: this.assetId,
-            //     name: assetNameChild
-            // }
-
-            // bcArr.push(objc);
-            // this.listViewService.bcFun(bcArr);
-            //console.log("assetId :"+this.assetId+ "assetName :"+ assetName);
-            //this.getTotalPageCount();
+           
             this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
-            //setTimeout(() => this.router.navigate(['layout/listview']));
             setTimeout(() => this.router.navigate(['layout/treelistview'], { queryParams: { assetId: this.assetId } }));
 
         }
         else if (elem.target.className.indexOf('loadMore') >= 0) {
             this.assetIdPaging = this.assetId = elem.target.className.split(' ')[1];
-            this.getTotalPageCount();
-            //this.getMainData();
-
-        }
+            //this.getTotalPageCount();
+            this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
+            setTimeout(() => this.router.navigate(['layout/treelistview'], { queryParams: { assetId: this.assetId } }));
+         }
     }
     getChildTotalPageCount(plusCls, minusCls) {
         this.spinner.show();
@@ -884,6 +855,7 @@ export class TreelistviewComponent implements OnInit {
     }
     paginate(param) {
         this.searchParameters.after = param.first;
+        this.searchParameters.limit = param.rows ;
         this.getMainDataPaging();
         // if(this.fromLeftNavOrSearch=="search"){
         //   this.searchParameters.after=param.first;

@@ -41,31 +41,38 @@ export class BreadcrumbComponent implements OnInit {
    
 
     this._lvService.bcArrBS.subscribe(bc=>{
-      console.log(bc);
-      this.bcData=bc
+      if(bc!=undefined)
+      {
+        this.bcData=bc
+      }
+      else{
+        let obj={
+          asset_id:"home",
+          name:"Home"
+        }
+        var arr=[]
+        arr.push(obj);
+        this.bcData=arr;
+      }
     })
 
   }
 
   bcClick(item){
-    var arr=[];
-
-    var index = this.bcData.indexOf(item);
-    this.bcData.splice(index + 1, this.bcData.length - (index + 1) );
+    if(item.asset_id=="home"){
+      this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
+     setTimeout(() => this.router.navigate(['/layout']));
+    }
+    else if(item.asset_id=="mycollections"){
+      
+    }
+    else if(item.asset_id=="recentDownloads"){
+      
+    }
+    else{
     this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
      setTimeout(() => this.router.navigate(['layout/treelistview'], { queryParams: { assetId: item.asset_id } }));
-    // for (let index = 0; index < this.bcData.length; index++) {
-      
-    //   if(this.bcData[index].asset_id==assetId){
-    //     arr.push(this.bcData[index]);
-    //     this.bcData=arr;
-    //      this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
-    // setTimeout(() => this.router.navigate(['layout/listview'], { queryParams: { assetId: assetId } }));
-
-    //  }
-    //  arr.push(this.bcData[index]);
-      
-    // }
+    }
    
   }
   removeChildren()

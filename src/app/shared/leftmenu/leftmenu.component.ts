@@ -64,7 +64,15 @@ export class LeftmenuComponent implements OnInit {
   }
   homeClick(){
    // this.spinner.show();
-    this.listViewService.trRightPanel(null);
+   let obj={
+      asset_id:"home",
+      name:"Home"
+    }
+    var arr=[]
+    arr.push(obj);
+     this.listViewService.bcFun(arr);
+     this.listViewService.trRightPanel(null);
+
     this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
     setTimeout(() => this.router.navigate(['layout']));
     //this.spinner.hide();
@@ -73,27 +81,35 @@ export class LeftmenuComponent implements OnInit {
   allAssetsClick(){
     this.spinner.show();
     this.listViewService.trRightPanel(null);
-    // let obj={
-    //   asset_id:"",
-    //   name:"All files"
-    // }
-    // var arr=[]
-    // arr.push(obj);
-    // this.listViewService.bcFun(arr);
     this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
     setTimeout(() => this.router.navigate(['layout/treelistview']));
     //this.spinner.hide();
   }
   mycollections(){
-    //
+    
     this.spinner.show();
+    let obj={
+      asset_id:"mycollections",
+      name:"My Collections"
+    }
+    var arr=[]
+    arr.push(obj);
+     this.listViewService.bcFun(arr);
+
     this.listViewService.trRightPanel(null);
     this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
     setTimeout(() => this.router.navigate(['layout/treelistview']));
   }
   recentDownloads(){
-    //  /layout/recent-downloads
+   
     this.spinner.show();
+    let obj={
+      asset_id:"recentdownloads",
+      name:"Recent Downloads"
+    }
+    var arr=[]
+    arr.push(obj);
+     this.listViewService.bcFun(arr);
     this.listViewService.trRightPanel(null);
     this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
     setTimeout(() => this.router.navigate(['layout/treelistview']));
