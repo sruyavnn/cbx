@@ -1,0 +1,16 @@
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    list-style: none;
+    margin-left: 0px;
+    padding-left: 0px;
+    font-size: 14px;
+    margin-bottom: 0px;
+    margin-top: 20px;
+    background-color: #fff !important;
+}
+li.breadcrumb-item a {
+    font-size: 12px;
+    cursor: pointer;
+}

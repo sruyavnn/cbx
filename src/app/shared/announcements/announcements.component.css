@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .rightmenu{
     /* top: 142px;
     left: 1064px;
@@ -17,10 +16,8 @@
     margin-bottom:30px;
     font-family: 'CiscoSans-Regular';
 }
-=======
 
 
->>>>>>> 27619baf258283628bfb351d8b7515858a5defd9
 .announcement-top {
     position: fixed;
 }
@@ -100,7 +97,18 @@
     background-color: #e6e6e6;
     margin-bottom: 12px;
     max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
 }
+.img-anpunce-folder{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: #e6e6e6;
+    margin-bottom: 12px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+} 
 .ellipsis{
     margin-bottom: 15px;
 }

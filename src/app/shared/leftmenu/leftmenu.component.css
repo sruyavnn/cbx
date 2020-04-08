@@ -176,9 +176,7 @@
 .card-body {
     padding: 0px;
 }
-.useful-container {
-    margin-top: 114px;
-}
+
 .cbe-body ul {
     margin: 0px;
     padding: 0px;
@@ -197,6 +195,9 @@
 }
 
 @media (max-width: 2099px) { 
+    .useful-container {
+        margin-top: 74%;
+    }
     .menu-label{
         font-family: 'CiscoSans-Bold';
         color: #808080;
@@ -244,7 +245,8 @@
 }
  }
 
- @media (max-width: 1439px) { 
+ @media (max-width: 1439px) {
+   
   .col-10.app-root-main {
     background-color: green;
   }
@@ -253,6 +255,9 @@
 }
 .useful-container {
     display: none;
+}
+.btn.btn-link {
+    width: 92%;
 }
 .img-logo, .bx-logo-text {
     display: none;
