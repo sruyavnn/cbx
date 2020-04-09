@@ -53,21 +53,21 @@
                             <!-- <img class="resImg img-fluid" src={{trtopDownloadData.rendition_content.thumbnail_content.url}}> -->
                         </div>
                     </div>
-                    <div class="cart">
-                        <img (click)="addCartTopDownloads(trtopDownloadData)"
-                            src="../../../cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart" />
+                    <div class="cart" (click)="addCartTopDownloads(trtopDownloadData)">
+                        <!-- <img 
+                            src="../../../cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart" /> -->
                         <!-- <img src="./cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart"/> -->
                     </div>
-                    <div class="download">
-                        <img (click)="rpRowImgDownload(trtopDownloadData.rendition_content.preview_content.id)"
-                            src="./cbx/images/buttons-with-icons/download_Inactive.png" class="img-download" />
+                    <div class="download" (click)="rpRowImgDownload(trtopDownloadData.rendition_content.preview_content.id)">
+                        <!-- <img 
+                            src="./cbx/images/buttons-with-icons/download_Inactive.png" class="img-download" /> -->
                     </div>
                     <!-- <div class="cart">
                         <img src="./cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart" />
                     </div> -->
 
                     <div class="ellipsis">
-                        <img src="./cbx/images/buttons-with-icons/options_inactive.png" class="img-options" />
+                        <!-- <img src="./cbx/images/buttons-with-icons/options_inactive.png" class="img-options" /> -->
                     </div>
                     <div>
                         <span class="newBx">updated:
@@ -109,21 +109,35 @@
                         </div>
                     </div>
 
-                    <div class="cart">
-                        <img (click)="addCartTopDownloads(trtopDownloadData)"
-                            src="../../../cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart" />
+                    <div class="cart" (click)="addCartTopDownloads(trtopDownloadData)">
+                        <!-- <img 
+                            src="../../../cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart" /> -->
                         <!-- <img src="./cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart"/> -->
                     </div>
-                    <div class="download">
-                        <img (click)="rpRowImgDownload(trtopDownloadData.rendition_content.preview_content.id)"
-                            src="./cbx/images/buttons-with-icons/download_Inactive.png" class="img-download" />
+                    <div class="download" (click)="rpRowImgDownload(trtopDownloadData.rendition_content.preview_content.id)">
+                        <!-- <img (click)="rpRowImgDownload(trtopDownloadData.rendition_content.preview_content.id)"
+                            src="./cbx/images/buttons-with-icons/download_Inactive.png" class="img-download" /> -->
                     </div>
                     <!-- <div class="cart">
                         <img src="./cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart" />
                     </div> -->
 
                     <div class="ellipsis">
-                        <img src="./cbx/images/buttons-with-icons/options_inactive.png" class="img-options" />
+                        <div class="dropdown">
+                            <a class="dropdown-toggle topd-options"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             
+                            </a>
+                          
+                            <div class="dropdown-menu optons-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item"  (click)="singleAssetDownload(rowData?.rendition_content.preview_content.id)">Download</a>
+                              <a class="dropdown-item"  (click)="addCartTopDownloads(rowData)">Add to cart</a>
+                              <a class="dropdown-item" >Add to collections</a>
+                              <a name="{{rowData?.asset_id}}" class="dropdown-item" (click)="subscribeAsset(rowData)" *ngIf="!rowData?.subscribed_to">Subscribe</a>
+                              <a name="{{rowData?.asset_id}}" class="dropdown-item"  (click)="unSubscribeAsset(rowData)" *ngIf="rowData?.subscribed_to">Unsubscribe</a>
+                              <a class="dropdown-item" >Copy url</a>
+                              <a class="dropdown-item" >View file info</a>
+                            </div>
+                          </div>
                     </div>
                     <div>
                         <span class="newBx">updated:

@@ -36,7 +36,7 @@ export class LoginService {
 
     loginToOTMM()
 {
-let params = new HttpParams().set('username','ragkanap').set('password','R@ghu@12$');
+let params = new HttpParams().set('username','skattebo').set('password','Chaitra@234');
 let headers = new HttpHeaders(
 {
 'Content-Type': 'application/x-www-form-urlencoded'
