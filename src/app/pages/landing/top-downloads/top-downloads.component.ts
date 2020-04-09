@@ -366,7 +366,7 @@ export class TopDownloadsComponent implements OnInit {
         }
       }
     };
-    this._sharedservice.patchService(serviceUrl, selection_context
+    this._sharedservice.patchService(serviceUrl,  JSON.stringify(selection_context)
     ).subscribe(data => {
       this.selectedCollection = "";
       this.collectionsData = data.lightboxes_resource.lightbox;

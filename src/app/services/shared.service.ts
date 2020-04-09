@@ -48,9 +48,9 @@ export class SharedService {
       // return this.http.post(serviceURL, params,  {headers:headers});
       //headers
     return this.http.post(serviceURL, params,  {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-    .set('x-requested-by', '331922378')
-    .set('otmmauthtoken',localStorage.session)});
-    }
+    .set('x-requested-by', JSON.parse(sessionStorage.session).session_resource.session.id) 
+      .set('otmmauthtoken',JSON.parse(sessionStorage.session).session_resource.session.message_digest)});
+      }
     else{
     return this.http.post(serviceURL, params, {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     .set('x-requested-by', JSON.parse(sessionStorage.session).id) 
@@ -88,9 +88,9 @@ export class SharedService {
       if(window.location.host.split(':')[0]=="localhost"){
         
       return this.http.delete(serviceURL, {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('x-requested-by', '340664671') 
-      .set('otmmauthtoken',localStorage.session)});
-      }
+      .set('x-requested-by', JSON.parse(sessionStorage.session).session_resource.session.id) 
+      .set('otmmauthtoken',JSON.parse(sessionStorage.session).session_resource.session.message_digest)});
+       }
       else{
        
       return this.http.delete(serviceURL, {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
@@ -103,8 +103,8 @@ export class SharedService {
       if(window.location.host.split(':')[0]=="localhost"){
      
       return this.http.patch(serviceURL,params,  {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('x-requested-by', '640506658')
-      .set('otmmauthtoken',localStorage.session)});
+      .set('x-requested-by', JSON.parse(sessionStorage.session).session_resource.session.id) 
+      .set('otmmauthtoken',JSON.parse(sessionStorage.session).session_resource.session.message_digest)});
       }
       else{
       return this.http.patch(serviceURL,params, {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')

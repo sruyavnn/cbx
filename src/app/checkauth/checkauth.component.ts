@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { RestService } from '../services/rest.service';
 import { LoginService } from '../services/login.service';
 import { SharedService } from '../services/shared.service';
-import { HttpParams } from '@angular/common/http';
+import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-checkauth',
   templateUrl: './checkauth.component.html',
@@ -15,7 +15,7 @@ export class CheckauthComponent implements OnInit {
     private _loginservice: LoginService,
     private _sharedservice: SharedService,
     public router: Router,
-
+public httpClient:HttpClient
 
   ) {
 
@@ -98,9 +98,20 @@ export class CheckauthComponent implements OnInit {
 
 
   }
+getSessionData(){
+  this._loginservice.loginToOTMM().subscribe(data => {
 
+//     var xRequestedby = data['session_resource']['session']['id'];
+// var otmmAuthToken = data['session_resource']['session']['message_digest'];
 
-  getSessionData() {
+     window.localStorage['session'] = data.body;
+     sessionStorage['session'] = data.body;
+    // console.log(localStorage);
+     this.router.navigate(['/layout']);
+  });
+}
+
+  getSessionData_bkp() {
     console.log('session');
     this._loginservice.getSessionJSON_Get(this.serviceURL).subscribe(data => {
 
