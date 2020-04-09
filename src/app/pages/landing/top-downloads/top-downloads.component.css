@@ -369,6 +369,13 @@ like a tickmark */
 }
 
 @media (max-width: 2099px) { 
+  .download-topd {
+    width: 34%;
+  }
+  .fa.fa-chevron-down {
+    font-size: 10px;
+    color: #808080;
+  }
   .top-d {
     font-family: 'CiscoSans-Light';
     font-size: 1.191vw;

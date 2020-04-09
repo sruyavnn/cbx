@@ -353,24 +353,35 @@ export class TopDownloadsComponent implements OnInit {
     }
   }
   addAssets() {
-    var serviceUrl = 'otmmapi/v5/lightboxes/49e8d72a1279a604a8ae0dc54af5ac67d9d9f270/assets';
-
+   var serviceUrl = 'otmmapi/v5/lightboxes/'+this.selectedCollection+'/assets';
+   //var sericeUrl='otmmapi/v5/assets?group_by=data_type&selection_context=%7B%22selection_context_param%22%3A%7B%22selection_context%22%3A%7B%22asset_ids%22%3A%5B%22'+assetId+'%22%5D%2C%22asssetContentType%22%3A%5B%22BITMAP%22%5D%2C%22assetSubContentType%22%3A%5B%22none%22%5D%2C%22type%22%3A%22com.artesia.asset.selection.AssetIdsSelectionContext%22%2C%22include_descendants%22%3A%22NONE%22%2C%22include_deleted_assets%22%3Afalse%7D%7D%7D&limit=0';
+var assetids=[]
+for (let i = 0; i < this.topDownloadData.length; i++) {
+  if(this.topDownloadData[i].isSelected)
+  {
+    assetids.push(this.topDownloadData[i].asset_id);
+  }
+}
     var selection_context = {
+     
       selection_context_param:
       {
         selection_context: {
-          asset_ids: ["49e8d72a1279a604a8ae0dc54af5ac67d9d9f270"],
+          asset_ids: [assetids.toString()],
           asssetContentType: [],
           assetSubContentType: [],
           type: "com.artesia.asset.selection.AssetIdsSelectionContext",
           include_descendants: "ALL"
         }
       }
-    };
-    this._sharedservice.patchService(serviceUrl,  JSON.stringify(selection_context)
+    };//JSON.stringify(selection_context)
+    let params = new HttpParams()
+    .set('operation', 'add')
+    .set('selection_context', JSON.stringify(selection_context))
+    this._sharedservice.patchService(serviceUrl,  params
     ).subscribe(data => {
       this.selectedCollection = "";
-      this.collectionsData = data.lightboxes_resource.lightbox;
+      //this.collectionsData = data.lightboxes_resource.lightbox;
 
 
       this.spinner.hide();
