@@ -278,6 +278,12 @@
         font-size: 0.762vw;
         font-family: 'CiscoSans-Medium';
     }
+    .newBx1{
+        text-align: left;
+        color: #3C3C3C;
+        font-size: 0.762vw;
+        font-family: 'CiscoSans-Bold';
+    }
     .checkOut{
         font-size: 0.762vw;
         color: #707070;
