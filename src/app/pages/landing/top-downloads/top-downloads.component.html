@@ -48,7 +48,7 @@
     </form>
   </div>
   <div class="col-lg-5 col-md-8 p-bx-0" style="text-align:right">
-    <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable">Add to collections</button>
+    <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable" (click)="addToCollections(mycollectionmodal)">Add to collections</button>
   <button type="button" class="btn btn-primary btn-bx bx-btnspace" [disabled]="btnEnableDisable" (click)="mutltiAddtoCartDownloads()">Add to cart</button>
   <button type="button" class="btn btn-primary btn-bx" [disabled]="btnEnableDisable" (click)="multiAssetDownloads()">Download</button>
   </div>
@@ -178,3 +178,34 @@
 </div> -->
 </div>
 </div>
+<form name="fromPopupMycoll">
+<ng-template #mycollectionmodal let-modal >
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Asset(s) to Lightbox</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-6">Select a Collection</div>
+      <div class="col-6"> 
+        <select class="form-control"  [(ngModel)]="selectedCollection" name="collection">
+        <option *ngFor="let coll of collectionsData" >{{coll.name}}</option>
+      </select>
+    </div>
+    </div>
+    <div>
+      <a (click)="createNewCollection()">Create a New Collection</a>
+    </div>
+    <div>
+    
+  </div>
+</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-bx" (click)="addAssets()">Add Assets</button>
+    <button type="button" class="btn btn-primary btn-bx" (click)="modal.close('Save click')">Cancel</button>
+
+  </div>
+</ng-template>
+</form>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, observable } from 'rxjs';
 
 @Injectable({
@@ -33,6 +33,18 @@ export class LoginService {
   public getSessionJSON_Get( serviceURL): Observable<any> {
     return this.http.get(serviceURL, {responseType: 'text'});
     }
+
+    loginToOTMM()
+{
+let params = new HttpParams().set('username','ragkanap').set('password','R@ghu@12$');
+let headers = new HttpHeaders(
+{
+'Content-Type': 'application/x-www-form-urlencoded'
+}
+);
+let url = '/otmmapi/v5/sessions';
+return this.http.post(url,params,{headers:headers,responseType:'text',observe:'response'})
+}
     public getTokenJSON( serviceURL): Observable<any> {
       return this.http.get(serviceURL);
       }

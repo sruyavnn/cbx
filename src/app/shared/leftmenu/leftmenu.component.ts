@@ -100,7 +100,7 @@ export class LeftmenuComponent implements OnInit {
 
     this.listViewService.trRightPanel(null);
     this.router.navigateByUrl('layout/assets', { skipLocationChange: true });
-    setTimeout(() => this.router.navigate(['layout/treelistview']));
+    setTimeout(() => this.router.navigate(['layout/mycollections']));
   }
   recentDownloads(){
    
