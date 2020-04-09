@@ -18,8 +18,9 @@ declare var $: any;
 export class TopDownloadsComponent implements OnInit {
   subscribeunsubscribe: boolean = false;
   topDownloadsRowCartData = [];
-  trtopDownloadData: any;
-  selectAll: boolean;
+  trtopDownloadData:any;
+  selectAll:boolean;
+  gridandlistview:boolean=false;
 
   assetId: string;
   httpClient: any;
@@ -41,10 +42,11 @@ export class TopDownloadsComponent implements OnInit {
 
   searchParameters = new Searchparams();
 
-  PageLimit: string = "10";
-  PageAfter: string = "0";
-  page: number = 1;
-  paginationFlag: boolean;
+ 
+  PageLimit:string="10";
+  PageAfter:string="0";
+  page:number=1;
+  paginationFlag:boolean;
 
   ngOnInit() {
     this.getTopDownloadsData();
@@ -106,14 +108,15 @@ export class TopDownloadsComponent implements OnInit {
     }
   }
 
-  //using this function sending row data to cart
-  addCartTopDownloads(cart) {
-    this.topDownloadsRowCartData = this._dataService.getCartOption();
-    var length = this.topDownloadsRowCartData.filter(x => x.asset_id == cart.asset_id).length;
-    if (length == 1) {
+   //using this function sending row data to cart
+   addCartTopDownloads(cart){
+    this.topDownloadsRowCartData=this._dataService.getCartOption();
+    var length=this.topDownloadsRowCartData.filter(x=>x.asset_id==cart.asset_id).length;
+    if(length==1 || length==0){
       this.topDownloadsRowCartData.push(cart);
     }
     this._dataService.setCartOption(this.topDownloadsRowCartData);
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Added 1 Asset to Cart Successfully' });
     console.log("cart Data:", this.topDownloadsRowCartData);
   }
 
@@ -199,6 +202,7 @@ export class TopDownloadsComponent implements OnInit {
         })(iframe), 2000);
       }
     }
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Images are Downloaded Successfully' });
   }
 
   mutltiAddtoCartDownloads() {
@@ -210,8 +214,9 @@ export class TopDownloadsComponent implements OnInit {
           this.topDownloadsRowCartData.push(this.topDownloadData[i]);
         }
         this._dataService.setCartOption(this.topDownloadsRowCartData);
-      }
-    }
+        }
+     }
+     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Row Assets are Added to Cart' });
   }
 
   singleAssetDownload(id) {
@@ -219,6 +224,7 @@ export class TopDownloadsComponent implements OnInit {
     var link = document.createElement('a');
     link.href = url;
     link.click();
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: '1 Image Downloaded Successfully' });
   }
 
   checkUncheckAll() {

@@ -79,18 +79,16 @@
                         <ul class="lastModified">
                             <li>Last modified by: {{trtopDownloadData?.metadata_state_user_name}}</li>
                             <li>Total Downloads: 144k</li>
-                            <li>Asset Size:
-                                {{trtopDownloadData?.rendition_content.preview_content.content_size/1024/1024 | number : '1.2-2'}}mb
+                            <li>Asset Size: -                  
                             </li>
                         </ul>
                     </div>
                     <!-- <div class="borderTest">
                 </div> -->
                     <div>
-                        <ul class="createdBy">
+                        <ul class="createdBy" >
                             <li>Created by: {{trtopDownloadData?.import_user_name}}</li>
-                            <li>Expiration date:
-                                {{trtopDownloadData?.metadata.metadata_element_list[2].metadata_element_list[1].value.value.value | date: 'dd/MM/yyyy'}}
+                            <li>Expiration date:                            
                             </li>
                             <li>Asset id: {{trtopDownloadData?.asset_id}}</li>
                             <li>Legal rights exist: No</li>
@@ -157,16 +155,16 @@
                 </div>
 
                 <!--For Video-->
-                <!-- <div class="col-sm-12 p-bx-0" *ngIf="trtopDownloadData?.content_type == 'VIDEO'">
+                <div class="col-sm-12 p-bx-0" *ngIf="trtopDownloadData?.content_type == 'VIDEO'">
                     <h6 class="asset-info">Asset Information</h6>
                     <i class="fa fa-remove" (click)="removeTopDownloadData()" aria-hidden="true"></i>
                     <div>
                         <p class="newBxName">{{trtopDownloadData?.name}} &nbsp;&nbsp;&nbsp;&nbsp; </p>
                         <div class="img-anpunce">
                             <span
-                                *ngIf="trtopDownloadData?.data_type== 'CONTAINER' && !trtopDownloadData?.rendition_content"
+                                *ngIf="trtopDownloadData?.content_type == 'VIDEO'"
                                 class="asset-pannel">
-                                <img src="./cbx/images/thumbnail_icons/folder-50px.png"
+                                <img src="./cbx/images/mime_video96.png"
                                     class="img-fluid list-folder-size list-asset-hover">
                             </span>
                             <span
@@ -202,32 +200,31 @@
                             <li>Last modified by: {{trtopDownloadData?.metadata_state_user_name}}</li>
                             <li>Total Downloads: 144k</li>
                             <li>Asset Size:
-                                {{trtopDownloadData?.rendition_content.preview_content.content_size/1024/1024 | number : '1.2-2'}}mb
+                                {{trtopDownloadData?.content_size/1024/1024 | number : '1.2-2'}}mb
                             </li>
                         </ul>
                     </div>
                     <div>
                         <ul class="createdBy">
                             <li>Created by: {{trtopDownloadData?.import_user_name}}</li>
-                            <li>Expiration date:
-                                {{trtopDownloadData?.metadata.metadata_element_list[2].metadata_element_list[1].value.value.value | date: 'dd/MM/yyyy'}}
+                            <li>Expiration date:                               
                             </li>
                             <li>Asset id: {{trtopDownloadData?.asset_id}}</li>
                             <li>Legal rights exist: No</li>
                         </ul>
                     </div>
-                </div> -->
+                </div>
 
                 <!--For PDF-->
                 <!-- <div class="col-sm-12 p-bx-0"
-                    *ngIf="trtopDownloadData?.data_type== undefined && trtopDownloadData?.rendition_content..pdf_preview_content">
+                    *ngIf="trtopDownloadData?.data_type== undefined && trtopDownloadData?.rendition_content.pdf_preview_content">
                     <h6 class="asset-info">Asset Information</h6>
                     <i class="fa fa-remove" (click)="removeTopDownloadData()" aria-hidden="true"></i>
                     <div>
-                        <p class="newBxName">{{trtopDownloadData?.name}} &nbsp;&nbsp;&nbsp;&nbsp; </p>
+                        <p class="newBxName">{{trtopDownloadData?.rendition_content.pdf_preview_content.name}} &nbsp;&nbsp;&nbsp;&nbsp; </p>
                         <div class="img-anpunce">
-                            <img class="resImg img-fluid"
-                                src={{trtopDownloadData.rendition_content.thumbnail_content.url}}>
+                            <img class="resImg img-fluid" *ngIf="trtopDownloadData?.data_type== undefined && trtopDownloadData?.rendition_content.pdf_preview_content"
+                                src={{trtopDownloadData.rendition_content.pdf_preview_content.url}}>
                         </div>
                     </div>
 
@@ -247,27 +244,26 @@
                     </div>
                     <div>
                         <span class="newBx">updated:
-                            {{trtopDownloadData?.date_last_updated | date: 'dd/MM/yyyy' }}</span>
+                            </span>
                         <p class="checkOut-featured">Updated old links, fixed types in instruction guide, fixed file
                             type error</p>
                     </div>
                     <div>
                         <ul class="lastModified">
-                            <li>Last modified by: {{trtopDownloadData?.metadata_state_user_name}}</li>
-                            <li>Total Downloads: 144k</li>
+                            <li>Last modified by: </li>
+                            <li>Total Downloads: </li>
                             <li>Asset Size:
-                                {{trtopDownloadData?.rendition_content.preview_content.content_size/1024/1024 | number : '1.2-2'}}mb
+                                {{trtopDownloadData?.rendition_content.pdf_preview_content.content_size/1024/1024 | number : '1.2-2'}}mb
                             </li>
                         </ul>
                     </div>
                     
                     <div>
                         <ul class="createdBy">
-                            <li>Created by: {{trtopDownloadData?.import_user_name}}</li>
-                            <li>Expiration date:
-                                {{trtopDownloadData?.metadata.metadata_element_list[2].metadata_element_list[1].value.value.value | date: 'dd/MM/yyyy'}}
+                            <li>Created by: </li>
+                            <li>Expiration date:                                
                             </li>
-                            <li>Asset id: {{trtopDownloadData?.asset_id}}</li>
+                            <li>Asset id: {{trtopDownloadData?.rendition_content.pdf_preview_content.id}}</li>
                             <li>Legal rights exist: No</li>
                         </ul>
                     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListViewService } from 'src/app/services/listview.service';
 import { DataService } from 'src/app/services/data.service';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-announcements',
@@ -13,7 +14,8 @@ export class AnnouncementsComponent implements OnInit {
   trListViewData;
   trProfileData;
   constructor(private listViewService:ListViewService,
-    private _dataService: DataService) { }
+    private _dataService: DataService,
+    private messageService: MessageService) { }
 
   ngOnInit() {
     //receiving top downloads row data to right panel
@@ -43,6 +45,7 @@ export class AnnouncementsComponent implements OnInit {
     }
     
     this._dataService.setCartOption(this.topDownloadsRowCartData);
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Added 1 Asset to Cart' });
     console.log("cart Data:", this.topDownloadsRowCartData);
   }
 
@@ -60,6 +63,7 @@ export class AnnouncementsComponent implements OnInit {
     var link = document.createElement('a');
     link.href = url;
     link.click();
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: '1 Image Downloaded Successfully' });
   }
 
   rpRowFolderDownload(id){
