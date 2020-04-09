@@ -17,43 +17,33 @@ import { ProfileComponent } from '../pages/profile/profile.component';
 import { CartComponent } from '../pages/landing/cart/cart.component';
 import { AssetsComponent } from '../pages/assets/assets.component';
 import { BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
+import { MycollectionsComponent } from '../pages/mycollections/mycollections.component';
 
 
 const routes: Routes = [
-{
-path: '', component: BxrootComponent,
-children: [
-
-  
- { path: '', component: LandingComponent },
- { path: 'treelistview', component: TreelistviewComponent },
- { path: 'collections', component: LandingComponent },
- { path: 'recent-downloads', component: LandingComponent },
- { path: 'cart', component: CartComponent },
- { path: 'profile-deails', component: ProfileComponent },
-
-// { path: 'collections', component: AssetsComponent },
-// { path: 'gridview', component: GridviewComponent },
-// { path: 'assets', component: AssetsComponent },
-// { path: 'search', component: SearchComponent },
-// { path: 'profile', component: ProfiledetailsComponent },
-// { path: 'listview', component: ListviewComponent },
-// { path: 'assetdetails', component: AssetdetailsComponent },
-//new
-{ path: 'leftmenu', component: LeftmenuComponent },
-{ path: 'announcements', component: AnnouncementsComponent },
-{ path: 'topmenu', component: TopmenuComponent },
-{ path: 'assets', component: AssetsComponent },
-{ path: 'breadcrumb', component: BreadcrumbComponent },
+    {
+        path: '', component: BxrootComponent,
+        children: [
 
 
+            { path: '', component: LandingComponent },
+            { path: 'treelistview', component: TreelistviewComponent },
+            { path: 'collections', component: LandingComponent },
+            { path: 'recent-downloads', component: LandingComponent },
+            { path: 'cart', component: CartComponent },
+            { path: 'profile-deails', component: ProfileComponent },
+            { path: 'leftmenu', component: LeftmenuComponent },
+            { path: 'announcements', component: AnnouncementsComponent },
+            { path: 'topmenu', component: TopmenuComponent },
+            { path: 'assets', component: AssetsComponent },
+            { path: 'breadcrumb', component: BreadcrumbComponent },
+            { path: 'mycollections', component: MycollectionsComponent },
 
-
-]
-}
+        ]
+    }
 ];
 @NgModule({
- imports: [RouterModule.forChild(routes)],
-exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class BXlayoutRoutingModule { }

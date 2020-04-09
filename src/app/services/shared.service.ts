@@ -98,6 +98,20 @@ export class SharedService {
       .set('otmmauthtoken',JSON.parse(sessionStorage.session).message_digest)});
       }
     }
+
+    public patchService( serviceURL,params): Observable<any> {
+      if(window.location.host.split(':')[0]=="localhost"){
+     
+      return this.http.patch(serviceURL,params,  {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('x-requested-by', '640506658')
+      .set('otmmauthtoken',localStorage.session)});
+      }
+      else{
+      return this.http.patch(serviceURL,params, {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('x-requested-by', JSON.parse(sessionStorage.session).id) 
+      .set('otmmauthtoken',JSON.parse(sessionStorage.session).message_digest)});
+      }
+    }
     
     
 }
