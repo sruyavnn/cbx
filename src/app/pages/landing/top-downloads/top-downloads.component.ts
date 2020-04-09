@@ -166,6 +166,7 @@ export class TopDownloadsComponent implements OnInit {
   checkAll: boolean;
   checkUnAll() {
     if (this.checkAll) {
+      
       this.btnEnableDisable = false;
     }
     else {
@@ -210,7 +211,7 @@ export class TopDownloadsComponent implements OnInit {
       if (this.topDownloadData[i].isSelected) {
         this.topDownloadsRowCartData = this._dataService.getCartOption();
         var length = this.topDownloadsRowCartData.filter(x => x.asset_id == this.topDownloadData[i].asset_id).length;
-        if (length == 0) {
+        if (length == 1 || length == 0) {
           this.topDownloadsRowCartData.push(this.topDownloadData[i]);
         }
         this._dataService.setCartOption(this.topDownloadsRowCartData);
@@ -232,6 +233,7 @@ export class TopDownloadsComponent implements OnInit {
       if (this.selectAll) {
         this.btnEnableDisable = false;
         this.topDownloadData[i].isSelected = true;
+        
       }
       else {
         this.btnEnableDisable = true;
@@ -240,7 +242,6 @@ export class TopDownloadsComponent implements OnInit {
     }
   }
   checkUncheckSingle(flag, asset_id) {
-
     var selectedLength = this.topDownloadData.filter(x => x.isSelected == true).length;
     if (selectedLength > 0) {
       this.btnEnableDisable = false;

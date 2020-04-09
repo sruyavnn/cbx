@@ -238,7 +238,6 @@
   color: #3C3C3C;
 }
 
-
 .optons-menu .dropdown-item:hover {
   background-color: #fff;
   color: #1D4572;
@@ -281,7 +280,7 @@
 }
 .topd-checkbox {
   width: 3%;
-    padding-right: 10px !important;
+  padding-right: 10px !important;
 }
 .row-file-size {
   width: 8%;

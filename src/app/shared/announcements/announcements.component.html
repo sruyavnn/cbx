@@ -133,10 +133,11 @@
                     </div>
                     <div>
                         <ul class="lastModified">
-                            <li>Last modified by: {{trtopDownloadData?.metadata_state_user_name}}</li>
+                            <li>Last modified by: </li>
+                            <!-- {{trtopDownloadData?.metadata_state_user_name}} -->
                             <li>Total Downloads: 144k</li>
                             <li>Asset Size:
-                                {{trtopDownloadData?.rendition_content.preview_content.content_size/1024/1024 | number : '1.2-2'}}mb
+                                <!-- {{trtopDownloadData?.rendition_content.preview_content.content_size/1024/1024 | number : '1.2-2'}}mb -->
                             </li>
                         </ul>
                     </div>
@@ -216,8 +217,8 @@
                 </div>
 
                 <!--For PDF-->
-                <!-- <div class="col-sm-12 p-bx-0"
-                    *ngIf="trtopDownloadData?.data_type== undefined && trtopDownloadData?.rendition_content.pdf_preview_content">
+                <div class="col-sm-12 p-bx-0"
+                    *ngIf="trtopDownloadData?.data_type== undefined && trtopDownloadData?.rendition_content">
                     <h6 class="asset-info">Asset Information</h6>
                     <i class="fa fa-remove" (click)="removeTopDownloadData()" aria-hidden="true"></i>
                     <div>
@@ -268,7 +269,69 @@
                             <li>Legal rights exist: No</li>
                         </ul>
                     </div>
-                </div> -->
+                </div>
+
+                <!--For MSOFFICE-->
+                <div class="col-sm-12 p-bx-0" *ngIf="trtopDownloadData?.content_type == 'MSOFFICE' && trtopDownloadData?.rendition_content">
+                    <h6 class="asset-info">Asset Information</h6>
+                    <i class="fa fa-remove" (click)="removeTopDownloadData()" aria-hidden="true"></i>
+                    <div>
+                        <p class="newBxName">{{trtopDownloadData?.name}} &nbsp;&nbsp;&nbsp;&nbsp; </p>
+                        <div class="img-anpunce">
+                             <span
+                                *ngIf="trtopDownloadData?.content_type == 'MSOFFICE'"
+                                class="asset-pannel">
+                                <img src="./cbx/images/mime_video96.png"
+                                    class="img-fluid list-folder-size list-asset-hover">
+                            </span>
+                            <span
+                            *ngIf="trtopDownloadData?.content_type == 'MSOFFICE' && trtopDownloadData?.rendition_content"
+                                class="asset-pannel">
+                                <img src={{trtopDownloadData?.rendition_content.thumbnail_content.url}}
+                                    class="img-fluid list-asset-size list-asset-hover">
+                            </span>
+
+                            
+                        </div>
+                    </div>
+                    <div class="cart">
+                        <img (click)="addCartTopDownloads(trtopDownloadData)"
+                            src="../../../cbx/images/buttons-with-icons/add-to-cart_inactive.png" class="img-cart" />
+                        
+                    </div>
+                    <div class="download">
+                        <img (click)="rpRowImgDownload(trtopDownloadData.rendition_content.preview_content.id)"
+                            src="./cbx/images/buttons-with-icons/download_Inactive.png" class="img-download" />
+                    </div>
+                    <div class="ellipsis">
+                        <img src="./cbx/images/buttons-with-icons/options_inactive.png" class="img-options" />
+                    </div>
+                    <div>
+                        <span class="newBx">updated:
+                            {{trtopDownloadData?.date_last_updated | date: 'dd/MM/yyyy' }}</span>
+                        <p class="checkOut-featured">Updated old links, fixed types in instruction guide, fixed file
+                            type error</p>
+                    </div>
+                    <div>
+                        <ul class="lastModified">
+                            <li>Last modified by: {{trtopDownloadData?.metadata_state_user_name}}</li>
+                            <li>Total Downloads: 144k</li>
+                            <li>Asset Size:
+                                {{trtopDownloadData?.content_size/1024/1024 | number : '1.2-2'}}mb
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="createdBy">
+                            <li>Created by: {{trtopDownloadData?.import_user_name}}</li>
+                            <li>Expiration date:                               
+                            </li>
+                            <li>Asset id: {{trtopDownloadData?.asset_id}}</li>
+                            <li>Legal rights exist: No</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

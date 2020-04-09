@@ -59,7 +59,7 @@
     <thead>
       <tr class="table-head-row">
         <th>
-          <p-checkbox name="groupname"   [(ngModel)]="selectAll" [binary]="true" (onChange)="checkUncheckAll()"></p-checkbox>
+          <p-checkbox name="groupname" [(ngModel)]="selectAll" [binary]="true" (onChange)="checkUncheckAll()"></p-checkbox>
 
          </th>
          <!-- <th><label class="main">
@@ -83,7 +83,6 @@
         </td> -->
         <td class="topd-checkbox">
         <p-checkbox  [(ngModel)]="rowData.isSelected" [binary]="true"   (onChange)="checkUncheckSingle($event, rowData?.asset_id)"></p-checkbox>
-
         </td>
         <td class="row-thumbnail-main"><div class="row-thumbnail">
 
