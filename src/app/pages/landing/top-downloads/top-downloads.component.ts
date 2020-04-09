@@ -111,7 +111,7 @@ export class TopDownloadsComponent implements OnInit {
       this.topDownloadsRowCartData.push(cart);
     }
     this._dataService.setCartOption(this.topDownloadsRowCartData);
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Added 1 Asset to Cart Successfully' });
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Asset Added to Cart Successfully' });
     console.log("cart Data:", this.topDownloadsRowCartData);
   }
 
@@ -193,7 +193,7 @@ export class TopDownloadsComponent implements OnInit {
       
     }
     }
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Images are Downloaded Successfully' });
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Assets Downloaded Successfully' });
   }
 
   mutltiAddtoCartDownloads(){  
@@ -207,7 +207,7 @@ export class TopDownloadsComponent implements OnInit {
         this._dataService.setCartOption(this.topDownloadsRowCartData);
         }
      }
-     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Row Assets are Added to Cart' });
+     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Assets are Added to Cart' });
   }
 
   singleAssetDownload(id){
@@ -215,7 +215,7 @@ export class TopDownloadsComponent implements OnInit {
     var link = document.createElement('a');
     link.href = url;
     link.click();
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: '1 Image Downloaded Successfully' });
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Asset Downloaded Successfully' });
   }
 
   checkUncheckAll() {

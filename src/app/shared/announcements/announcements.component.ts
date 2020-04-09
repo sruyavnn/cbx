@@ -45,7 +45,7 @@ export class AnnouncementsComponent implements OnInit {
     }
     
     this._dataService.setCartOption(this.topDownloadsRowCartData);
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Added 1 Asset to Cart' });
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Asset Added to Cart' });
     console.log("cart Data:", this.topDownloadsRowCartData);
   }
 
@@ -63,7 +63,7 @@ export class AnnouncementsComponent implements OnInit {
     var link = document.createElement('a');
     link.href = url;
     link.click();
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: '1 Image Downloaded Successfully' });
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Asset Downloaded Successfully' });
   }
 
   rpRowFolderDownload(id){
