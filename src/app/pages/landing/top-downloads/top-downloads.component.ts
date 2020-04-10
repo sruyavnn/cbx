@@ -363,7 +363,7 @@ $('#'+asset_id).addClass('selected');
   }
   addAssets() {
     this.spinner.show();
-   var serviceUrl = 'otmmapi/v5/lightboxes/'+this.selectedCollection+'/assets';
+   var serviceUrl = '/otmmapi/v5/lightboxes/'+this.selectedCollection+'/assets';
    //var sericeUrl='otmmapi/v5/assets?group_by=data_type&selection_context=%7B%22selection_context_param%22%3A%7B%22selection_context%22%3A%7B%22asset_ids%22%3A%5B%22'+assetId+'%22%5D%2C%22asssetContentType%22%3A%5B%22BITMAP%22%5D%2C%22assetSubContentType%22%3A%5B%22none%22%5D%2C%22type%22%3A%22com.artesia.asset.selection.AssetIdsSelectionContext%22%2C%22include_descendants%22%3A%22NONE%22%2C%22include_deleted_assets%22%3Afalse%7D%7D%7D&limit=0';
 var assetids=[]
 for (let i = 0; i < this.topDownloadData.length; i++) {
