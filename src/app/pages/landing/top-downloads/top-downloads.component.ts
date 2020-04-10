@@ -26,6 +26,9 @@ export class TopDownloadsComponent implements OnInit {
   httpClient: any;
   collectionsData: any;
   selectedCollection: string;
+  modalReference:any= null;
+  
+  // @ViewChild('mycollectionmodal',null) popup :any;  
   constructor(private _sharedservice: SharedService,
     private listViewService: ListViewService,
     private spinner: NgxSpinnerService,
@@ -61,10 +64,8 @@ export class TopDownloadsComponent implements OnInit {
     //this.spinner.show();
     console.log('cars');
     this.assetId = 'c7c0b34a5fa903aacec8a0b5525cf6b8d9a016f5';
-    // var serviceUrl='/otmmapi/v5/folders/'+this.assetId+'/children/?load_type=metadata&load_multilingual_values=true&level_of_detail=full&after='+this.PageAfter+'&limit='+this.PageLimit+'&preference_id=ARTESIA.PREFERENCE.SPREADSHEETVIEW.DISPLAYED_FIELDS&sort=asc_NAME'
-    //var serviceUrl='/otmmapi/v5/folders/'+this.assetId+'/children/?load_type=metadata&load_multilingual_values=true&level_of_detail=full&after='+this.PageAfter+'&limit='+this.PageLimit+'&preference_id=ARTESIA.PREFERENCE.SPREADSHEETVIEW.DISPLAYED_FIELDS&sort=asc_NAME'    
-    var serviceUrl = '/otmmapi/v5/folders/' + this.assetId + '/children/?load_type=metadata&load_multilingual_values=true&level_of_detail=full&after=' + this.PageAfter + '&limit=' + this.PageLimit + '&sort=asc_NAME'
-
+   var serviceUrl = '/otmmapi/v5/folders/' + this.assetId + '/children/?load_type=metadata&load_multilingual_values=true&level_of_detail=full&after=' + this.PageAfter + '&limit=' + this.PageLimit + '&sort=asc_NAME'
+    //var serviceUrl='/otmmapi/v5/cbxevents/topdownloads?startindex=0&offset=10&days=30'
     this._sharedservice.getService(serviceUrl
     ).subscribe(data => {
       console.log('in cars');
@@ -98,12 +99,13 @@ export class TopDownloadsComponent implements OnInit {
 
   //onclick func in topdownloads
   topDownloadsData(name) {
-    $('#' + name.asset_id).addClass("selected").siblings().removeClass("selected");
+   // $('#' + name.asset_id).addClass("selected");//.siblings().removeClass("selected");
     var selectedLength = this.topDownloadData.filter(x => x.isSelected == true).length;
     if (selectedLength > 1) {
       this.listViewService.trRightPanel(null);
     }
     else {
+      $('#' + name.asset_id).addClass("selected").siblings().removeClass("selected");;
       this.listViewService.trRightPanel(name);
     }
   }
@@ -183,8 +185,7 @@ export class TopDownloadsComponent implements OnInit {
   }
 
   multiAssetDownloads() {
-    var selectedAssetIds = [];
-    var selectedContentType = [];
+
     for (let i = 0; i < this.topDownloadData.length; i++) {
       if (this.topDownloadData[i].isSelected) {
         var iframe = $('<iframe style="visibility: collapse;"></iframe>');
@@ -258,6 +259,13 @@ export class TopDownloadsComponent implements OnInit {
     else {
       this.selectAll = false;
     }
+    if(flag){
+$('#'+asset_id).addClass('selected');
+    }
+    else{
+      $('#'+asset_id).removeClass('selected');
+
+    }
 
   }
 
@@ -325,11 +333,13 @@ export class TopDownloadsComponent implements OnInit {
       this.selectedCollection = "";
       this.collectionsData = data.lightboxes_resource.lightbox;
 
-      this.modalService.open(modalContent, ngbModalOptions).result.then((result) => {
+      this.modalReference = this.modalService.open(modalContent, ngbModalOptions);
+      this.modalReference.result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
+      //this.popup.close();
       this.spinner.hide();
 
     },
@@ -352,6 +362,7 @@ export class TopDownloadsComponent implements OnInit {
     }
   }
   addAssets() {
+    this.spinner.show();
    var serviceUrl = 'otmmapi/v5/lightboxes/'+this.selectedCollection+'/assets';
    //var sericeUrl='otmmapi/v5/assets?group_by=data_type&selection_context=%7B%22selection_context_param%22%3A%7B%22selection_context%22%3A%7B%22asset_ids%22%3A%5B%22'+assetId+'%22%5D%2C%22asssetContentType%22%3A%5B%22BITMAP%22%5D%2C%22assetSubContentType%22%3A%5B%22none%22%5D%2C%22type%22%3A%22com.artesia.asset.selection.AssetIdsSelectionContext%22%2C%22include_descendants%22%3A%22NONE%22%2C%22include_deleted_assets%22%3Afalse%7D%7D%7D&limit=0';
 var assetids=[]
@@ -381,8 +392,13 @@ for (let i = 0; i < this.topDownloadData.length; i++) {
     ).subscribe(data => {
       this.selectedCollection = "";
       //this.collectionsData = data.lightboxes_resource.lightbox;
-
-
+      if(data.lightbox_operation_result_representation.lightbox_operation_result.lightbox_error_list.length==0){
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Selected asset(s) added to collection successfully' });
+      }
+      else{
+          this.messageService.add({ severity: 'warn', summary: 'warning', detail: 'Selected asset(s) already exists in the collection' });
+      }
+      this.modalReference.close();
       this.spinner.hide();
 
     },
@@ -394,6 +410,20 @@ for (let i = 0; i < this.topDownloadData.length; i++) {
   }
   createNewCollection() {
 
+  }
+  copyUrl(obj){
+    var link=window.location.href.split('=')[0]+"/treelistview?assetId="+obj.asset_id+"&type=asset";
+
+    const event = (e: ClipboardEvent) => {
+      e.clipboardData.setData('text/plain', link);
+      e.preventDefault();
+      // ...('copy', e), as event is outside scope
+      document.removeEventListener('copy',event);
+  }
+  document.addEventListener('copy', event);
+  document.execCommand('copy');
+  this.messageService.add({ severity: 'success', summary: 'Success', detail: obj.name+' link copied to clipboard' });
+  
   }
 
 }
