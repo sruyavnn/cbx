@@ -20,7 +20,8 @@ declare var $: any;
   styleUrls: ['./mycollections.component.css']
 })
 export class MycollectionsComponent implements OnInit {
-
+  collectionsData: any;
+  selectedCollection: string;
   constructor(
     private _dataService: DataService, private _sharedservice: SharedService,
         public router: Router, private listViewService: ListViewService,
@@ -37,7 +38,9 @@ export class MycollectionsComponent implements OnInit {
     var serviceUrl = '/otmmapi/v5/lightboxes'
     this._sharedservice.getService(serviceUrl
     ).subscribe(data => {
-       console.log("collections: ",data);
+      this.selectedCollection = "";
+      this.collectionsData = data.lightboxes_resource.lightbox;
+       //console.log("collections: ",data);
        this.spinner.hide();
 
     },
@@ -47,5 +50,7 @@ export class MycollectionsComponent implements OnInit {
         }
     )
   }
+
+  
 
 }
